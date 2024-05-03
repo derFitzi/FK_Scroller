@@ -9,9 +9,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.shape.Rectangle;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,11 +38,10 @@ public class HelloController extends AnimationTimer implements Initializable {
     private Slider lautstaerke;
     @FXML
     private Slider sensibilitaet;
-    Image image = new Image("file:CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/Bild1.png");
-    @FXML
-    ImageView i1= new ImageView(image);
     @FXML
     Pane p_Pane;
+    @FXML
+    Rectangle settingsBG;
 
 
     public void play()
@@ -58,6 +63,7 @@ public class HelloController extends AnimationTimer implements Initializable {
         sensibilitaet.setVisible(true);
         sensibilitaet_text.setVisible(true);
         zumHauptmenue.setVisible(true);
+        settingsBG.setVisible(true);
     }
     public void zumHauptmenue()
     {
@@ -66,18 +72,26 @@ public class HelloController extends AnimationTimer implements Initializable {
         sensibilitaet.setVisible(false);
         sensibilitaet_text.setVisible(false);
         zumHauptmenue.setVisible(false);
+        settingsBG.setVisible(false);
         play.setVisible(true);
         quit.setVisible(true);
         settings.setVisible(true);
+        Image hintergrundMainMenue = new Image(getClass().getResourceAsStream("/org/example/crazyjoesworld/Bild1.png"));
+        double width = 1920;
+        double height = 1080;
+
+
+        BackgroundImage backgroundImage = new BackgroundImage(hintergrundMainMenue, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
+        p_Pane.setBackground(new Background(backgroundImage));
+
     }
 
 
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
-        //p_Pane.getChildren().add(i1);
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        zumHauptmenue();
     }
 
     @Override
