@@ -1,2 +1,2 @@
-# SideScroller
-Colles Sidescroller Game was absolut bahnbrechend wird und legendäre Grafik
+# Crazy Joe's World SideScroller
+Sidescroller resembling Super Mario World
