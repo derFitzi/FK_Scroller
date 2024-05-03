@@ -19,7 +19,7 @@
          <font>
             <Font name="Cooper Black" size="24.0" />
          </font></Button>
-      <Rectangle fx:id="settingsBG" arcHeight="300.0" arcWidth="300.0" fill="#cdc8b1" height="436.0" layoutX="650.0" layoutY="231.0" stroke="BLACK" strokeType="INSIDE" width="651.0" />
+      <Rectangle fx:id="settingsBG" arcHeight="250.0" arcWidth="250.0" fill="#cdc8b1" height="361.0" layoutX="639.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE" width="651.0" />
       <Label fx:id="lautstaerke_text" layoutX="773.0" layoutY="333.0" prefHeight="29.0" prefWidth="159.0" text="Lautstärke">
          <font>
             <Font name="Cooper Black" size="24.0" />
@@ -30,9 +30,44 @@
          <font>
             <Font name="Cooper Black" size="24.0" />
          </font></Label>
-      <Button fx:id="zumHauptmenue" layoutX="799.0" layoutY="506.0" mnemonicParsing="false" onAction="#zumHauptmenue" prefHeight="48.0" prefWidth="331.0" style="-fx-background-color: #8B8878;" text="Zurück zum Hauptmenü" textFill="WHITE">
+      <Button fx:id="zumHauptmenue" layoutX="810.0" layoutY="507.0" mnemonicParsing="false" onAction="#zumHauptmenue" prefHeight="48.0" prefWidth="331.0" style="-fx-background-color: #8B8878;" text="Zurück zum Hauptmenü" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="23.0" />
          </font></Button>
+      <Rectangle fx:id="g2" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#cdc8b1" height="200.0" layoutX="1105.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" width="371.0" />
+      <Rectangle fx:id="g1" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="419.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" width="371.0" />
+      <Rectangle fx:id="g3" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="419.0" layoutY="455.0" stroke="BLACK" strokeType="INSIDE" width="371.0" />
+      <Rectangle fx:id="g4" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="1105.0" layoutY="455.0" stroke="BLACK" strokeType="INSIDE" width="371.0" />
+      <Rectangle fx:id="g5" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#cdc8b1" height="200.0" layoutX="775.0" layoutY="668.0" stroke="BLACK" strokeType="INSIDE" width="371.0" />
+      <Button fx:id="zumHauptmenueGameSelector" layoutX="792.0" layoutY="379.0" mnemonicParsing="false" onAction="#zumHauptmenue" prefHeight="48.0" prefWidth="317.0" style="-fx-background-color: #8B8878;" text="Zurück zum Hauptmenü" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
+      <Label fx:id="t1" layoutX="548.0" layoutY="365.0" text="Level 1">
+         <font>
+            <Font name="Cooper Black" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="t2" layoutX="1219.0" layoutY="356.0" text="Level 2">
+         <font>
+            <Font name="Cooper Black" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="t3" layoutX="534.0" layoutY="673.0" text="Level 3">
+         <font>
+            <Font name="Cooper Black" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="t4" layoutX="1193.0" layoutY="673.0" text="Level 4">
+         <font>
+            <Font name="Cooper Black" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="t5" layoutX="829.0" layoutY="885.0" text="Infitity Level">
+         <font>
+            <Font name="Cooper Black" size="40.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

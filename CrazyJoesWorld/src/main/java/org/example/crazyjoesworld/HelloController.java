@@ -31,9 +31,21 @@ public class HelloController extends AnimationTimer implements Initializable {
     @FXML
     private Button zumHauptmenue;
     @FXML
+    private Button zumHauptmenueGameSelector;
+    @FXML
     private Label lautstaerke_text;
     @FXML
     private Label sensibilitaet_text;
+    @FXML
+    private Label t1;
+    @FXML
+    private Label t2;
+    @FXML
+    private Label t3;
+    @FXML
+    private Label t4;
+    @FXML
+    private Label t5;
     @FXML
     private Slider lautstaerke;
     @FXML
@@ -42,6 +54,16 @@ public class HelloController extends AnimationTimer implements Initializable {
     Pane p_Pane;
     @FXML
     Rectangle settingsBG;
+    @FXML
+    Rectangle g1;
+    @FXML
+    Rectangle g2;
+    @FXML
+    Rectangle g3;
+    @FXML
+    Rectangle g4;
+    @FXML
+    Rectangle g5;
 
 
     public void play()
@@ -49,6 +71,24 @@ public class HelloController extends AnimationTimer implements Initializable {
         play.setVisible(false);
         quit.setVisible(false);
         settings.setVisible(false);
+        zumHauptmenueGameSelector.setVisible(true);
+        g1.setVisible(true);
+        g2.setVisible(true);
+        g3.setVisible(true);
+        g4.setVisible(true);
+        g5.setVisible(true);
+        t1.setVisible(true);
+        t2.setVisible(true);
+        t3.setVisible(true);
+        t4.setVisible(true);
+        t5.setVisible(true);
+        Image hintergrundMainMenue = new Image(getClass().getResourceAsStream("/org/example/crazyjoesworld/GameSelection.png"));
+        double width = 1920;
+        double height = 1080;
+
+
+        BackgroundImage backgroundImage = new BackgroundImage(hintergrundMainMenue, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
+        p_Pane.setBackground(new Background(backgroundImage));
     }
     public void quit() {
         Platform.exit();
@@ -73,6 +113,17 @@ public class HelloController extends AnimationTimer implements Initializable {
         sensibilitaet_text.setVisible(false);
         zumHauptmenue.setVisible(false);
         settingsBG.setVisible(false);
+        zumHauptmenueGameSelector.setVisible(false);
+        g1.setVisible(false);
+        g2.setVisible(false);
+        g3.setVisible(false);
+        g4.setVisible(false);
+        g5.setVisible(false);
+        t1.setVisible(false);
+        t2.setVisible(false);
+        t3.setVisible(false);
+        t4.setVisible(false);
+        t5.setVisible(false);
         play.setVisible(true);
         quit.setVisible(true);
         settings.setVisible(true);
