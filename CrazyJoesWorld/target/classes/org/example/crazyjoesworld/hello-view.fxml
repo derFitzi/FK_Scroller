@@ -35,7 +35,7 @@
             <Font name="Cooper Black" size="23.0" />
          </font></Button>
       <Rectangle fx:id="g2" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#cdc8b1" height="200.0" layoutX="1105.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" width="371.0" />
-      <Rectangle fx:id="g1" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="419.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" width="371.0" />
+      <Rectangle fx:id="g1" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="419.0" layoutY="147.0" onMouseClicked="#game1" stroke="BLACK" strokeType="INSIDE" width="371.0" />
       <Rectangle fx:id="g3" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="419.0" layoutY="455.0" stroke="BLACK" strokeType="INSIDE" width="371.0" />
       <Rectangle fx:id="g4" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="1105.0" layoutY="455.0" stroke="BLACK" strokeType="INSIDE" width="371.0" />
       <Rectangle fx:id="g5" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#cdc8b1" height="200.0" layoutX="775.0" layoutY="668.0" stroke="BLACK" strokeType="INSIDE" width="371.0" />

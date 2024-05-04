@@ -155,6 +155,11 @@ public class HelloController extends AnimationTimer implements Initializable {
         gameMusic.setVolume(lautstaerke.getValue() / 200.0);
         // weitere Songs hier hinzufügen
     }
+    public void game1()
+    {
+        p_Pane.setVisible(false);
+        gameMusic.stop();
+    }
 
 
 
