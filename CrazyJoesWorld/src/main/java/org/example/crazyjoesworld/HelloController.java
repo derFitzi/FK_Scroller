@@ -17,6 +17,9 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -65,6 +68,11 @@ public class HelloController extends AnimationTimer implements Initializable {
     @FXML
     Rectangle g5;
 
+    Media sound1 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/MainMenueSound.mp3").toURI().toString());
+    MediaPlayer mainMenueMusic = new MediaPlayer(sound1);
+    Media sound2 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/GameSound.mp3").toURI().toString());
+    MediaPlayer gameMusic = new MediaPlayer(sound2);
+
 
     public void play()
     {
@@ -82,13 +90,15 @@ public class HelloController extends AnimationTimer implements Initializable {
         t3.setVisible(true);
         t4.setVisible(true);
         t5.setVisible(true);
+
         Image hintergrundMainMenue = new Image(getClass().getResourceAsStream("/org/example/crazyjoesworld/GameSelection.png"));
         double width = 1920;
-        double height = 1080;
-
-
+        double height = 1090;
         BackgroundImage backgroundImage = new BackgroundImage(hintergrundMainMenue, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
         p_Pane.setBackground(new Background(backgroundImage));
+
+        mainMenueMusic.stop();
+        gameMusic.play();
     }
     public void quit() {
         Platform.exit();
@@ -127,14 +137,23 @@ public class HelloController extends AnimationTimer implements Initializable {
         play.setVisible(true);
         quit.setVisible(true);
         settings.setVisible(true);
+
         Image hintergrundMainMenue = new Image(getClass().getResourceAsStream("/org/example/crazyjoesworld/Bild1.png"));
         double width = 1920;
-        double height = 1080;
-
-
+        double height = 1090;
         BackgroundImage backgroundImage = new BackgroundImage(hintergrundMainMenue, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
         p_Pane.setBackground(new Background(backgroundImage));
 
+        gameMusic.stop();
+        mainMenueMusic.play();
+
+    }
+
+    public void lautsterkenregelung()
+    {
+        mainMenueMusic.setVolume(lautstaerke.getValue() / 200.0);
+        gameMusic.setVolume(lautstaerke.getValue() / 200.0);
+        // weitere Songs hier hinzufügen
     }
 
 
@@ -149,4 +168,6 @@ public class HelloController extends AnimationTimer implements Initializable {
     public void handle(long l) {
 
     }
+
+
 }
