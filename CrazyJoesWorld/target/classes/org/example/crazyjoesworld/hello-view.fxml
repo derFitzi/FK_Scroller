@@ -24,7 +24,7 @@
          <font>
             <Font name="Cooper Black" size="24.0" />
          </font></Label>
-      <Slider fx:id="lautstaerke" layoutX="933.0" layoutY="335.0" max="200.0" prefHeight="25.0" prefWidth="331.0" value="100.0" />
+      <Slider fx:id="lautstaerke" layoutX="933.0" layoutY="335.0" max="200.0" onDragDetected="#lautsterkenregelung" onDragDone="#lautsterkenregelung" onDragDropped="#lautsterkenregelung" onDragEntered="#lautsterkenregelung" onDragExited="#lautsterkenregelung" onDragOver="#lautsterkenregelung" onMouseClicked="#lautsterkenregelung" onMouseDragEntered="#lautsterkenregelung" onMouseDragExited="#lautsterkenregelung" onMouseDragOver="#lautsterkenregelung" onMouseDragReleased="#lautsterkenregelung" onMouseDragged="#lautsterkenregelung" onMouseEntered="#lautsterkenregelung" onMouseMoved="#lautsterkenregelung" prefHeight="25.0" prefWidth="331.0" value="100.0" />
       <Slider fx:id="sensibilitaet" layoutX="933.0" layoutY="427.0" max="200.0" prefHeight="14.0" prefWidth="331.0" value="100.0" />
       <Label fx:id="sensibilitaet_text" layoutX="764.0" layoutY="419.0" prefHeight="29.0" prefWidth="169.0" text="Sensibilität">
          <font>
