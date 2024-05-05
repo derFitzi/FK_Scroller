@@ -40,6 +40,8 @@ public class HelloController extends AnimationTimer implements Initializable {
     @FXML
     private Label sensibilitaet_text;
     @FXML
+    private Label mainMenueName;
+    @FXML
     private Label t1;
     @FXML
     private Label t2;
@@ -80,6 +82,7 @@ public class HelloController extends AnimationTimer implements Initializable {
         quit.setVisible(false);
         settings.setVisible(false);
         zumHauptmenueGameSelector.setVisible(true);
+        mainMenueName.setVisible(false);
         g1.setVisible(true);
         g2.setVisible(true);
         g3.setVisible(true);
@@ -91,10 +94,10 @@ public class HelloController extends AnimationTimer implements Initializable {
         t4.setVisible(true);
         t5.setVisible(true);
 
-        Image hintergrundMainMenue = new Image(getClass().getResourceAsStream("/org/example/crazyjoesworld/GameSelection.png"));
+        Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("org/example/crazyjoesworld/Ground.png"));
         double width = 1920;
         double height = 1090;
-        BackgroundImage backgroundImage = new BackgroundImage(hintergrundMainMenue, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
+        BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
         p_Pane.setBackground(new Background(backgroundImage));
 
         mainMenueMusic.stop();
@@ -108,6 +111,7 @@ public class HelloController extends AnimationTimer implements Initializable {
         play.setVisible(false);
         quit.setVisible(false);
         settings.setVisible(false);
+        mainMenueName.setVisible(false);
         lautstaerke.setVisible(true);
         lautstaerke_text.setVisible(true);
         sensibilitaet.setVisible(true);
@@ -124,6 +128,7 @@ public class HelloController extends AnimationTimer implements Initializable {
         zumHauptmenue.setVisible(false);
         settingsBG.setVisible(false);
         zumHauptmenueGameSelector.setVisible(false);
+        mainMenueName.setVisible(true);
         g1.setVisible(false);
         g2.setVisible(false);
         g3.setVisible(false);
