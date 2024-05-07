@@ -69,6 +69,8 @@ public class HelloController extends AnimationTimer implements Initializable {
     Rectangle g4;
     @FXML
     Rectangle g5;
+    @FXML
+    Pane game1Pane;
 
     Media sound1 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/MainMenueSound.mp3").toURI().toString());
     MediaPlayer mainMenueMusic = new MediaPlayer(sound1);
@@ -164,6 +166,7 @@ public class HelloController extends AnimationTimer implements Initializable {
     {
         p_Pane.setVisible(false);
         gameMusic.stop();
+        game1Pane.setVisible(true);
     }
 
 
