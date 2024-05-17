@@ -3,28 +3,30 @@ package org.example.crazyjoesworld;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import java.io.File;
-import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HelloController extends AnimationTimer implements Initializable {
+public class MainController extends AnimationTimer implements Initializable {
     @FXML
     private Button play;
     @FXML
@@ -69,8 +71,9 @@ public class HelloController extends AnimationTimer implements Initializable {
     Rectangle g4;
     @FXML
     Rectangle g5;
-    @FXML
-    Pane game1Pane;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     Media sound1 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/MainMenueSound.mp3").toURI().toString());
     MediaPlayer mainMenueMusic = new MediaPlayer(sound1);
@@ -96,14 +99,16 @@ public class HelloController extends AnimationTimer implements Initializable {
         t4.setVisible(true);
         t5.setVisible(true);
 
+        mainMenueMusic.stop();
+        gameMusic.play();
+
         Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("org/example/crazyjoesworld/Ground.png"));
         double width = 1920;
         double height = 1090;
         BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
         p_Pane.setBackground(new Background(backgroundImage));
 
-        mainMenueMusic.stop();
-        gameMusic.play();
+
     }
     public void quit() {
         Platform.exit();
@@ -162,11 +167,29 @@ public class HelloController extends AnimationTimer implements Initializable {
         gameMusic.setVolume(lautstaerke.getValue() / 200.0);
         // weitere Songs hier hinzufügen
     }
-    public void game1()
-    {
-        p_Pane.setVisible(false);
-        gameMusic.stop();
-        game1Pane.setVisible(true);
+    public void game1() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
+
+            // Set the controller for the FXML file
+            loader.setController(new Game1Controller());
+
+            // Load the FXML file
+            Parent game1Root = loader.load();
+
+            // Get the current scene and set the new FXML file as the root of the scene
+            Scene currentScene = new Scene(game1Root);
+
+            // Get the stage and set the scene
+            Stage stage = (Stage) quit.getScene().getWindow(); // Assuming quit is a node in your current scene
+            stage.setScene(currentScene);
+
+            // Optional: You might want to show the stage if it's hidden
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
