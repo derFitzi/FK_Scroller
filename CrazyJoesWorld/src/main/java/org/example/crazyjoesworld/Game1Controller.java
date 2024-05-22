@@ -36,12 +36,13 @@ public class Game1Controller {
         game1_pane.setFocusTraversable(true); // Make sure the Pane can be focused
         game1_pane.requestFocus(); // Request focus for the Pane
 
+            /*
         Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("org/example/crazyjoesworld/platformtexture.jpg"));
         double width = 1920;
         double height = 1080;
         BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
         game1_pane.setBackground(new Background(backgroundImage));
-
+        */
 
 
         player = new Rectangle(40, 40, Color.RED);
