@@ -6,9 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -32,6 +35,14 @@ public class Game1Controller {
     public void initialize() {
         game1_pane.setFocusTraversable(true); // Make sure the Pane can be focused
         game1_pane.requestFocus(); // Request focus for the Pane
+
+        Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("org/example/crazyjoesworld/platformtexture.jpg"));
+        double width = 1920;
+        double height = 1080;
+        BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
+        game1_pane.setBackground(new Background(backgroundImage));
+
+
 
         player = new Rectangle(40, 40, Color.RED);
         player.setTranslateX(100);

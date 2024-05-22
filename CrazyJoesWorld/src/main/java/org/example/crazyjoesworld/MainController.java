@@ -108,7 +108,7 @@ public class MainController extends AnimationTimer implements Initializable {
 
         Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("org/example/crazyjoesworld/Ground.png"));
         double width = 1920;
-        double height = 1090;
+        double height = 1080;
         BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
         p_Pane.setBackground(new Background(backgroundImage));
 
