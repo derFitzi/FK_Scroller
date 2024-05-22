@@ -60,6 +60,8 @@ public class MainController extends AnimationTimer implements Initializable {
     @FXML
     Pane p_Pane;
     @FXML
+    Pane p_game1;
+    @FXML
     Rectangle settingsBG;
     @FXML
     Rectangle g1;
@@ -74,6 +76,8 @@ public class MainController extends AnimationTimer implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    public Games game;
 
     Media sound1 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/MainMenueSound.mp3").toURI().toString());
     MediaPlayer mainMenueMusic = new MediaPlayer(sound1);
@@ -168,29 +172,25 @@ public class MainController extends AnimationTimer implements Initializable {
         // weitere Songs hier hinzufügen
     }
     public void game1() {
+        gameMusic.stop();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
-
-            // Set the controller for the FXML file
-            loader.setController(new Game1Controller());
-
-            // Load the FXML file
             Parent game1Root = loader.load();
 
-            // Get the current scene and set the new FXML file as the root of the scene
-            Scene currentScene = new Scene(game1Root);
+            Scene currentScene = play.getScene();
+            currentScene.setRoot(game1Root);
 
-            // Get the stage and set the scene
-            Stage stage = (Stage) quit.getScene().getWindow(); // Assuming quit is a node in your current scene
-            stage.setScene(currentScene);
+            Game1Controller game1Controller = loader.getController();
 
-            // Optional: You might want to show the stage if it's hidden
-            stage.show();
-
+            System.out.println("Switched to game screen successfully.");
         } catch (IOException e) {
             e.printStackTrace();
+            System.err.println("Error loading Game1.fxml: " + e.getMessage());
         }
     }
+
+
+
 
 
 
