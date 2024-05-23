@@ -26,7 +26,8 @@ public class Game1Controller {
     private Rectangle player;
     private List<Rectangle> platforms;
     private List<Coin> coins;
-    private Rectangle background; // Hintergrundrechteck
+    private Rectangle background1;
+    private Rectangle background2;
     private boolean left, right, jumping, canJump;
     private double gravity = 0.6;
     private double velocity = 0;
@@ -37,11 +38,18 @@ public class Game1Controller {
         game1_pane.setFocusTraversable(true);
         game1_pane.requestFocus();
 
-        // Erstelle das Hintergrundrechteck
-        Image hintergrundGame1 = new Image(getClass().getResourceAsStream("platformtexture.jpg"));
-        background = new Rectangle(1920, 1080);
-        background.setFill(new ImagePattern(hintergrundGame1));
-        game1_pane.getChildren().add(background);
+        // Erstelle die Hintergrundrechtecke
+        Image hintergrundGame1 = new Image(getClass().getResourceAsStream("GameHintergrund.png"));
+        Image platformTexture = new Image(getClass().getResourceAsStream("platformtexture.jpg"));
+
+        background1 = new Rectangle(1920, 1080);
+        background1.setFill(new ImagePattern(hintergrundGame1));
+        background1.setTranslateX(0);
+        background2 = new Rectangle(1920, 1080);
+        background2.setFill(new ImagePattern(hintergrundGame1));
+        background2.setTranslateX(1920);
+
+        game1_pane.getChildren().addAll(background1, background2);
 
         player = new Rectangle(40, 40, Color.RED);
         player.setTranslateX(100);
@@ -49,7 +57,7 @@ public class Game1Controller {
         game1_pane.getChildren().add(player);
 
         platforms = new ArrayList<>();
-        generatePlatforms(hintergrundGame1);
+        generatePlatforms(platformTexture);
 
         coins = new ArrayList<>();
         generateCoins();
@@ -57,6 +65,9 @@ public class Game1Controller {
         addEventListeners();
 
         startGame();
+
+
+        quit.toFront();
     }
 
     private void addEventListeners() {
@@ -128,7 +139,7 @@ public class Game1Controller {
         player.setTranslateX(player.getTranslateX() + dx);
 
         // Bewege den Hintergrund
-        background.setTranslateX(background.getTranslateX() - dx);
+        moveBackground(dx);
 
         for (Rectangle platform : platforms) {
             platform.setTranslateX(platform.getTranslateX() - dx);
@@ -149,6 +160,21 @@ public class Game1Controller {
 
         checkCollisions();
         checkCoinCollisions();
+    }
+
+    private void moveBackground(double dx) {
+        double bgDx = dx;
+
+        background1.setTranslateX(background1.getTranslateX() - bgDx);
+        background2.setTranslateX(background2.getTranslateX() - bgDx);
+
+        if (background1.getTranslateX() <= -1920) {
+            background1.setTranslateX(background2.getTranslateX() + 1920);
+        }
+
+        if (background2.getTranslateX() <= -1920) {
+            background2.setTranslateX(background1.getTranslateX() + 1920);
+        }
     }
 
     private void checkCollisions() {
