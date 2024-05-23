@@ -1,0 +1,14 @@
+To do Liste
+
+o	Einstellungen mit Singleton Kasse
+o	Sterne
+o	Character Design
+o	Movement
+o	JUnit
+o	Infinity Level
+o	Win Screen designen
+o	Side collision
+o	Earth texture block
+o	Level bauen
+o	Gegner?
+
