@@ -6,13 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -26,6 +25,8 @@ public class Game1Controller {
     private Button quit;
     private Rectangle player;
     private List<Rectangle> platforms;
+    private List<Coin> coins;
+    private Rectangle background; // Hintergrundrechteck
     private boolean left, right, jumping, canJump;
     private double gravity = 0.6;
     private double velocity = 0;
@@ -33,17 +34,14 @@ public class Game1Controller {
     private double playerSpeed = 5;
 
     public void initialize() {
-        game1_pane.setFocusTraversable(true); // Make sure the Pane can be focused
-        game1_pane.requestFocus(); // Request focus for the Pane
+        game1_pane.setFocusTraversable(true);
+        game1_pane.requestFocus();
 
-            /*
-        Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("org/example/crazyjoesworld/platformtexture.jpg"));
-        double width = 1920;
-        double height = 1080;
-        BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
-        game1_pane.setBackground(new Background(backgroundImage));
-        */
-
+        // Erstelle das Hintergrundrechteck
+        Image hintergrundGame1 = new Image(getClass().getResourceAsStream("platformtexture.jpg"));
+        background = new Rectangle(1920, 1080);
+        background.setFill(new ImagePattern(hintergrundGame1));
+        game1_pane.getChildren().add(background);
 
         player = new Rectangle(40, 40, Color.RED);
         player.setTranslateX(100);
@@ -51,11 +49,14 @@ public class Game1Controller {
         game1_pane.getChildren().add(player);
 
         platforms = new ArrayList<>();
-        generatePlatforms();
+        generatePlatforms(hintergrundGame1);
 
-        addEventListeners(); // Add event listeners
+        coins = new ArrayList<>();
+        generateCoins();
 
-        startGame(); // Start the game loop
+        addEventListeners();
+
+        startGame();
     }
 
     private void addEventListeners() {
@@ -75,14 +76,28 @@ public class Game1Controller {
         player.requestFocus();
     }
 
-    private void generatePlatforms() {
+    private void generatePlatforms(Image platformTexture) {
         for (int i = 0; i < 10; i++) {
-            Rectangle platform = new Rectangle(150, 20, Color.GREEN);
+            Rectangle platform = new Rectangle(150, 20);
+            platform.setFill(new ImagePattern(platformTexture)); // Setze die Textur auf die Plattform
             platform.setTranslateX(150 * i);
             platform.setTranslateY(400);
             platforms.add(platform);
             game1_pane.getChildren().add(platform);
         }
+    }
+
+    private void generateCoins() {
+        // Beispielpositionen für die drei Münzen
+        Coin coin1 = new Coin(200, 360, 30); // Erste Münze
+        Coin coin2 = new Coin(300, 360, 30); // Zweite Münze
+        Coin coin3 = new Coin(400, 360, 30); // Dritte Münze
+
+        coins.add(coin1);
+        coins.add(coin2);
+        coins.add(coin3);
+
+        game1_pane.getChildren().addAll(coin1, coin2, coin3);
     }
 
     private void handleKeyPressed(KeyEvent event) {
@@ -110,27 +125,30 @@ public class Game1Controller {
         if (left) dx -= playerSpeed;
         if (right) dx += playerSpeed;
 
-        // Bewegung des Spielers
         player.setTranslateX(player.getTranslateX() + dx);
 
-        // Anpassung der Plattformen basierend auf der horizontalen Bewegung des Spielers
+        // Bewege den Hintergrund
+        background.setTranslateX(background.getTranslateX() - dx);
+
         for (Rectangle platform : platforms) {
             platform.setTranslateX(platform.getTranslateX() - dx);
         }
 
-        // Anpassung der Spielerposition, um in der Mitte des Bildschirms zu bleiben
+        for (Coin coin : coins) {
+            coin.setTranslateX(coin.getTranslateX() - dx);
+        }
+
         double screenWidth = game1_pane.getWidth();
         double playerX = player.getTranslateX() + dx;
         double playerHalfWidth = player.getWidth() / 2.0;
         double offset = (screenWidth / 2.0) - (playerX + playerHalfWidth);
         player.setTranslateX(player.getTranslateX() + offset);
 
-        // Update der vertikalen Bewegung (Springen)
         player.setTranslateY(player.getTranslateY() + velocity);
         velocity += gravity;
 
-        // Kollisionserkennung und andere Updates...
         checkCollisions();
+        checkCoinCollisions();
     }
 
     private void checkCollisions() {
@@ -153,6 +171,19 @@ public class Game1Controller {
 
         if (!onAnyPlatform) {
             canJump = false;
+        }
+    }
+
+    private void checkCoinCollisions() {
+        List<Coin> collectedCoins = new ArrayList<>();
+        for (Coin coin : coins) {
+            if (player.getBoundsInParent().intersects(coin.getBoundsInParent())) {
+                collectedCoins.add(coin);
+            }
+        }
+        for (Coin coin : collectedCoins) {
+            coins.remove(coin);
+            game1_pane.getChildren().remove(coin);
         }
     }
 

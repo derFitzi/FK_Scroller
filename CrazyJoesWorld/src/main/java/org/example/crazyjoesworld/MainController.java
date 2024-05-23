@@ -77,7 +77,7 @@ public class MainController extends AnimationTimer implements Initializable {
     private Scene scene;
     private Parent root;
 
-    public Games game;
+
 
     Media sound1 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/MainMenueSound.mp3").toURI().toString());
     MediaPlayer mainMenueMusic = new MediaPlayer(sound1);
@@ -106,7 +106,7 @@ public class MainController extends AnimationTimer implements Initializable {
         mainMenueMusic.stop();
         gameMusic.play();
 
-        Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("org/example/crazyjoesworld/Ground.png"));
+        Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("Ground.png"));
         double width = 1920;
         double height = 1080;
         BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
@@ -154,7 +154,7 @@ public class MainController extends AnimationTimer implements Initializable {
         quit.setVisible(true);
         settings.setVisible(true);
 
-        Image hintergrundMainMenue = new Image(getClass().getResourceAsStream("/org/example/crazyjoesworld/Bild1.png"));
+        Image hintergrundMainMenue = new Image(getClass().getResourceAsStream("Bild1.png"));
         double width = 1920;
         double height = 1090;
         BackgroundImage backgroundImage = new BackgroundImage(hintergrundMainMenue, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
