@@ -189,12 +189,6 @@ public class MainController extends AnimationTimer implements Initializable {
         }
     }
 
-
-
-
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         zumHauptmenue();
