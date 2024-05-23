@@ -1,14 +1,14 @@
-To do Liste
+# To-Do List
 
-o	Einstellungen mit Singleton Kasse
-o	Sterne
-o	Character Design
-o	Movement
-o	JUnit
-o	Infinity Level
-o	Win Screen designen
-o	Side collision
-o	Earth texture block
-o	Level bauen
-o	Gegner?
+- [ ] **Einstellungen mit Singleton Kasse**
+- [ ] **Sterne**
+- [ ] **Character Design**
+- [ ] **Movement**
+- [ ] **Infinity Level**
+- [ ] **Side Collision**
+- [ ] **Earth Texture Block**
+- [ ] **Level Bauen**
+- [ ] **Gegner?**
+- [ ] **JUnit Tests**
+- [ ] **Win Screen Designen**
 
