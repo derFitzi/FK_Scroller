@@ -1,15 +1,17 @@
 # To-Do List
 
 - [ ] **Einstellungen mit Singleton Kasse**
-- [ ] **Character Design**
 - [ ] **Movement**
-- [ ] **Infinity Level**
-- [ ] **Side Collision**
-- [ ] **Level Bauen**
-- [ ] **Gegner?**
-- [ ] **JUnit Tests**
-- [ ] **Seiten blocken**
 - [ ] **Musik**
+- [ ] **Side Collision**
+- [ ] **Seiten blocken**
+- [ ] **Character Design**
+- [ ] **Level Bauen**
+- [ ] **Infinity Level**
+- [ ] **JUnit Tests**
+- [ ] **Gegner?**
+
+
 ## Done
 - [ ] **Sterne**
 - [ ] **Earth Texture Block**
