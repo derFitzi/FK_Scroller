@@ -40,19 +40,12 @@ public class WinScreenController {
         }
         winText.setText("Du hast " + count + " von 3 Sternen eingesammelt");
 
-        Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("Bild1.png"));
-
-        // Debug: Check if the background image is loaded correctly
-        if (hintergrundGameSelection.isError()) {
-            System.err.println("Error loading the background image.");
-            return;
-        }
-        System.out.println("Background image loaded successfully.");
-
+        Image hintergrundMainMenue = new Image(getClass().getResourceAsStream("Bild1.png"));
         double width = 1920;
-        double height = 1080;
-        BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
+        double height = 1090;
+        BackgroundImage backgroundImage = new BackgroundImage(hintergrundMainMenue, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
         winScreenPane.setBackground(new Background(backgroundImage));
+
     }
 
     public void setPlayedGame(int num) {

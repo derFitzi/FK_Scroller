@@ -8,11 +8,11 @@
 - [ ] **Level Bauen**
 - [ ] **Gegner?**
 - [ ] **JUnit Tests**
-- [ ] **Win Screen Designen**
 - [ ] **Seiten blocken**
 - [ ] **Musik**
 ## Done
 - [ ] **Sterne**
 - [ ] **Earth Texture Block**
 - [ ] **Game Full Screen**
+- [ ] **Win Screen Designen**
 
