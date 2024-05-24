@@ -13,6 +13,7 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
         stage.setTitle("Crazy Joe's World");
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.show();
     }
     public static void main(String[] args) {

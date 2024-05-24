@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 
@@ -32,18 +32,27 @@ public class WinScreenController {
 
         for (int i = 0; i < count; i++) {
             ImageView star = new ImageView(starImage);
-            star.setFitWidth(50); // Width of the star image
-            star.setFitHeight(50); // Height of the star image
-            star.setTranslateX(690 + (205 * i)); // Position of the star
-            star.setTranslateY(300); // Position of the star
-
-            // Debug: Check the star's position and size
-            System.out.println("Star " + (i + 1) + " position: (" + star.getTranslateX() + ", " + star.getTranslateY() + ")");
-            System.out.println("Star " + (i + 1) + " size: (" + star.getFitWidth() + ", " + star.getFitHeight() + ")");
-
+            star.setFitWidth(70);
+            star.setFitHeight(70);
+            star.setTranslateX(550 + (205 * i));
+            star.setTranslateY(300);
             winScreenPane.getChildren().add(star);
         }
         winText.setText("Du hast " + count + " von 3 Sternen eingesammelt");
+
+        Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("Bild1.png"));
+
+        // Debug: Check if the background image is loaded correctly
+        if (hintergrundGameSelection.isError()) {
+            System.err.println("Error loading the background image.");
+            return;
+        }
+        System.out.println("Background image loaded successfully.");
+
+        double width = 1920;
+        double height = 1080;
+        BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
+        winScreenPane.setBackground(new Background(backgroundImage));
     }
 
     public void setPlayedGame(int num) {

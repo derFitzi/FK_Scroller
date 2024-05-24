@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -34,8 +35,9 @@ public class Game1Controller {
     private double gravity = 0.6;
     private double velocity = 0;
     private double jumpStrength = -15;
-    private double playerSpeed = 5;
+    private double playerSpeed = 12; // normal 5
     private Rectangle triggerBox;
+    private ImageView flagImageView;
     private int collectedCoinCount = 0;
     @FXML
     private Label lautstaerke_text;
@@ -56,7 +58,6 @@ public class Game1Controller {
         game1_pane.setFocusTraversable(true);
         game1_pane.requestFocus();
 
-        // Erstelle die Hintergrundrechtecke
         Image hintergrundGame1 = new Image(getClass().getResourceAsStream("GameHintergrund2.png"));
         Image platformTexture = new Image(getClass().getResourceAsStream("platformtexture2.png"));
 
@@ -74,13 +75,20 @@ public class Game1Controller {
         player.setTranslateY(100);
         game1_pane.getChildren().add(player);
 
-        triggerBox = new Rectangle(100, 100, Color.TRANSPARENT);
+        triggerBox = new Rectangle(50, 100, Color.TRANSPARENT);
         triggerBox.setStroke(Color.BLUE);
-        triggerBox.setTranslateX(500);
-        triggerBox.setTranslateY(300);
+        triggerBox.setTranslateX(5430);
+        triggerBox.setTranslateY(630);
         game1_pane.getChildren().add(triggerBox);
 
 
+        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
+        flagImageView = new ImageView(flagImage);
+        flagImageView.setFitWidth(738);
+        flagImageView.setFitHeight(338);
+        flagImageView.setTranslateX(5000);
+        flagImageView.setTranslateY(400);
+        game1_pane.getChildren().add(flagImageView);
 
         platforms = new ArrayList<>();
         generatePlatforms(platformTexture);
@@ -91,7 +99,6 @@ public class Game1Controller {
         addEventListeners();
 
         startGame();
-
 
         quit.toFront();
     }
@@ -114,39 +121,34 @@ public class Game1Controller {
     }
 
     private void generatePlatforms(Image platformTexture) {
-        Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(150); platform1.setTranslateY(800);
-        Rectangle platform2 = new Rectangle(1442, 135); platform2.setTranslateX(1600); platform2.setTranslateY(700);
-        Rectangle platform3 = new Rectangle(1442, 135); platform3.setTranslateX(500); platform3.setTranslateY(800);
-        Rectangle platform4 = new Rectangle(1442, 135); platform4.setTranslateX(500); platform4.setTranslateY(800);
-        Rectangle platform5 = new Rectangle(1442, 135); platform5.setTranslateX(500); platform5.setTranslateY(800);
-        Rectangle platform6 = new Rectangle(1442, 135); platform6.setTranslateX(500); platform6.setTranslateY(800);
-        Rectangle platform7 = new Rectangle(1442, 135); platform7.setTranslateX(500); platform7.setTranslateY(800);
+        Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(150); platform1.setTranslateY(730);
+        Rectangle platform2 = new Rectangle(1442, 135); platform2.setTranslateX(1590); platform2.setTranslateY(630);
+        Rectangle erde1     = new Rectangle(1442, 135); erde1.setTranslateX(1590); erde1.setTranslateY(760);
+        Rectangle platform3 = new Rectangle(1442, 135); platform3.setTranslateX(3000); platform3.setTranslateY(780);
+        Rectangle platform4 = new Rectangle(721, 67); platform4.setTranslateX(1700); platform4.setTranslateY(430);
+        Rectangle platform5 = new Rectangle(1442, 135); platform5.setTranslateX(4400); platform5.setTranslateY(730);
         platforms.add(platform1);
         platforms.add(platform2);
+        platforms.add(platform3);
+        platforms.add(platform5);
 
-        for (int i = 0; i < platforms.size(); i++)
-        {
+        for (int i = 0; i < platforms.size(); i++) {
             platforms.get(i).setFill(new ImagePattern(platformTexture));
             game1_pane.getChildren().add(platforms.get(i));
         }
-        /*
-        for (int i = 0; i < 10; i++) {
-            Rectangle platform = new Rectangle(474, 45);
-            platform.setFill(new ImagePattern(platformTexture)); // Setze die Textur auf die Plattform
-            platform.setTranslateX(150 * i);
-            platform.setTranslateY(474);
-            platforms.add(platform);
-            game1_pane.getChildren().add(platform);
-        }
-
-         */
+        platforms.add(erde1);
+        platforms.add(platform4);
+        platform4.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
+        erde1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        game1_pane.getChildren().add(erde1);
+        game1_pane.getChildren().add(platform4);
     }
 
     private void generateCoins() {
         // Beispielpositionen für die drei Münzen
-        Coin coin1 = new Coin(800, 360, 30); // Erste Münze
-        Coin coin2 = new Coin(1000, 360, 30); // Zweite Münze
-        Coin coin3 = new Coin(1200, 360, 30); // Dritte Münze
+        Coin coin1 = new Coin(3500, 730, 30);
+        Coin coin2 = new Coin(2100, 380, 30);
+        Coin coin3 = new Coin(1400, 680, 30);
 
         coins.add(coin1);
         coins.add(coin2);
@@ -182,8 +184,9 @@ public class Game1Controller {
 
         player.setTranslateX(player.getTranslateX() + dx);
 
-        // Move the trigger box
+        // Move the trigger box and the flag image
         triggerBox.setTranslateX(triggerBox.getTranslateX() - dx);
+        flagImageView.setTranslateX(flagImageView.getTranslateX() - dx);
 
         // Move the backgrounds
         moveBackground(dx);

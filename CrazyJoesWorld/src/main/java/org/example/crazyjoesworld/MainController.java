@@ -17,6 +17,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -77,16 +78,12 @@ public class MainController extends AnimationTimer implements Initializable {
     private Scene scene;
     private Parent root;
 
-
-
     Media sound1 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/MainMenueSound.mp3").toURI().toString());
     MediaPlayer mainMenueMusic = new MediaPlayer(sound1);
     Media sound2 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/GameSound.mp3").toURI().toString());
     MediaPlayer gameMusic = new MediaPlayer(sound2);
 
-
-    public void play()
-    {
+    public void play() {
         play.setVisible(false);
         quit.setVisible(false);
         settings.setVisible(false);
@@ -112,13 +109,15 @@ public class MainController extends AnimationTimer implements Initializable {
         BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
         p_Pane.setBackground(new Background(backgroundImage));
 
-
+        Image g1Image = new Image(getClass().getResourceAsStream("Game1vorschau.png"));
+        g1.setFill(new ImagePattern(g1Image));
     }
+
     public void quit() {
         Platform.exit();
     }
-    public void settings()
-    {
+
+    public void settings() {
         play.setVisible(false);
         quit.setVisible(false);
         settings.setVisible(false);
@@ -130,8 +129,8 @@ public class MainController extends AnimationTimer implements Initializable {
         zumHauptmenue.setVisible(true);
         settingsBG.setVisible(true);
     }
-    public void zumHauptmenue()
-    {
+
+    public void zumHauptmenue() {
         lautstaerke.setVisible(false);
         lautstaerke_text.setVisible(false);
         sensibilitaet.setVisible(false);
@@ -162,15 +161,15 @@ public class MainController extends AnimationTimer implements Initializable {
 
         gameMusic.stop();
         mainMenueMusic.play();
-
     }
 
-    public void lautsterkenregelung()
-    {
+    public void lautsterkenregelung() {
+
         mainMenueMusic.setVolume(lautstaerke.getValue() / 200.0);
         gameMusic.setVolume(lautstaerke.getValue() / 200.0);
         // weitere Songs hier hinzufügen
     }
+
     public void game1() {
         gameMusic.stop();
         try {
@@ -192,12 +191,14 @@ public class MainController extends AnimationTimer implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         zumHauptmenue();
+
+        // Set looping for media players
+        mainMenueMusic.setCycleCount(MediaPlayer.INDEFINITE);
+        gameMusic.setCycleCount(MediaPlayer.INDEFINITE);
     }
 
     @Override
     public void handle(long l) {
-
+        // Handle animation frame updates
     }
-
-
 }

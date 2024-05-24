@@ -1,38 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <Pane fx:id="winScreenPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1920.0" prefWidth="1080.0" style="-fx-background-color: #eae4c9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crazyjoesworld.WinScreenController">
    <children>
-       <ImageView fx:id="star1" fitHeight="50.0" fitWidth="50.0" layoutX="225.0" layoutY="175.0">
-           <image>
-               <Image url="@Star.png" />
-           </image>
-       </ImageView>
-       <ImageView fx:id="star2" fitHeight="50.0" fitWidth="50.0" layoutX="275.0" layoutY="175.0">
-           <image>
-               <Image url="@Star.png" />
-           </image>
-       </ImageView>
-       <ImageView fx:id="star3" fitHeight="50.0" fitWidth="50.0" layoutX="325.0" layoutY="175.0" visible="false">
-           <image>
-               <Image url="@Star.png" />
-           </image>
-       </ImageView>
-      <Button fx:id="nocheinmal" layoutX="976.0" layoutY="607.0" mnemonicParsing="false" onAction="#nocheinmal" prefHeight="50.0" prefWidth="208.0" style="-fx-background-color: #cdc8b1;" text="Nocheinmal" textFill="WHITE">
+      <Rectangle arcHeight="320.0" arcWidth="320.0" fill="#868374" height="465.0" layoutX="340.0" layoutY="294.0" stroke="BLACK" strokeType="INSIDE" width="922.0" />
+      <Rectangle arcHeight="300.0" arcWidth="250.0" fill="#cdc8b1" height="396.0" layoutX="379.0" layoutY="333.0" stroke="BLACK" strokeType="INSIDE" width="845.0" />
+      <Button fx:id="nocheinmal" layoutX="839.0" layoutY="608.0" mnemonicParsing="false" onAction="#nocheinmal" prefHeight="50.0" prefWidth="208.0" style="-fx-background-color: #cdc8b1;" text="Nocheinmal" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="27.0" />
          </font>
       </Button>
-      <Button fx:id="zurueck" layoutX="693.0" layoutY="607.0" mnemonicParsing="false" onAction="#zurueck" prefHeight="50.0" prefWidth="208.0" style="-fx-background-color: #cdc8b1;" text="Zurück" textFill="WHITE">
+      <Button fx:id="zurueck" layoutX="556.0" layoutY="608.0" mnemonicParsing="false" onAction="#zurueck" prefHeight="50.0" prefWidth="208.0" style="-fx-background-color: #cdc8b1;" text="Zurück" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="27.0" />
          </font>
       </Button>
-      <Label fx:id="winText" layoutX="658.0" layoutY="481.0" prefHeight="33.0" prefWidth="559.0" text="Du hast 2 von 3 Sternen eingesammelt" textFill="#403f38">
+      <Label fx:id="winText" layoutX="521.0" layoutY="482.0" prefHeight="33.0" prefWidth="559.0" text="Du hast 2 von 3 Sternen eingesammelt" textFill="#403f38">
          <font>
             <Font name="Cooper Black" size="28.0" />
          </font>

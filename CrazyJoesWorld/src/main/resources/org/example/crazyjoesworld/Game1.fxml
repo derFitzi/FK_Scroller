@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <Pane id="gamePane" fx:id="game1_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crazyjoesworld.Game1Controller">
    <children>
       <!-- Use a custom button with a background image -->
-      <Button fx:id="quit" layoutX="185.0" layoutY="61.0" mnemonicParsing="false" onAction="#zumHauptmenue" prefHeight="59.0" prefWidth="222.0" style="-fx-background-color: #cdc8b1; -fx-background-radius: 20; -fx-border-radius: 20;" text="Pause" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="quit" layoutX="36.0" layoutY="37.0" mnemonicParsing="false" onAction="#zumHauptmenue" prefHeight="75.0" prefWidth="242.0" style="-fx-background-color: #cdc8b1; -fx-background-radius: 20; -fx-border-radius: 20;" text="Pause" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Cooper Black" size="25.0" />
+            <Font name="Cooper Black" size="39.0" />
          </font>
       </Button>
-
-
 
 
    </children>
