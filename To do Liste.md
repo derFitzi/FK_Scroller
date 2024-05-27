@@ -12,9 +12,9 @@
 - [ ] **Gegner?**
 
 
-## Done
-- [ ] **Sterne**
-- [ ] **Earth Texture Block**
-- [ ] **Game Full Screen**
-- [ ] **Win Screen Designen**
+
+- [x ] **Sterne**
+- [x ] **Earth Texture Block**
+- [ x] **Game Full Screen**
+- [x ] **Win Screen Designen**
 
