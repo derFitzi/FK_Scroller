@@ -13,8 +13,8 @@
 
 
 
-- [x ] **Sterne**
-- [x ] **Earth Texture Block**
-- [ x] **Game Full Screen**
-- [x ] **Win Screen Designen**
+- [x] **Sterne**
+- [x] **Earth Texture Block**
+- [x] **Game Full Screen**
+- [x] **Win Screen Designen**
 
