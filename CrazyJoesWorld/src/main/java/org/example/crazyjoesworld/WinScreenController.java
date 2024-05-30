@@ -22,8 +22,7 @@ public class WinScreenController {
     public void setCollectedCoinCount(int count) {
         System.out.println("Number of collected coins: " + count);
         Image starImage = new Image(getClass().getResourceAsStream("Star.png")); // Path to the star image
-
-        for (int i = 0; i < count; i++) {
+               for (int i = 0; i < count; i++) {
             ImageView star = new ImageView(starImage);
             star.setFitWidth(70);
             star.setFitHeight(70);

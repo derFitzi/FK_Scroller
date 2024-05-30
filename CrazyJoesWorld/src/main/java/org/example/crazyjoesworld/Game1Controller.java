@@ -70,10 +70,6 @@ public class Game1Controller {
     private boolean linkslaufen=true;
 
     public void initialize() {
-        game1_pane.setFocusTraversable(true);
-        quit.setFocusTraversable(false);
-        //game1_pane.requestFocus();
-
         Image hintergrundGame1 = new Image(getClass().getResourceAsStream("GameHintergrund2.png"));
         Image platformTexture = new Image(getClass().getResourceAsStream("platformtexture2.png"));
 
@@ -124,6 +120,7 @@ public class Game1Controller {
         Music.setCycleCount(MediaPlayer.INDEFINITE);
         lautstaerke.setValue(Singleton.getInstance().getLautstaerke()*200);
         sensibilitaet.setValue(Singleton.getInstance().getSensi()*100);
+
     }
 
     private void addEventListeners() {
@@ -195,43 +192,36 @@ public class Game1Controller {
     }
 
     private void handleKeyPressed(KeyEvent event) {
-
-        System.out.println("KEY PRESSED)");
-        if (event.getCode() == KeyCode.A && linkslaufen ) {
+        if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) && linkslaufen) {
             left = true;
-            rechtslaufen=true;
-            playerSpeed=12*sensi;
-            System.out.println("HandleKeypressed Sensi: "+sensi+"   PlayerSpeed: "+playerSpeed);
-            // Begründung: es buggt wen man nur die Taste aktiviert wenn man es nicht berührt. deswegen muss man eine andere Taste drücken um die Tastensperre aufzuhebn
-        } else if (event.getCode() == KeyCode.D && rechtslaufen ) {
-            System.out.println(i+"Weiter");
-            i++;
-            playerSpeed=12*sensi;
-            System.out.println("HandleKeypressed Sensi: "+sensi+"   PlayerSpeed: "+playerSpeed);
+            rechtslaufen = true;
+            playerSpeed = 12 * sensi;
+        } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) && rechtslaufen) {
             right = true;
-            linkslaufen=true;
-
-        } else if (event.getCode() == KeyCode.W && canJump) {
-            System.out.println(i+"Weiter");
-            i++;
+            linkslaufen = true;
+            playerSpeed = 12 * sensi;
+        } else if ((event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) && canJump) {
             jumping = true;
             velocity = jumpStrength;
             canJump = false;
-            linkslaufen=true;
-            rechtslaufen=true;
-
+            linkslaufen = true;
+            rechtslaufen = true;
         }
     }
 
     private void handleKeyReleased(KeyEvent event) {
-        if (event.getCode() == KeyCode.A) {
+        if (event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) {
             left = false;
-        } else if (event.getCode() == KeyCode.D) {
+        } else if (event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) {
             right = false;
+        } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
+            jumping = false;
         }
     }
 
     private void update() {
+        game1_pane.requestFocus();
+
         double dx = 0;
         if (left) dx -= playerSpeed;
         if (right) dx += playerSpeed;
@@ -347,6 +337,7 @@ public class Game1Controller {
     }
 
     public void zumHauptmenue() {
+
         Music.stop();
         System.out.println("Hauptmenue");
         game1_pane.setOnKeyPressed(null);

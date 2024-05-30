@@ -4,9 +4,11 @@
 - [ ] **Leertaste springen**
 - [ ] **Sterne als Bilder machen**
 - [ ] **Character Design**
+- [ ] **JUnit Tests**
+- [ ] **Game Over Screen**
+
 - [ ] **Level Bauen**
 - [ ] **Infinity Level**
-- [ ] **JUnit Tests**
 - [ ] **Gegner?**
 
 ## Done
