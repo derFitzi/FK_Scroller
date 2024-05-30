@@ -9,7 +9,6 @@
 - [ ] **JUnit Tests**
 - [ ] **Gegner?**
 
-
 ## Done
 - [x] **Sterne**
 - [x] **Earth Texture Block**
