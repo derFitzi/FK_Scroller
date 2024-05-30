@@ -1,7 +1,6 @@
 # To-Do List
 
 - [ ] **Side Collision**
-- [ ] **Leertaste springen**
 - [ ] **Sterne als Bilder machen**
 - [ ] **Character Design**
 - [ ] **JUnit Tests**
@@ -20,4 +19,5 @@
 - [X] **Einstellungen mit Singleton Kasse**
 - [X] **Movement**
 - [X] **Musik**
+- [X] **Leertaste springen**
 

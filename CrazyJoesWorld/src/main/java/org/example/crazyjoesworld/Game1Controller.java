@@ -179,10 +179,12 @@ public class Game1Controller {
     }
 
     private void generateCoins() {
+        String coinImagePath = "Star.png";
+
         // Beispielpositionen für die drei Münzen
-        Coin coin1 = new Coin(3500, 730, 30);
-        Coin coin2 = new Coin(2100, 380, 30);
-        Coin coin3 = new Coin(1400, 680, 30);
+        Coin coin1 = new Coin(coinImagePath, 3500, 700);
+        Coin coin2 = new Coin(coinImagePath, 2100, 350);
+        Coin coin3 = new Coin(coinImagePath, 1400, 650);
 
         coins.add(coin1);
         coins.add(coin2);
