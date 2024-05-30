@@ -12,11 +12,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +38,10 @@ public class Game1Controller {
     private boolean left, right, jumping, canJump;
     private double gravity = 0.6;
     private double velocity = 0;
-    private double jumpStrength = -15;
+    private double jumpStrength = -16;
     private double playerSpeed = 12; // normal 5
+
+    private double sensi = Singleton.getInstance().getSensi();
     private Rectangle triggerBox;
     private ImageView flagImageView;
     private int collectedCoinCount = 0;
@@ -51,12 +57,22 @@ public class Game1Controller {
     Rectangle settingsBG;
     @FXML
     private Button zumHauptmenue;
+    AnimationTimer gameLoop;
     @FXML
     private Button weiter;
 
+    Media sound = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/GamePlay.mp3").toURI().toString());
+    MediaPlayer Music = new MediaPlayer(sound);
+
+    int i=0; // testvariable
+
+    private boolean rechtslaufen=true;
+    private boolean linkslaufen=true;
+
     public void initialize() {
         game1_pane.setFocusTraversable(true);
-        game1_pane.requestFocus();
+        quit.setFocusTraversable(false);
+        //game1_pane.requestFocus();
 
         Image hintergrundGame1 = new Image(getClass().getResourceAsStream("GameHintergrund2.png"));
         Image platformTexture = new Image(getClass().getResourceAsStream("platformtexture2.png"));
@@ -100,7 +116,14 @@ public class Game1Controller {
 
         startGame();
 
+        player.toFront();
+
         quit.toFront();
+        Music.play();
+        Music.setVolume(Singleton.getInstance().getLautstaerke());
+        Music.setCycleCount(MediaPlayer.INDEFINITE);
+        lautstaerke.setValue(Singleton.getInstance().getLautstaerke()*200);
+        sensibilitaet.setValue(Singleton.getInstance().getSensi()*100);
     }
 
     private void addEventListeners() {
@@ -109,7 +132,7 @@ public class Game1Controller {
     }
 
     private void startGame() {
-        AnimationTimer gameLoop = new AnimationTimer() {
+        gameLoop = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 update();
@@ -121,16 +144,22 @@ public class Game1Controller {
     }
 
     private void generatePlatforms(Image platformTexture) {
+        Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-1000); platform0.setTranslateY(730);
         Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(150); platform1.setTranslateY(730);
         Rectangle platform2 = new Rectangle(1442, 135); platform2.setTranslateX(1590); platform2.setTranslateY(630);
         Rectangle erde1     = new Rectangle(1442, 135); erde1.setTranslateX(1590); erde1.setTranslateY(760);
         Rectangle platform3 = new Rectangle(1442, 135); platform3.setTranslateX(3000); platform3.setTranslateY(780);
         Rectangle platform4 = new Rectangle(721, 67); platform4.setTranslateX(1700); platform4.setTranslateY(430);
         Rectangle platform5 = new Rectangle(1442, 135); platform5.setTranslateX(4400); platform5.setTranslateY(730);
+        Rectangle platform6 = new Rectangle(1442, 135); platform6.setTranslateX(5842); platform6.setTranslateY(730);
+        Rectangle wand1 = new Rectangle(1442, 1000); wand1.setTranslateX(-1442); wand1.setTranslateY(0);
+        Rectangle wand2 = new Rectangle(1442, 1000); wand2.setTranslateX(5842); wand2.setTranslateY(0);
+        platforms.add(platform0);
         platforms.add(platform1);
         platforms.add(platform2);
         platforms.add(platform3);
         platforms.add(platform5);
+        platforms.add(platform6);
 
         for (int i = 0; i < platforms.size(); i++) {
             platforms.get(i).setFill(new ImagePattern(platformTexture));
@@ -138,10 +167,18 @@ public class Game1Controller {
         }
         platforms.add(erde1);
         platforms.add(platform4);
+        platforms.add(wand1);
+        platforms.add(wand2);
+        wand1.setFill(Color.TRANSPARENT);
+        wand1.setStroke(Color.ALICEBLUE);
+        wand2.setFill(Color.TRANSPARENT);
+        wand2.setStroke(Color.ALICEBLUE);
         platform4.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
         erde1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
         game1_pane.getChildren().add(erde1);
         game1_pane.getChildren().add(platform4);
+        game1_pane.getChildren().add(wand1);
+        game1_pane.getChildren().add(wand2);
     }
 
     private void generateCoins() {
@@ -158,14 +195,31 @@ public class Game1Controller {
     }
 
     private void handleKeyPressed(KeyEvent event) {
-        if (event.getCode() == KeyCode.A) {
+
+        System.out.println("KEY PRESSED)");
+        if (event.getCode() == KeyCode.A && linkslaufen ) {
             left = true;
-        } else if (event.getCode() == KeyCode.D) {
+            rechtslaufen=true;
+            playerSpeed=12*sensi;
+            System.out.println("HandleKeypressed Sensi: "+sensi+"   PlayerSpeed: "+playerSpeed);
+            // Begründung: es buggt wen man nur die Taste aktiviert wenn man es nicht berührt. deswegen muss man eine andere Taste drücken um die Tastensperre aufzuhebn
+        } else if (event.getCode() == KeyCode.D && rechtslaufen ) {
+            System.out.println(i+"Weiter");
+            i++;
+            playerSpeed=12*sensi;
+            System.out.println("HandleKeypressed Sensi: "+sensi+"   PlayerSpeed: "+playerSpeed);
             right = true;
+            linkslaufen=true;
+
         } else if (event.getCode() == KeyCode.W && canJump) {
+            System.out.println(i+"Weiter");
+            i++;
             jumping = true;
             velocity = jumpStrength;
             canJump = false;
+            linkslaufen=true;
+            rechtslaufen=true;
+
         }
     }
 
@@ -184,11 +238,9 @@ public class Game1Controller {
 
         player.setTranslateX(player.getTranslateX() + dx);
 
-        // Move the trigger box and the flag image
         triggerBox.setTranslateX(triggerBox.getTranslateX() - dx);
         flagImageView.setTranslateX(flagImageView.getTranslateX() - dx);
 
-        // Move the backgrounds
         moveBackground(dx);
 
         for (Rectangle platform : platforms) {
@@ -233,26 +285,52 @@ public class Game1Controller {
 
     private void checkCollisions() {
         boolean onAnyPlatform = false;
+        //System.out.println("Rechts: "+rechtslaufen+"    Links: "+linkslaufen);
 
         for (Rectangle platform : platforms) {
             if (player.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                 double playerBottom = player.getTranslateY() + player.getHeight();
-                double platformTop = platform.getTranslateY();
+                double playerTop = player.getTranslateY();
+                double playerLeft = player.getTranslateX();
+                double playerRight = player.getTranslateX() + player.getWidth();
 
-                if (playerBottom >= platformTop) {
+                double platformTop = platform.getTranslateY();
+                double platformBottom = platform.getTranslateY() + platform.getHeight();
+                double platformLeft = platform.getTranslateX();
+                double platformRight = platform.getTranslateX() + platform.getWidth();
+
+                //oben
+                if (playerBottom >= platformTop && playerTop < platformTop && playerLeft < platformRight && playerRight > platformLeft) {
                     player.setTranslateY(platformTop - player.getHeight());
                     velocity = 0;
                     canJump = true;
                     onAnyPlatform = true;
-                    break;
                 }
+                //unten
+                else if (playerTop <= platformBottom && playerBottom > platformBottom && playerLeft < platformRight && playerRight > platformLeft) {
+                    player.setTranslateY(platformBottom);
+                    velocity=gravity;
+                }
+                // links
+                else if (playerRight >= platformLeft && playerLeft < platformLeft) {
+                    player.setTranslateX(platformLeft - player.getWidth()+1);
+                    //rechtslaufen=false;
+                    playerSpeed=0;
+                }
+                // rechts
+                else if (playerLeft <= platformRight && playerRight > platformRight) {
+                    player.setTranslateX(platformRight);
+                    //linkslaufen=false;
+                    playerSpeed=0;
+                }
+
             }
         }
-
         if (!onAnyPlatform) {
             canJump = false;
         }
     }
+
 
     private void checkCoinCollisions() {
         List<Coin> collectedCoins = new ArrayList<>();
@@ -269,6 +347,7 @@ public class Game1Controller {
     }
 
     public void zumHauptmenue() {
+        Music.stop();
         System.out.println("Hauptmenue");
         game1_pane.setOnKeyPressed(null);
         game1_pane.setOnKeyReleased(null);
@@ -315,8 +394,7 @@ public class Game1Controller {
         }
     }
 
-    public void settings()
-    {
+    public void settings() {
         quit.setVisible(false);
         lautstaerke.setVisible(true);
         lautstaerke_text.setVisible(true);
@@ -324,6 +402,39 @@ public class Game1Controller {
         sensibilitaet_text.setVisible(true);
         zumHauptmenue.setVisible(true);
         settingsBG.setVisible(true);
+        weiter.setVisible(true);
+
+        settingsBG.toFront();
+        lautstaerke_text.toFront();
+        lautstaerke.toFront();
+        sensibilitaet_text.toFront();
+        sensibilitaet.toFront();
+        zumHauptmenue.toFront();
+        weiter.toFront();
+        gameLoop.stop();
+    }
+
+    public void weiter() {
+        quit.setVisible(true);
+        lautstaerke.setVisible(false);
+        lautstaerke_text.setVisible(false);
+        sensibilitaet.setVisible(false);
+        sensibilitaet_text.setVisible(false);
+        zumHauptmenue.setVisible(false);
+        settingsBG.setVisible(false);
+        weiter.setVisible(false);
+        game1_pane.requestFocus();
+        gameLoop.start();
+    }
+
+    public void lautsterkenregelung(){
+        Singleton.getInstance().setLautstaerke((lautstaerke.getValue() / 200.0));
+        Music.setVolume(Singleton.getInstance().getLautstaerke());
+    }
+
+    public void sensibilitaetregelung() {
+        Singleton.getInstance().setSensi((sensibilitaet.getValue()/100));
+        sensi = Singleton.getInstance().getSensi();
     }
 
 }

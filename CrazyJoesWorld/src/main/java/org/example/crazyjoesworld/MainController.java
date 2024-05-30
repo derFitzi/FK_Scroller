@@ -102,6 +102,7 @@ public class MainController extends AnimationTimer implements Initializable {
 
         mainMenueMusic.stop();
         gameMusic.play();
+        gameMusic.setVolume(Singleton.getInstance().getLautstaerke());
 
         Image hintergrundGameSelection = new Image(getClass().getResourceAsStream("Ground.png"));
         double width = 1920;
@@ -161,14 +162,20 @@ public class MainController extends AnimationTimer implements Initializable {
 
         gameMusic.stop();
         mainMenueMusic.play();
+        mainMenueMusic.setVolume(Singleton.getInstance().getLautstaerke());
     }
 
     public void lautsterkenregelung() {
-
-        mainMenueMusic.setVolume(lautstaerke.getValue() / 200.0);
-        gameMusic.setVolume(lautstaerke.getValue() / 200.0);
-        // weitere Songs hier hinzufügen
+        Singleton.getInstance().setLautstaerke((lautstaerke.getValue() / 200.0));
+        mainMenueMusic.setVolume(Singleton.getInstance().getLautstaerke());
+        gameMusic.setVolume(Singleton.getInstance().getLautstaerke());
+        System.out.println(Singleton.getInstance().getLautstaerke());
     }
+    public void sensibilitaetregelung() {
+        Singleton.getInstance().setSensi((sensibilitaet.getValue()/100));
+        System.out.println("Sens Menuü"+Singleton.getInstance().getSensi());
+    }
+
 
     public void game1() {
         gameMusic.stop();
@@ -195,6 +202,8 @@ public class MainController extends AnimationTimer implements Initializable {
         // Set looping for media players
         mainMenueMusic.setCycleCount(MediaPlayer.INDEFINITE);
         gameMusic.setCycleCount(MediaPlayer.INDEFINITE);
+        lautstaerke.setValue(Singleton.getInstance().getLautstaerke()*200);
+        sensibilitaet.setValue(Singleton.getInstance().getSensi()*100);
     }
 
     @Override

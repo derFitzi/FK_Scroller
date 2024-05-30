@@ -23,13 +23,6 @@ public class WinScreenController {
         System.out.println("Number of collected coins: " + count);
         Image starImage = new Image(getClass().getResourceAsStream("Star.png")); // Path to the star image
 
-        // Debug: Check if the image is loaded correctly
-        if (starImage.isError()) {
-            System.err.println("Error loading the star image.");
-            return;
-        }
-        System.out.println("Star image loaded successfully.");
-
         for (int i = 0; i < count; i++) {
             ImageView star = new ImageView(starImage);
             star.setFitWidth(70);
