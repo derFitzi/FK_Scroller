@@ -64,6 +64,8 @@ public class Game1Controller {
     Media sound = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/GamePlay.mp3").toURI().toString());
     MediaPlayer Music = new MediaPlayer(sound);
 
+    int aktuellesLevel=1;
+
     int i=0; // testvariable
 
     private boolean rechtslaufen=true;
@@ -93,20 +95,6 @@ public class Game1Controller {
         triggerBox.setTranslateY(630);
         game1_pane.getChildren().add(triggerBox);
 
-
-        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
-        flagImageView = new ImageView(flagImage);
-        flagImageView.setFitWidth(738);
-        flagImageView.setFitHeight(338);
-        flagImageView.setTranslateX(5000);
-        flagImageView.setTranslateY(400);
-        game1_pane.getChildren().add(flagImageView);
-
-        platforms = new ArrayList<>();
-        generatePlatforms(platformTexture);
-
-        coins = new ArrayList<>();
-        generateCoins();
 
         addEventListeners();
 
@@ -140,15 +128,480 @@ public class Game1Controller {
         player.requestFocus();
     }
 
-    private void generatePlatforms(Image platformTexture) {
+
+    public void levelauswahl(int level)
+    {
+        aktuellesLevel = level;
+
+        if (aktuellesLevel==1){
+            generatePlatforms1(new Image(getClass().getResourceAsStream("platformtexture2.png")));
+            generateCoins1();
+        }
+        if (aktuellesLevel==2){
+            generatePlatforms2(new Image(getClass().getResourceAsStream("jumpplatform.png")));
+            generateCoins2();
+        }
+        if (aktuellesLevel==3){
+            generatePlatforms3(new Image(getClass().getResourceAsStream("miniplatform.png")));
+            generateCoins3();
+        }
+        if (aktuellesLevel==4){
+            generatePlatforms4(new Image(getClass().getResourceAsStream("platformtexture2.png")));
+            generateCoins4();
+        }
+    }
+
+    private void generateCoins1() {
+        coins = new ArrayList<>();
+        String coinImagePath = "Star.png";
+
+        // Beispielpositionen für die drei Münzen
+        Coin coin1 = new Coin(coinImagePath, 3500, 700);
+        Coin coin2 = new Coin(coinImagePath, 2100, 350);
+        Coin coin3 = new Coin(coinImagePath, 1400, 650);
+
+        coins.add(coin1);
+        coins.add(coin2);
+        coins.add(coin3);
+
+        game1_pane.getChildren().addAll(coin1, coin2, coin3);
+    }
+    private void generateCoins2() {
+        coins = new ArrayList<>();
+        String coinImagePath = "Star.png";
+
+        // Beispielpositionen für die drei Münzen
+        Coin coin1 = new Coin(coinImagePath, 3500, 700);
+        Coin coin2 = new Coin(coinImagePath, 2100, 350);
+        Coin coin3 = new Coin(coinImagePath, 1400, 650);
+
+        coins.add(coin1);
+        coins.add(coin2);
+        coins.add(coin3);
+
+        game1_pane.getChildren().addAll(coin1, coin2, coin3);
+    }
+    private void generateCoins3() {
+        coins = new ArrayList<>();
+        String coinImagePath = "Star.png";
+
+        // Beispielpositionen für die drei Münzen
+        Coin coin1 = new Coin(coinImagePath, 3560, 740);
+        Coin coin2 = new Coin(coinImagePath, 2460, 270);
+        Coin coin3 = new Coin(coinImagePath, 1410, 625);
+
+        coins.add(coin1);
+        coins.add(coin2);
+        coins.add(coin3);
+
+        game1_pane.getChildren().addAll(coin1, coin2, coin3);
+    }
+    private void generateCoins4() {
+        coins = new ArrayList<>();
+        String coinImagePath = "Star.png";
+
+        // Beispielpositionen für die drei Münzen
+        Coin coin1 = new Coin(coinImagePath, 3500, 700);
+        Coin coin2 = new Coin(coinImagePath, 2100, 350);
+        Coin coin3 = new Coin(coinImagePath, 1400, 650);
+
+        coins.add(coin1);
+        coins.add(coin2);
+        coins.add(coin3);
+
+        game1_pane.getChildren().addAll(coin1, coin2, coin3);
+    }
+
+    private void generatePlatforms1(Image platformTexture) {
+        platforms = new ArrayList<>();
+
+        Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-1000); platform0.setTranslateY(730);
+        Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(150); platform1.setTranslateY(730);
+        Rectangle platform2 = new Rectangle(1442, 135); platform2.setTranslateX(1590); platform2.setTranslateY(630);
+        Rectangle erde1     = new Rectangle(1442, 440); erde1.setTranslateX(1590); erde1.setTranslateY(760);
+        Rectangle erde2     = new Rectangle(1442, 440); erde2.setTranslateX(4400); erde2.setTranslateY(800);
+        Rectangle erde3     = new Rectangle(1442, 440); erde3.setTranslateX(5842); erde3.setTranslateY(800);
+        Rectangle platform3 = new Rectangle(1442, 135); platform3.setTranslateX(3000); platform3.setTranslateY(780);
+        Rectangle platform4 = new Rectangle(721, 67); platform4.setTranslateX(1700); platform4.setTranslateY(430);
+        Rectangle platform5 = new Rectangle(1442, 135); platform5.setTranslateX(4400); platform5.setTranslateY(710);
+        Rectangle platform6 = new Rectangle(1442, 135); platform6.setTranslateX(5842); platform6.setTranslateY(710);
+        Rectangle wand1 = new Rectangle(1442, 1000); wand1.setTranslateX(-1442); wand1.setTranslateY(0);
+        Rectangle wand2 = new Rectangle(1442, 1000); wand2.setTranslateX(5842); wand2.setTranslateY(0);
+        platforms.add(platform0);
+        platforms.add(platform1);
+        platforms.add(platform2);
+        platforms.add(platform3);
+        platforms.add(platform5);
+        platforms.add(platform6);
+
+        for (int i = 0; i < platforms.size(); i++) {
+            platforms.get(i).setFill(new ImagePattern(platformTexture));
+            game1_pane.getChildren().add(platforms.get(i));
+        }
+        platforms.add(erde1);
+        platforms.add(erde2);
+        platforms.add(erde3);
+        platforms.add(platform4);
+        platforms.add(wand1);
+        platforms.add(wand2);
+        wand1.setFill(Color.TRANSPARENT);
+        wand1.setStroke(Color.ALICEBLUE);
+        wand2.setFill(Color.TRANSPARENT);
+        wand2.setStroke(Color.ALICEBLUE);
+        platform4.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
+        erde1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        erde2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        erde3.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        game1_pane.getChildren().add(erde1);
+        game1_pane.getChildren().add(erde2);
+        game1_pane.getChildren().add(erde3);
+        game1_pane.getChildren().add(platform4);
+        game1_pane.getChildren().add(wand1);
+        game1_pane.getChildren().add(wand2);
+
+        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
+        flagImageView = new ImageView(flagImage);
+        flagImageView.setFitWidth(738);
+        flagImageView.setFitHeight(338);
+        flagImageView.setTranslateX(5000);
+        flagImageView.setTranslateY(380);
+        game1_pane.getChildren().add(flagImageView);
+        quit.toFront();
+
+
+    }
+    private void generatePlatforms2(Image platformTexture) {
+        platforms = new ArrayList<>();
+        Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(-2364); platform1.setTranslateY(730);
+        Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-922); platform0.setTranslateY(730);
+
+
+        Rectangle platform2 = new Rectangle(360, 68); platform2.setTranslateX(520); platform2.setTranslateY(660);
+        Rectangle platform3 = new Rectangle(180, 68); platform3.setTranslateX(880); platform3.setTranslateY(600);
+
+        Rectangle platform4 = new Rectangle(360, 68); platform4.setTranslateX(1200); platform4.setTranslateY(600);
+
+
+        Rectangle platform5 = new Rectangle(180, 68); platform5.setTranslateX(1700); platform5.setTranslateY(800);
+        Rectangle platform6 = new Rectangle(180, 68); platform6.setTranslateX(1880); platform6.setTranslateY(700);
+        Rectangle platform7 = new Rectangle(180, 68); platform7.setTranslateX(2060); platform7.setTranslateY(600);
+        Rectangle platform8 = new Rectangle(180, 68); platform8.setTranslateX(2240); platform8.setTranslateY(500);
+        Rectangle platform9 = new Rectangle(180, 68); platform9.setTranslateX(2240); platform9.setTranslateY(750);
+        Rectangle platform10 = new Rectangle(360, 68); platform10.setTranslateX(2800); platform10.setTranslateY(800);
+
+        Rectangle platform11 = new Rectangle(180, 68); platform11.setTranslateX(3300); platform11.setTranslateY(820);
+
+        //zickzack nach oben
+
+        Rectangle platform12 = new Rectangle(721, 68); platform12.setTranslateX(3480); platform12.setTranslateY(750);
+        Rectangle platform13 = new Rectangle(180, 68); platform13.setTranslateX(3300); platform13.setTranslateY(650);
+        Rectangle platform16 = new Rectangle(180, 68); platform16.setTranslateX(3480); platform16.setTranslateY(550);
+        Rectangle platform17 = new Rectangle(180, 68); platform17.setTranslateX(330); platform17.setTranslateY(450);
+        Rectangle platform18 = new Rectangle(320, 68); platform18.setTranslateX(3480); platform18.setTranslateY(450);
+
+        Rectangle platform14 = new Rectangle(1442, 135); platform14.setTranslateX(5200); platform14.setTranslateY(710);
+        Rectangle platform15 = new Rectangle(1442, 135); platform15.setTranslateX(5842); platform15.setTranslateY(710);
+
+        Rectangle earth1 =new Rectangle(180, 600); earth1.setTranslateX(1360); earth1.setTranslateY(768-2);
+        Rectangle earth2 =new Rectangle(180, 600); earth2.setTranslateX(1680); earth2.setTranslateY(718-2);
+        Rectangle earth3 =new Rectangle(180, 600); earth3.setTranslateX(2000); earth3.setTranslateY(568-2);
+        Rectangle earth4 =new Rectangle(180, 600); earth4.setTranslateX(2000); earth4.setTranslateY(568-2);
+        Rectangle earth5 =new Rectangle(180, 600); earth5.setTranslateX(2400); earth5.setTranslateY(418-2);
+        Rectangle earth6 =new Rectangle(180, 600); earth6.setTranslateX(4600); earth6.setTranslateY(588-2);
+
+        //klein
+        Rectangle earth7 =new Rectangle(360, 600); earth7.setTranslateX(520); earth7.setTranslateY(660+66);
+        Rectangle earth8 =new Rectangle(180, 600); earth8.setTranslateX(880); earth8.setTranslateY(666);
+        Rectangle earth81 =new Rectangle(180, 600); earth81.setTranslateX(1000); earth81.setTranslateY(666);
+
+        // groß
+        Rectangle earth9 =new Rectangle(1442, 440); earth9.setTranslateX(-1300); earth9.setTranslateY(880);
+        Rectangle earth10 =new Rectangle(1442, 440); earth10.setTranslateX(-250); earth10.setTranslateY(880);
+        //Ende
+        Rectangle earth11 =new Rectangle(1442, 440); earth11.setTranslateX(5200); earth11.setTranslateY(710+133);
+        Rectangle earth12 =new Rectangle(1442, 440); earth12.setTranslateX(5842); earth12.setTranslateY(710+133);
+
+        //mittel
+        Rectangle earth13 =new Rectangle(720, 600); earth13.setTranslateX(4000); earth13.setTranslateY(750+62);
+
+        Rectangle wand1 = new Rectangle(1442, 1000); wand1.setTranslateX(-1442); wand1.setTranslateY(0);
+        Rectangle wand2 = new Rectangle(1442, 1000); wand2.setTranslateX(5842); wand2.setTranslateY(0);
+
+
+        platforms.add(platform3);
+        platforms.add(platform4);
+        platforms.add(platform5);
+        platforms.add(platform6);
+        platforms.add(platform7);
+        platforms.add(platform8);
+
+        platforms.add(platform10);
+        platforms.add(platform11);
+        platforms.add(platform13);
+
+
+
+        for (int i = 0; i < platforms.size(); i++) {
+            platforms.get(i).setFill(new ImagePattern(platformTexture));
+            game1_pane.getChildren().add(platforms.get(i));
+        }
+        platforms.add(wand1);
+        platforms.add(wand2);
+        wand1.setFill(Color.TRANSPARENT);
+        wand1.setStroke(Color.TRANSPARENT);
+        wand2.setFill(Color.TRANSPARENT);
+        wand2.setStroke(Color.TRANSPARENT);
+        game1_pane.getChildren().add(wand1);
+        game1_pane.getChildren().add(wand2);
+
+
+        //jumpplatformen 0,1,2,9
+        platforms.add(platform0);
+        platforms.add(platform1);
+        platforms.add(platform2);
+        platforms.add(platform9);
+        platform0.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        game1_pane.getChildren().add(platform0);
+        platform1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        game1_pane.getChildren().add(platform1);
+        platform2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpplatform.png"))));
+        game1_pane.getChildren().add(platform2);
+        platform9.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpplatform.png"))));
+        game1_pane.getChildren().add(platform9);
+
+        //thinplatformen 12
+        platforms.add(platform12);
+        platform12.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
+        game1_pane.getChildren().add(platform12);
+
+        // normal platform 14,15
+
+        platforms.add(platform14);
+        platforms.add(platform15);
+        platform14.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        game1_pane.getChildren().add(platform14);
+        platform15.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        game1_pane.getChildren().add(platform15);
+
+        earth1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth1);
+        game1_pane.getChildren().add(earth1);
+        earth2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth2);
+        game1_pane.getChildren().add(earth2);
+        earth3.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth3);
+        game1_pane.getChildren().add(earth3);
+        earth4.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth4);
+        game1_pane.getChildren().add(earth4);
+        earth5.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth5);
+        game1_pane.getChildren().add(earth5);
+        earth6.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth6);
+        game1_pane.getChildren().add(earth6);
+        earth7.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpearthtexture.png"))));
+        platforms.add(earth7);
+        game1_pane.getChildren().add(earth7);
+        earth8.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth8);
+        game1_pane.getChildren().add(earth81);
+        earth81.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth81);
+        game1_pane.getChildren().add(earth8);
+        earth9.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        platforms.add(earth9);
+        game1_pane.getChildren().add(earth9);
+        earth10.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        platforms.add(earth10);
+        game1_pane.getChildren().add(earth10);
+        earth11.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        platforms.add(earth11);
+        game1_pane.getChildren().add(earth11);
+        earth12.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        platforms.add(earth12);
+        game1_pane.getChildren().add(earth12);
+        earth13.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpearthtexture.png"))));
+        platforms.add(earth13);
+        game1_pane.getChildren().add(earth13);
+
+        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
+        flagImageView = new ImageView(flagImage);
+        flagImageView.setFitWidth(738);
+        flagImageView.setFitHeight(338);
+        flagImageView.setTranslateX(5000);
+        flagImageView.setTranslateY(380);
+        game1_pane.getChildren().add(flagImageView);
+        quit.toFront();
+
+
+
+    }
+    private void generatePlatforms3(Image platformTexture) {
+        platforms = new ArrayList<>();
+        Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(-2364); platform1.setTranslateY(730);
+        Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-922); platform0.setTranslateY(730);
+        Rectangle platform2 = new Rectangle(360, 68); platform2.setTranslateX(520); platform2.setTranslateY(660);
+        Rectangle platform3 = new Rectangle(180, 68); platform3.setTranslateX(880); platform3.setTranslateY(600);
+        Rectangle platform4 = new Rectangle(180, 68); platform4.setTranslateX(1000); platform4.setTranslateY(600);
+        Rectangle platform5 = new Rectangle(180, 68); platform5.setTranslateX(1360); platform5.setTranslateY(700);
+        Rectangle platform6 = new Rectangle(180, 68); platform6.setTranslateX(1680); platform6.setTranslateY(650);
+        Rectangle platform7 = new Rectangle(180, 68); platform7.setTranslateX(2000); platform7.setTranslateY(500);
+        Rectangle platform8 = new Rectangle(180, 68); platform8.setTranslateX(2400); platform8.setTranslateY(350);
+        Rectangle platform9 = new Rectangle(360, 68); platform9.setTranslateX(3300); platform9.setTranslateY(630);
+        Rectangle platform10 = new Rectangle(180, 68); platform10.setTranslateX(4000); platform10.setTranslateY(550);
+        Rectangle platform11 = new Rectangle(180, 68); platform11.setTranslateX(3500); platform11.setTranslateY(820);
+        Rectangle platform12 = new Rectangle(721, 68); platform12.setTranslateX(4000); platform12.setTranslateY(750);
+        Rectangle platform13 = new Rectangle(180, 68); platform13.setTranslateX(4600); platform13.setTranslateY(520);
+        Rectangle platform14 = new Rectangle(1442, 135); platform14.setTranslateX(5200); platform14.setTranslateY(710);
+        Rectangle platform15 = new Rectangle(1442, 135); platform15.setTranslateX(5842); platform15.setTranslateY(710);
+
+        Rectangle earth1 =new Rectangle(180, 600); earth1.setTranslateX(1360); earth1.setTranslateY(768-2);
+        Rectangle earth2 =new Rectangle(180, 600); earth2.setTranslateX(1680); earth2.setTranslateY(718-2);
+        Rectangle earth3 =new Rectangle(180, 600); earth3.setTranslateX(2000); earth3.setTranslateY(568-2);
+        Rectangle earth4 =new Rectangle(180, 600); earth4.setTranslateX(2000); earth4.setTranslateY(568-2);
+        Rectangle earth5 =new Rectangle(180, 600); earth5.setTranslateX(2400); earth5.setTranslateY(418-2);
+        Rectangle earth6 =new Rectangle(180, 600); earth6.setTranslateX(4600); earth6.setTranslateY(588-2);
+
+        //klein
+        Rectangle earth7 =new Rectangle(360, 600); earth7.setTranslateX(520); earth7.setTranslateY(660+66);
+        Rectangle earth8 =new Rectangle(180, 600); earth8.setTranslateX(880); earth8.setTranslateY(666);
+        Rectangle earth81 =new Rectangle(180, 600); earth81.setTranslateX(1000); earth81.setTranslateY(666);
+
+        // groß
+        Rectangle earth9 =new Rectangle(1442, 440); earth9.setTranslateX(-1300); earth9.setTranslateY(880);
+        Rectangle earth10 =new Rectangle(1442, 440); earth10.setTranslateX(-250); earth10.setTranslateY(880);
+            //Ende
+        Rectangle earth11 =new Rectangle(1442, 440); earth11.setTranslateX(5200); earth11.setTranslateY(710+133);
+        Rectangle earth12 =new Rectangle(1442, 440); earth12.setTranslateX(5842); earth12.setTranslateY(710+133);
+
+        //mittel
+        Rectangle earth13 =new Rectangle(720, 600); earth13.setTranslateX(4000); earth13.setTranslateY(750+62);
+
+        Rectangle wand1 = new Rectangle(1442, 1000); wand1.setTranslateX(-1442); wand1.setTranslateY(0);
+        Rectangle wand2 = new Rectangle(1442, 1000); wand2.setTranslateX(5842); wand2.setTranslateY(0);
+
+
+        platforms.add(platform3);
+        platforms.add(platform4);
+        platforms.add(platform5);
+        platforms.add(platform6);
+        platforms.add(platform7);
+        platforms.add(platform8);
+
+        platforms.add(platform10);
+        platforms.add(platform11);
+        platforms.add(platform13);
+
+
+
+        for (int i = 0; i < platforms.size(); i++) {
+            platforms.get(i).setFill(new ImagePattern(platformTexture));
+            game1_pane.getChildren().add(platforms.get(i));
+        }
+        platforms.add(wand1);
+        platforms.add(wand2);
+        wand1.setFill(Color.TRANSPARENT);
+        wand1.setStroke(Color.TRANSPARENT);
+        wand2.setFill(Color.TRANSPARENT);
+        wand2.setStroke(Color.TRANSPARENT);
+        game1_pane.getChildren().add(wand1);
+        game1_pane.getChildren().add(wand2);
+
+
+        //jumpplatformen 0,1,2,9
+        platforms.add(platform0);
+        platforms.add(platform1);
+        platforms.add(platform2);
+        platforms.add(platform9);
+        platform0.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        game1_pane.getChildren().add(platform0);
+        platform1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        game1_pane.getChildren().add(platform1);
+        platform2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpplatform.png"))));
+        game1_pane.getChildren().add(platform2);
+        platform9.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpplatform.png"))));
+        game1_pane.getChildren().add(platform9);
+
+        //thinplatformen 12
+        platforms.add(platform12);
+        platform12.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
+        game1_pane.getChildren().add(platform12);
+
+        // normal platform 14,15
+
+        platforms.add(platform14);
+        platforms.add(platform15);
+        platform14.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        game1_pane.getChildren().add(platform14);
+        platform15.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        game1_pane.getChildren().add(platform15);
+
+        earth1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth1);
+        game1_pane.getChildren().add(earth1);
+        earth2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth2);
+        game1_pane.getChildren().add(earth2);
+        earth3.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth3);
+        game1_pane.getChildren().add(earth3);
+        earth4.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth4);
+        game1_pane.getChildren().add(earth4);
+        earth5.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth5);
+        game1_pane.getChildren().add(earth5);
+        earth6.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth6);
+        game1_pane.getChildren().add(earth6);
+        earth7.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpearthtexture.png"))));
+        platforms.add(earth7);
+        game1_pane.getChildren().add(earth7);
+        earth8.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth8);
+        game1_pane.getChildren().add(earth81);
+        earth81.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        platforms.add(earth81);
+        game1_pane.getChildren().add(earth8);
+        earth9.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        platforms.add(earth9);
+        game1_pane.getChildren().add(earth9);
+        earth10.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        platforms.add(earth10);
+        game1_pane.getChildren().add(earth10);
+        earth11.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        platforms.add(earth11);
+        game1_pane.getChildren().add(earth11);
+        earth12.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        platforms.add(earth12);
+        game1_pane.getChildren().add(earth12);
+        earth13.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpearthtexture.png"))));
+        platforms.add(earth13);
+        game1_pane.getChildren().add(earth13);
+
+        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
+        flagImageView = new ImageView(flagImage);
+        flagImageView.setFitWidth(738);
+        flagImageView.setFitHeight(338);
+        flagImageView.setTranslateX(5000);
+        flagImageView.setTranslateY(380);
+        game1_pane.getChildren().add(flagImageView);
+        quit.toFront();
+
+    }
+    private void generatePlatforms4(Image platformTexture) {
+        platforms = new ArrayList<>();
+
         Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-1000); platform0.setTranslateY(730);
         Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(150); platform1.setTranslateY(730);
         Rectangle platform2 = new Rectangle(1442, 135); platform2.setTranslateX(1590); platform2.setTranslateY(630);
         Rectangle erde1     = new Rectangle(1442, 135); erde1.setTranslateX(1590); erde1.setTranslateY(760);
         Rectangle platform3 = new Rectangle(1442, 135); platform3.setTranslateX(3000); platform3.setTranslateY(780);
         Rectangle platform4 = new Rectangle(721, 67); platform4.setTranslateX(1700); platform4.setTranslateY(430);
-        Rectangle platform5 = new Rectangle(1442, 135); platform5.setTranslateX(4400); platform5.setTranslateY(730);
-        Rectangle platform6 = new Rectangle(1442, 135); platform6.setTranslateX(5842); platform6.setTranslateY(730);
+        Rectangle platform5 = new Rectangle(1442, 135); platform5.setTranslateX(4400); platform5.setTranslateY(710);
+        Rectangle platform6 = new Rectangle(1442, 135); platform6.setTranslateX(5842); platform6.setTranslateY(710);
         Rectangle wand1 = new Rectangle(1442, 1000); wand1.setTranslateX(-1442); wand1.setTranslateY(0);
         Rectangle wand2 = new Rectangle(1442, 1000); wand2.setTranslateX(5842); wand2.setTranslateY(0);
         platforms.add(platform0);
@@ -176,21 +629,18 @@ public class Game1Controller {
         game1_pane.getChildren().add(platform4);
         game1_pane.getChildren().add(wand1);
         game1_pane.getChildren().add(wand2);
-    }
 
-    private void generateCoins() {
-        String coinImagePath = "Star.png";
 
-        // Beispielpositionen für die drei Münzen
-        Coin coin1 = new Coin(coinImagePath, 3500, 700);
-        Coin coin2 = new Coin(coinImagePath, 2100, 350);
-        Coin coin3 = new Coin(coinImagePath, 1400, 650);
+        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
+        flagImageView = new ImageView(flagImage);
+        flagImageView.setFitWidth(738);
+        flagImageView.setFitHeight(338);
+        flagImageView.setTranslateX(5000);
+        flagImageView.setTranslateY(380);
+        game1_pane.getChildren().add(flagImageView);
+        quit.toFront();
 
-        coins.add(coin1);
-        coins.add(coin2);
-        coins.add(coin3);
 
-        game1_pane.getChildren().addAll(coin1, coin2, coin3);
     }
 
     private void handleKeyPressed(KeyEvent event) {
@@ -222,11 +672,16 @@ public class Game1Controller {
     }
 
     private void update() {
-        game1_pane.requestFocus();
-
         double dx = 0;
+        game1_pane.requestFocus();
+        //System.out.println("X: " + player.getTranslateX() + " Y: " + player.getTranslateY() + " Velocity: " + velocity + " Gravity: " + gravity + " PlayerSpeed: " + playerSpeed + " Sensi: " + sensi + " Collected Coins: " + collectedCoinCount + " Linkslaufen: " + linkslaufen + " Rechtslaufen: " + rechtslaufen + " CanJump: " + canJump + " Jumping: " + jumping + " Left: " + left + " Right: " + right + " i: " + i);
+        System.out.println("links frei: "+rechtslaufen+"   rechts frei: "+linkslaufen);
+
         if (left) dx -= playerSpeed;
         if (right) dx += playerSpeed;
+
+
+
 
         player.setTranslateX(player.getTranslateX() + dx);
 
@@ -277,7 +732,6 @@ public class Game1Controller {
 
     private void checkCollisions() {
         boolean onAnyPlatform = false;
-        //System.out.println("Rechts: "+rechtslaufen+"    Links: "+linkslaufen);
 
         for (Rectangle platform : platforms) {
             if (player.getBoundsInParent().intersects(platform.getBoundsInParent())) {
@@ -292,30 +746,31 @@ public class Game1Controller {
                 double platformRight = platform.getTranslateX() + platform.getWidth();
 
                 //oben
-                if (playerBottom >= platformTop && playerTop < platformTop && playerLeft < platformRight && playerRight > platformLeft) {
+                if (playerBottom >= platformTop && playerTop < platformTop && playerLeft < (platformRight-5) && playerRight > (platformLeft+5)) {
                     player.setTranslateY(platformTop - player.getHeight());
                     velocity = 0;
                     canJump = true;
                     onAnyPlatform = true;
                 }
                 //unten
-                else if (playerTop <= platformBottom && playerBottom > platformBottom && playerLeft < platformRight && playerRight > platformLeft) {
+                else if (playerTop <= platformBottom && playerBottom > platformBottom && playerLeft < (platformRight-5) && playerRight > (platformLeft+5)) {
                     player.setTranslateY(platformBottom);
                     velocity=gravity;
                 }
                 // links
-                else if (playerRight >= platformLeft && playerLeft < platformLeft) {
-                    player.setTranslateX(platformLeft - player.getWidth()+1);
-                    //rechtslaufen=false;
-                    playerSpeed=0;
+                else if (playerRight >= platformLeft && playerLeft < platformLeft && playerBottom > platformTop)
+                {
+                    rechtslaufen=false;
+                    playerSpeed=-0;
+                    player.setTranslateX(platformLeft - player.getWidth()-2);
+
                 }
                 // rechts
-                else if (playerLeft <= platformRight && playerRight > platformRight) {
-                    player.setTranslateX(platformRight);
-                    //linkslaufen=false;
+                else if (playerLeft <= platformRight && playerRight > platformRight && playerBottom > platformTop) {
+                    linkslaufen=false;
                     playerSpeed=0;
+                    player.setTranslateX(platformRight+2);
                 }
-
             }
         }
         if (!onAnyPlatform) {
@@ -369,6 +824,7 @@ public class Game1Controller {
     private void onPlayerEnterBox() {
         game1_pane.setOnKeyPressed(null);
         game1_pane.setOnKeyReleased(null);
+        Music.stop();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("WinScreen.fxml"));
@@ -376,8 +832,7 @@ public class Game1Controller {
 
             WinScreenController winScreenController = loader.getController();
             winScreenController.setCollectedCoinCount(collectedCoinCount);
-            winScreenController.setPlayedGame(1);
-            // Zahl muss bei jedem verschiedenen Spiel geändert werden
+            winScreenController.setPlayedGame(aktuellesLevel);
 
             Scene currentScene = quit.getScene();
             currentScene.setRoot(winScreenRoot);

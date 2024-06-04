@@ -19,6 +19,8 @@ public class WinScreenController {
     private String oldGameCont;
     private String oldGameScreen;
 
+    private int aktuellesLevel;
+
     public void setCollectedCoinCount(int count) {
         System.out.println("Number of collected coins: " + count);
         Image starImage = new Image(getClass().getResourceAsStream("Star.png")); // Path to the star image
@@ -41,40 +43,31 @@ public class WinScreenController {
     }
 
     public void setPlayedGame(int num) {
-        oldGameCont = "Game" + num + "Controller";
-        oldGameScreen = "Game" + num;
+        aktuellesLevel=num;
     }
 
     public void nocheinmal() {
         try {
             FXMLLoader loader;
-            if (oldGameScreen.equals("Game1")) {
-                loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
-            } else if (oldGameScreen.equals("Game2")) {
-                loader = new FXMLLoader(getClass().getResource("Game2.fxml"));
-            } else if (oldGameScreen.equals("Game3")) {
-                loader = new FXMLLoader(getClass().getResource("Game3.fxml"));
-            } else if (oldGameScreen.equals("Game4")) {
-                loader = new FXMLLoader(getClass().getResource("Game4.fxml"));
-            } else {
-                loader = new FXMLLoader(getClass().getResource("Menue.fxml"));
-            }
-
+            loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
             Parent gameRoot = loader.load();
             Scene currentScene = winText.getScene();
             currentScene.setRoot(gameRoot);
-
-            if (oldGameCont.equals("Game1Controller")) {
-                Game1Controller cont = loader.getController();
-            } else if (oldGameCont.equals("Game2Controller")) {
-                // Game2Controller cont = loader.getController();
-            } else if (oldGameCont.equals("Game3Controller")) {
-                // Game3Controller cont = loader.getController();
-            } else if (oldGameCont.equals("Game4Controller")) {
-                // Game4Controller cont = loader.getController();
+            Game1Controller cont = loader.getController();
+            if (aktuellesLevel==1) {
+                cont.levelauswahl(1);
+            }
+            if (aktuellesLevel==2) {
+                cont.levelauswahl(2);
+            }
+            if (aktuellesLevel==3) {
+                cont.levelauswahl(3);
+            }
+            if (aktuellesLevel==4) {
+                cont.levelauswahl(4);
             }
 
-            // Assuming this line is to start some initial process in the main controller
+
             MainController mainController = loader.getController();
             mainController.play();
 

@@ -110,8 +110,11 @@ public class MainController extends AnimationTimer implements Initializable {
         BackgroundImage backgroundImage = new BackgroundImage(hintergrundGameSelection, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(width, height, false, false, true, true));
         p_Pane.setBackground(new Background(backgroundImage));
 
+
         Image g1Image = new Image(getClass().getResourceAsStream("Game1vorschau.png"));
+        Image g3Image = new Image(getClass().getResourceAsStream("Game3vorschau.png"));
         g1.setFill(new ImagePattern(g1Image));
+        g3.setFill(new ImagePattern(g3Image));
     }
 
     public void quit() {
@@ -187,6 +190,61 @@ public class MainController extends AnimationTimer implements Initializable {
             currentScene.setRoot(game1Root);
 
             Game1Controller game1Controller = loader.getController();
+            game1Controller.levelauswahl(1);
+
+            System.out.println("Switched to game screen successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error loading Game1.fxml: " + e.getMessage());
+        }
+    }
+    public void game2() {
+        gameMusic.stop();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
+            Parent game1Root = loader.load();
+
+            Scene currentScene = play.getScene();
+            currentScene.setRoot(game1Root);
+
+            Game1Controller game1Controller = loader.getController();
+            game1Controller.levelauswahl(2);
+
+            System.out.println("Switched to game screen successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error loading Game1.fxml: " + e.getMessage());
+        }
+    }
+    public void game3() {
+        gameMusic.stop();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
+            Parent game1Root = loader.load();
+
+            Scene currentScene = play.getScene();
+            currentScene.setRoot(game1Root);
+
+            Game1Controller game1Controller = loader.getController();
+            game1Controller.levelauswahl(3);
+
+            System.out.println("Switched to game screen successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error loading Game1.fxml: " + e.getMessage());
+        }
+    }
+    public void game4() {
+        gameMusic.stop();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
+            Parent game1Root = loader.load();
+
+            Scene currentScene = play.getScene();
+            currentScene.setRoot(game1Root);
+
+            Game1Controller game1Controller = loader.getController();
+            game1Controller.levelauswahl(4);
 
             System.out.println("Switched to game screen successfully.");
         } catch (IOException e) {

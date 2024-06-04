@@ -1,14 +1,14 @@
 # To-Do List
 
 - [ ] **Side Collision**
-- [ ] **Sterne als Bilder machen**
 - [ ] **Character Design**
 - [ ] **JUnit Tests**
 - [ ] **Game Over Screen**
+- für jede bildschirmgröße gleich
+- sensi reglung mit formel
 
 - [ ] **Level Bauen**
 - [ ] **Infinity Level**
-- [ ] **Gegner?**
 
 ## Done
 - [x] **Sterne**
@@ -16,8 +16,9 @@
 - [x] **Game Full Screen**
 - [x] **Win Screen Designen**
 - [x] **Seiten blocken**
-- [X] **Einstellungen mit Singleton Kasse**
-- [X] **Movement**
-- [X] **Musik**
-- [X] **Leertaste springen**
+- [x] **Einstellungen mit Singleton Kasse**
+- [x] **Movement**
+- [x] **Musik**
+- [x] **Leertaste springen**
+- [x] **Sterne als Bilder machen**
 
