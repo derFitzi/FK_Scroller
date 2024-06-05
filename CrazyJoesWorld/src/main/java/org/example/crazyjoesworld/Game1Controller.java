@@ -43,6 +43,7 @@ public class Game1Controller {
 
     private double sensi = Singleton.getInstance().getSensi();
     private Rectangle triggerBox;
+    private Rectangle deathBox;
     private ImageView flagImageView;
     private int collectedCoinCount = 0;
     @FXML
@@ -90,10 +91,16 @@ public class Game1Controller {
         game1_pane.getChildren().add(player);
 
         triggerBox = new Rectangle(50, 100, Color.TRANSPARENT);
-        triggerBox.setStroke(Color.BLUE);
+        triggerBox.setStroke(Color.TRANSPARENT);
         triggerBox.setTranslateX(5430);
         triggerBox.setTranslateY(630);
         game1_pane.getChildren().add(triggerBox);
+
+        deathBox = new Rectangle(1920, 30, Color.RED);
+        deathBox.setStroke(Color.TRANSPARENT);
+        deathBox.setTranslateX(0);
+        deathBox.setTranslateY(950);
+        game1_pane.getChildren().add(deathBox);
 
 
         addEventListeners();
@@ -715,6 +722,7 @@ public class Game1Controller {
         checkCollisions();
         checkCoinCollisions();
         checkBoxTrigger();
+        checkDeath();
     }
 
     private void moveBackground(double dx) {
@@ -823,6 +831,27 @@ public class Game1Controller {
     private void checkBoxTrigger() {
         if (player.getBoundsInParent().intersects(triggerBox.getBoundsInParent())) {
             onPlayerEnterBox();
+        }
+    }
+    private void checkDeath() {
+        if (player.getBoundsInParent().intersects(deathBox.getBoundsInParent())) {
+            game1_pane.setOnKeyPressed(null);
+            game1_pane.setOnKeyReleased(null);
+            Music.stop();
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Deathscreen.fxml"));
+                Parent DeathScreenRoot = loader.load();
+
+                DeathscreenController deathScreenController = loader.getController();
+                deathScreenController.setPlayedGame(aktuellesLevel);
+
+                Scene currentScene = quit.getScene();
+                currentScene.setRoot(DeathScreenRoot);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.err.println("Error loading DeathScreen.fxml: " + e.getMessage());
+            }
         }
     }
 

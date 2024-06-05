@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="deathscreenPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1920.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crazyjoesworld.DeathscreenController">
+    <children>
+        <Rectangle arcHeight="320.0" arcWidth="320.0" fill="#6e5959" height="465.0" layoutX="448.0" layoutY="225.0" stroke="BLACK" strokeType="INSIDE" width="683.0" />
+        <Rectangle arcHeight="300.0" arcWidth="250.0" fill="#c1a097" height="396.0" layoutX="481.0" layoutY="260.0" stroke="BLACK" strokeType="INSIDE" width="620.0" />
+        <Button fx:id="nocheinmal" layoutX="839.0" layoutY="550.0" mnemonicParsing="false" onAction="#nocheinmal" prefHeight="50.0" prefWidth="208.0" style="-fx-background-color: #8c887b; -fx-background-radius: 50;" text="Nocheinmal" textFill="WHITE">
+            <font>
+                <Font name="Cooper Black" size="27.0" />
+            </font>
+        </Button>
+        <Button fx:id="zurueck" layoutX="556.0" layoutY="550.0" mnemonicParsing="false" onAction="#zurueck" prefHeight="50.0" prefWidth="208.0" style="-fx-background-color: #8c887b; -fx-background-radius: 50;" text="Zurück" textFill="WHITE">
+            <font>
+                <Font name="Cooper Black" size="27.0" />
+            </font>
+        </Button>
+        <Label fx:id="winText" layoutX="583.0" layoutY="410.0" prefHeight="33.0" prefWidth="445.0" text="Du bist herunter gefallen" textAlignment="RIGHT" textFill="#403f38">
+            <font>
+                <Font name="Cooper Black" size="34.0" />
+            </font>
+        </Label>
+    </children>
+</Pane>
