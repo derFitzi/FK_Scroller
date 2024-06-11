@@ -1,6 +1,9 @@
 package org.example.crazyjoesworld;
 
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,11 +17,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +47,11 @@ public class Game1Controller {
     private double jumpStrength = -16;
     private double playerSpeed = 12; // normal 5
 
+    @FXML
+    private Slider lautstaerke;
+    @FXML
+    private Slider sensibilitaet;
+
     private double sensi = Singleton.getInstance().getSensi();
     private Rectangle triggerBox;
     private Rectangle deathBox;
@@ -51,10 +62,6 @@ public class Game1Controller {
     @FXML
     private Label sensibilitaet_text;
     @FXML
-    private Slider lautstaerke;
-    @FXML
-    private Slider sensibilitaet;
-    @FXML
     Rectangle settingsBG;
     @FXML
     private Button zumHauptmenue;
@@ -64,13 +71,12 @@ public class Game1Controller {
 
     Media sound = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/GamePlay.mp3").toURI().toString());
     MediaPlayer Music = new MediaPlayer(sound);
-
     int aktuellesLevel=1;
-
     int i=0; // testvariable
-
     private boolean rechtslaufen=true;
     private boolean linkslaufen=true;
+
+
 
     public void initialize() {
         Image hintergrundGame1 = new Image(getClass().getResourceAsStream("GameHintergrund2.png"));
@@ -85,8 +91,9 @@ public class Game1Controller {
 
         game1_pane.getChildren().addAll(background1, background2);
 
-        player = new Rectangle(70, 70, Color.RED);
-        player.setTranslateX(100);
+        player = new Rectangle(70, 120);
+        player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("idle.gif"))));
+        player.setTranslateX(750);
         player.setTranslateY(100);
         game1_pane.getChildren().add(player);
 
@@ -115,6 +122,7 @@ public class Game1Controller {
         Music.setCycleCount(MediaPlayer.INDEFINITE);
         lautstaerke.setValue(Singleton.getInstance().getLautstaerke()*200);
         sensibilitaet.setValue(Singleton.getInstance().getSensi()*100);
+        player.toFront();
 
     }
 
@@ -252,9 +260,9 @@ public class Game1Controller {
         platforms.add(wand1);
         platforms.add(wand2);
         wand1.setFill(Color.TRANSPARENT);
-        wand1.setStroke(Color.ALICEBLUE);
+        wand1.setStroke(Color.TRANSPARENT);
         wand2.setFill(Color.TRANSPARENT);
-        wand2.setStroke(Color.ALICEBLUE);
+        wand2.setStroke(Color.TRANSPARENT);
         platform4.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
         erde1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
         erde2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
@@ -455,10 +463,10 @@ public class Game1Controller {
         Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(-2364); platform1.setTranslateY(730);
         Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-922); platform0.setTranslateY(730);
         Rectangle platform2 = new Rectangle(360, 68); platform2.setTranslateX(520); platform2.setTranslateY(660);
-        Rectangle platform3 = new Rectangle(180, 68); platform3.setTranslateX(880); platform3.setTranslateY(600);
-        Rectangle platform4 = new Rectangle(180, 68); platform4.setTranslateX(1000); platform4.setTranslateY(600);
+        Rectangle platform3 = new Rectangle(180, 68); platform3.setTranslateX(880); platform3.setTranslateY(585);
+        Rectangle platform4 = new Rectangle(180, 68); platform4.setTranslateX(1000); platform4.setTranslateY(585);
         Rectangle platform5 = new Rectangle(180, 68); platform5.setTranslateX(1360); platform5.setTranslateY(700);
-        Rectangle platform6 = new Rectangle(180, 68); platform6.setTranslateX(1680); platform6.setTranslateY(650);
+        Rectangle platform6 = new Rectangle(180, 68); platform6.setTranslateX(1680); platform6.setTranslateY(620);
         Rectangle platform7 = new Rectangle(180, 68); platform7.setTranslateX(2000); platform7.setTranslateY(500);
         Rectangle platform8 = new Rectangle(180, 68); platform8.setTranslateX(2400); platform8.setTranslateY(350);
         Rectangle platform9 = new Rectangle(360, 68); platform9.setTranslateX(3300); platform9.setTranslateY(630);
@@ -470,7 +478,7 @@ public class Game1Controller {
         Rectangle platform15 = new Rectangle(1442, 135); platform15.setTranslateX(5842); platform15.setTranslateY(710);
 
         Rectangle earth1 =new Rectangle(180, 600); earth1.setTranslateX(1360); earth1.setTranslateY(768-2);
-        Rectangle earth2 =new Rectangle(180, 600); earth2.setTranslateX(1680); earth2.setTranslateY(718-2);
+        Rectangle earth2 =new Rectangle(180, 600); earth2.setTranslateX(1680); earth2.setTranslateY(688-2);
         Rectangle earth3 =new Rectangle(180, 600); earth3.setTranslateX(2000); earth3.setTranslateY(568-2);
         Rectangle earth4 =new Rectangle(180, 600); earth4.setTranslateX(2000); earth4.setTranslateY(568-2);
         Rectangle earth5 =new Rectangle(180, 600); earth5.setTranslateX(2400); earth5.setTranslateY(418-2);
@@ -478,8 +486,8 @@ public class Game1Controller {
 
         //klein
         Rectangle earth7 =new Rectangle(360, 600); earth7.setTranslateX(520); earth7.setTranslateY(660+66);
-        Rectangle earth8 =new Rectangle(180, 600); earth8.setTranslateX(880); earth8.setTranslateY(666);
-        Rectangle earth81 =new Rectangle(180, 600); earth81.setTranslateX(1000); earth81.setTranslateY(666);
+        Rectangle earth8 =new Rectangle(180, 600); earth8.setTranslateX(880); earth8.setTranslateY(651);
+        Rectangle earth81 =new Rectangle(180, 600); earth81.setTranslateX(1000); earth81.setTranslateY(651);
 
         // groß
         Rectangle earth9 =new Rectangle(1442, 440); earth9.setTranslateX(-1300); earth9.setTranslateY(880);
@@ -652,15 +660,70 @@ public class Game1Controller {
         game1_pane.getChildren().add(flagImageView);
         quit.toFront();
 
+        Rectangle swingingPlatform = new Rectangle(200, 20);
+        swingingPlatform.setFill(new ImagePattern(platformTexture));
+        swingingPlatform.setTranslateX(500);  // Set initial position
+        swingingPlatform.setTranslateY(500);
+
+        // Add the platform to the platforms list and the game1_pane
+        platforms.add(swingingPlatform);
+        game1_pane.getChildren().add(swingingPlatform);
+
+        // Create a TranslateTransition for the moving effect
+        Rectangle movingPlatform = new Rectangle(200, 20);
+        movingPlatform.setFill(new ImagePattern(platformTexture));
+        movingPlatform.setTranslateX(500);  // Set initial position
+        movingPlatform.setTranslateY(500);
+
+        // Add the platform to the platforms list and the game1_pane
+        game1_pane.getChildren().add(movingPlatform);
+
+        // Create a TranslateTransition for the moving effect
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(2), movingPlatform);
+        tt.setFromX(500);
+        tt.setToX(700);
+        tt.setCycleCount(Animation.INDEFINITE);
+        tt.setAutoReverse(true);
+
+        // Start the transition
+        tt.play();
+
+        // Create the rotating platform
+        Rectangle rotatingPlatform = new Rectangle(200, 20);
+        rotatingPlatform.setFill(new ImagePattern(platformTexture));
+        rotatingPlatform.setTranslateX(800);  // Set initial position
+        rotatingPlatform.setTranslateY(500);
+
+        // Add the platform to the platforms list and the game1_pane
+        platforms.add(rotatingPlatform);
+        platforms.add(movingPlatform);
+
+        game1_pane.getChildren().add(rotatingPlatform);
+
+        // Create a RotateTransition for the rotating effect
+        RotateTransition rt = new RotateTransition(Duration.seconds(1), rotatingPlatform);
+        rt.setAxis(Rotate.Z_AXIS);
+        rt.setByAngle(360);
+        rt.setCycleCount(Animation.INDEFINITE);
+
+        // Start the transition
+        rt.play();
+
+        // Start the transitions
+        tt.play();
+        rt.play();
+
 
     }
 
     private void handleKeyPressed(KeyEvent event) {
-        if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) && linkslaufen) {
+        if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT)) {
+            player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("runLeft.gif"))));
             left = true;
             rechtslaufen = true;
             playerSpeed = 12 * sensi;
-        } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) && rechtslaufen) {
+        } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT)) {
+            player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("runRight.gif"))));
             right = true;
             linkslaufen = true;
             playerSpeed = 12 * sensi;
@@ -681,21 +744,23 @@ public class Game1Controller {
         } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
             jumping = false;
         }
+            player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("idle.gif"))));
+
     }
 
     private void update() {
         double dx = 0;
         game1_pane.requestFocus();
         //System.out.println("X: " + player.getTranslateX() + " Y: " + player.getTranslateY() + " Velocity: " + velocity + " Gravity: " + gravity + " PlayerSpeed: " + playerSpeed + " Sensi: " + sensi + " Collected Coins: " + collectedCoinCount + " Linkslaufen: " + linkslaufen + " Rechtslaufen: " + rechtslaufen + " CanJump: " + canJump + " Jumping: " + jumping + " Left: " + left + " Right: " + right + " i: " + i);
-        System.out.println("links frei: "+rechtslaufen+"   rechts frei: "+linkslaufen);
+        //System.out.print("links frei: "+rechtslaufen+"   rechts frei: "+linkslaufen);
 
-        if (left) dx -= playerSpeed;
-        if (right) dx += playerSpeed;
-
-
+        if (left &&linkslaufen) dx -= playerSpeed;
+        if (right &&rechtslaufen) dx += playerSpeed;
 
 
-        player.setTranslateX(player.getTranslateX() + dx);
+
+
+        //player.setTranslateX(player.getTranslateX() + dx);
 
         triggerBox.setTranslateX(triggerBox.getTranslateX() - dx);
         flagImageView.setTranslateX(flagImageView.getTranslateX() - dx);
@@ -714,7 +779,7 @@ public class Game1Controller {
         double playerX = player.getTranslateX() + dx;
         double playerHalfWidth = player.getWidth() / 2.0;
         double offset = (screenWidth / 2.0) - (playerX + playerHalfWidth);
-        player.setTranslateX(player.getTranslateX() + offset);
+        //player.setTranslateX(player.getTranslateX() + offset);
 
         player.setTranslateY(player.getTranslateY() + velocity);
         velocity += gravity;
@@ -744,8 +809,9 @@ public class Game1Controller {
 
 
     private void checkCollisions() {
-        boolean onAnyPlatform = false;
 
+        boolean onAnyPlatform = false;
+        boolean touchesSide = false;
         for (Rectangle platform : platforms) {
             if (player.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                 double playerBottom = player.getTranslateY() + player.getHeight();
@@ -759,7 +825,7 @@ public class Game1Controller {
                 double platformRight = platform.getTranslateX() + platform.getWidth();
 
                 //oben
-                if (playerBottom >= platformTop && playerTop < platformTop && playerLeft < (platformRight-5) && playerRight > (platformLeft+5)) {
+                if (playerBottom >= platformTop && playerTop < platformTop && playerLeft < (platformRight-10) && playerRight > (platformLeft+10)) {
                     player.setTranslateY(platformTop - player.getHeight());
                     velocity = 0;
                     canJump = true;
@@ -775,20 +841,49 @@ public class Game1Controller {
                 {
                     rechtslaufen=false;
                     playerSpeed=-0;
-                    player.setTranslateX(platformLeft - player.getWidth()-2);
+                    player.setTranslateX(platformLeft - player.getWidth()-1);
+                    //toutchesSide=true;
 
                 }
                 // rechts
                 else if (playerLeft <= platformRight && playerRight > platformRight && playerBottom > platformTop) {
-                    linkslaufen=false;
+                   linkslaufen=false;
                     playerSpeed=0;
-                    player.setTranslateX(platformRight+2);
+                    player.setTranslateX(platformRight+1);
+                    //toutchesSide=true;
                 }
+                /*
+                Geht nicht, weil es nicht einen Block frühzeitig erkennt mit dem es nicht kollidiert
+                // für besseres Movement
+                if (playerRight >= platformLeft-20 && playerLeft < platformLeft && playerBottom > platformTop)
+                {
+                    touchesSide=true;
+
+                }
+                // für besseres Movement
+                else if (playerLeft <= platformRight+10 && playerRight > platformRight && playerBottom > platformTop) {
+                    touchesSide=true;
+                }
+
+                 */
             }
         }
         if (!onAnyPlatform) {
             canJump = false;
         }
+
+        if (!touchesSide) {
+            // wenn es nicht einen abstand von 1 hat
+
+          System.out.println(" Keine Collision");
+          // linkslaufen=true;
+          //  rechtslaufen=true;
+        }
+        else {
+            System.out.println("Collision");
+        }
+
+
     }
 
 
@@ -845,6 +940,7 @@ public class Game1Controller {
 
                 DeathscreenController deathScreenController = loader.getController();
                 deathScreenController.setPlayedGame(aktuellesLevel);
+                deathScreenController.CauseOfDeath(1);
 
                 Scene currentScene = quit.getScene();
                 currentScene.setRoot(DeathScreenRoot);
@@ -919,4 +1015,39 @@ public class Game1Controller {
         sensi = Singleton.getInstance().getSensi();
     }
 
+    public Media getSound() {
+        return sound;
+    }
+
+    public Pane getGame1_pane() {
+        return game1_pane;
+    }
+
+    public MediaPlayer getMusic() {
+        return Music;
+    }
+
+    public int getAktuellesLevel() {
+        return aktuellesLevel;
+    }
+
+    public double getSensi() {
+        return sensi;
+    }
+
+    public Slider getLautstaerkeSlider() {
+        return lautstaerke;
+    }
+
+    public Slider getSensibilitaetSlider() {
+        return sensibilitaet;
+    }
+
+    public boolean isMusicPlaying() {
+        return Music.isAutoPlay();
+    }
+
+    public Rectangle getPlayer() {
+        return player;
+    }
 }

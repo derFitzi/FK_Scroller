@@ -8,8 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 
+import java.io.File;
 import java.io.IOException;
 
 public class DeathscreenController {
@@ -19,6 +22,8 @@ public class DeathscreenController {
     Button nocheinmal;
     @FXML
     Pane deathscreenPane;
+    MediaPlayer Music;
+    Media sound1 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/fall.mp3").toURI().toString());
 
     public void setPlayedGame(int num) {
         aktuellesLevel=num;
@@ -31,6 +36,8 @@ public class DeathscreenController {
     }
 
     public void nocheinmal() {
+        Music.stop();
+        Music.pause();
         try {
             FXMLLoader loader;
             loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
@@ -63,6 +70,8 @@ public class DeathscreenController {
     }
 
     public void zurueck() {
+        Music.stop();
+        Music.pause();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Menue.fxml"));
             Parent gameRoot = loader.load();
@@ -76,6 +85,16 @@ public class DeathscreenController {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Error loading Menue.fxml: " + e.getMessage());
+        }
+    }
+
+    public void CauseOfDeath(int zahl)
+    {
+        if (zahl==1)
+        {
+            Music = new MediaPlayer(sound1);
+            Music.play();
+            Music.setVolume(Singleton.getInstance().getLautstaerke());
         }
     }
 }

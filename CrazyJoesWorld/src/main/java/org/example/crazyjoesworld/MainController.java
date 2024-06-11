@@ -272,4 +272,60 @@ public class MainController extends AnimationTimer implements Initializable {
     public void handle(long l) {
         // Handle animation frame updates
     }
+
+    public Button getPlay() {
+        return play;
+    }
+
+    public Button getQuit() {
+        return quit;
+    }
+
+    public Button getSettings() {
+        return settings;
+    }
+
+    public Button getZumHauptmenue() {
+        return zumHauptmenue;
+    }
+
+    public Button getZumHauptmenueGameSelector() {
+        return zumHauptmenueGameSelector;
+    }
+
+    public Slider getLautstaerke() {
+        return lautstaerke;
+    }
+
+    public Slider getSensibilitaet() {
+        return sensibilitaet;
+    }
+
+    public Pane getP_Pane() {
+        return p_Pane;
+    }
+
+    public Pane getP_game1() {
+        return p_game1;
+    }
+
+    public Rectangle getG1() {
+        return g1;
+    }
+
+    public Media getSound1() {
+        return sound1;
+    }
+
+    public MediaPlayer getMainMenueMusic() {
+        return mainMenueMusic;
+    }
+
+    public Media getSound2() {
+        return sound2;
+    }
+
+    public MediaPlayer getGameMusic() {
+        return gameMusic;
+    }
 }

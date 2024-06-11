@@ -3,11 +3,9 @@
 - [ ] **Side Collision**
 - [ ] **Character Design**
 - [ ] **JUnit Tests**
-- [ ] **Game Over Screen**
-- für jede bildschirmgröße gleich
-- sensi reglung mit formel
+- [ ] **für jede bildschirmgröße gleich**  max hight bei pane einstellen
 
-- [ ] **Level Bauen**
+- [ ] **Level 4 Bauen**
 - [ ] **Infinity Level**
 
 ## Done
