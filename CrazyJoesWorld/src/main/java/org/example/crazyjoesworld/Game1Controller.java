@@ -660,60 +660,25 @@ public class Game1Controller {
         game1_pane.getChildren().add(flagImageView);
         quit.toFront();
 
-        Rectangle swingingPlatform = new Rectangle(200, 20);
-        swingingPlatform.setFill(new ImagePattern(platformTexture));
-        swingingPlatform.setTranslateX(500);  // Set initial position
-        swingingPlatform.setTranslateY(500);
-
-        // Add the platform to the platforms list and the game1_pane
-        platforms.add(swingingPlatform);
-        game1_pane.getChildren().add(swingingPlatform);
-
-        // Create a TranslateTransition for the moving effect
-        Rectangle movingPlatform = new Rectangle(200, 20);
-        movingPlatform.setFill(new ImagePattern(platformTexture));
-        movingPlatform.setTranslateX(500);  // Set initial position
-        movingPlatform.setTranslateY(500);
-
-        // Add the platform to the platforms list and the game1_pane
-        game1_pane.getChildren().add(movingPlatform);
-
-        // Create a TranslateTransition for the moving effect
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(2), movingPlatform);
-        tt.setFromX(500);
-        tt.setToX(700);
-        tt.setCycleCount(Animation.INDEFINITE);
-        tt.setAutoReverse(true);
-
-        // Start the transition
-        tt.play();
-
         // Create the rotating platform
         Rectangle rotatingPlatform = new Rectangle(200, 20);
         rotatingPlatform.setFill(new ImagePattern(platformTexture));
         rotatingPlatform.setTranslateX(800);  // Set initial position
         rotatingPlatform.setTranslateY(500);
 
-        // Add the platform to the platforms list and the game1_pane
+// Add the platform to the platforms list and the game1_pane
         platforms.add(rotatingPlatform);
-        platforms.add(movingPlatform);
-
         game1_pane.getChildren().add(rotatingPlatform);
 
-        // Create a RotateTransition for the rotating effect
-        RotateTransition rt = new RotateTransition(Duration.seconds(1), rotatingPlatform);
+// Create a RotateTransition for the rotating effect
+        RotateTransition rt = new RotateTransition(Duration.seconds(5), rotatingPlatform);
         rt.setAxis(Rotate.Z_AXIS);
-        rt.setByAngle(360);
-        rt.setCycleCount(Animation.INDEFINITE);
+        rt.setByAngle(90); // Set the angle by which the platform will rotate
+        rt.setCycleCount(Animation.INDEFINITE); // The animation will play indefinitely
+        rt.setAutoReverse(true); // The animation will automatically reverse direction when it reaches the end
 
-        // Start the transition
+// Start the transition
         rt.play();
-
-        // Start the transitions
-        tt.play();
-        rt.play();
-
-
     }
 
     private void handleKeyPressed(KeyEvent event) {
@@ -744,7 +709,10 @@ public class Game1Controller {
         } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
             jumping = false;
         }
+        else
+        {
             player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("idle.gif"))));
+        }
 
     }
 

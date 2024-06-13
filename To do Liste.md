@@ -1,10 +1,11 @@
 # To-Do List
 
 - [ ] **Side Collision**
+
+
 - [ ] **Character Design**
 - [ ] **JUnit Tests**
 - [ ] **für jede bildschirmgröße gleich**  max hight bei pane einstellen
-
 - [ ] **Level 4 Bauen**
 - [ ] **Infinity Level**
 

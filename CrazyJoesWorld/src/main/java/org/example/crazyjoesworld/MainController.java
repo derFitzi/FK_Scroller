@@ -256,6 +256,23 @@ public class MainController extends AnimationTimer implements Initializable {
             System.err.println("Error loading Game1.fxml: " + e.getMessage());
         }
     }
+    public void infinity() {
+        gameMusic.stop();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Infinity.fxml"));
+            Parent game1Root = loader.load();
+
+            Scene currentScene = play.getScene();
+            currentScene.setRoot(game1Root);
+
+            InfinityController infinityController = loader.getController();
+
+            System.out.println("Switched to game screen successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error loading Game1.fxml: " + e.getMessage());
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
