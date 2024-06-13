@@ -7,7 +7,7 @@
 - [ ] **JUnit Tests**
 - [ ] **für jede bildschirmgröße gleich**  max hight bei pane einstellen
 - [ ] **Level 4 Bauen**
-- [ ] **Infinity Level**
+
 
 ## Done
 - [x] **Sterne**
@@ -20,4 +20,5 @@
 - [x] **Musik**
 - [x] **Leertaste springen**
 - [x] **Sterne als Bilder machen**
+- [X] **Infinity Level**
 

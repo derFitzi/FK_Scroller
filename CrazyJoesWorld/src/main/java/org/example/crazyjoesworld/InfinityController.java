@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class InfinityController {
@@ -44,7 +45,7 @@ public class InfinityController {
     private double jumpStrength = -16;
 
     private Rectangle wall;
-    private double wallSpeed = 1;
+    private double wallSpeed = 2;
     private double playerSpeed = 12; // normal 5
 
     @FXML
@@ -171,70 +172,120 @@ public class InfinityController {
     private void generateStartPlatforms()
     {
         platforms = new ArrayList<>();
-
+        Rectangle platformminus6 = new Rectangle(10, 10); platformminus6.setTranslateX(-2582); platformminus6.setTranslateY(730);
+        Rectangle platformminus5 = new Rectangle(10, 10); platformminus5.setTranslateX(-2572); platformminus5.setTranslateY(730);
+        Rectangle platformminus4 = new Rectangle(10, 10); platformminus4.setTranslateX(-2562); platformminus4.setTranslateY(730);
+        Rectangle platformminus3 = new Rectangle(10, 10); platformminus3.setTranslateX(-2552); platformminus3.setTranslateY(730);
+        Rectangle platformminus2 = new Rectangle(10, 10); platformminus2.setTranslateX(-2542); platformminus2.setTranslateY(730);
+        Rectangle platformminus1 = new Rectangle(1442, 135); platformminus1.setTranslateX(-2442); platformminus1.setTranslateY(730);
         Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-1000); platform0.setTranslateY(730);
         Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(150); platform1.setTranslateY(730);
-        Rectangle platform2 = new Rectangle(1442, 135); platform2.setTranslateX(1590); platform2.setTranslateY(630);
-        Rectangle erde1     = new Rectangle(1442, 440); erde1.setTranslateX(1590); erde1.setTranslateY(760);
-        Rectangle erde2     = new Rectangle(1442, 440); erde2.setTranslateX(4400); erde2.setTranslateY(800);
-        Rectangle erde3     = new Rectangle(1442, 440); erde3.setTranslateX(5842); erde3.setTranslateY(800);
-        Rectangle platform3 = new Rectangle(1442, 135); platform3.setTranslateX(3000); platform3.setTranslateY(780);
-        Rectangle platform4 = new Rectangle(721, 67); platform4.setTranslateX(1700); platform4.setTranslateY(430);
-        Rectangle platform5 = new Rectangle(1442, 135); platform5.setTranslateX(4400); platform5.setTranslateY(710);
-        Rectangle platform6 = new Rectangle(1442, 135); platform6.setTranslateX(5842); platform6.setTranslateY(710);
-        Rectangle wand1 = new Rectangle(1442, 1000); wand1.setTranslateX(-1442); wand1.setTranslateY(0);
-        Rectangle wand2 = new Rectangle(1442, 1000); wand2.setTranslateX(5842); wand2.setTranslateY(0);
+
+        platforms.add(platformminus6);
+        platforms.add(platformminus5);
+        platforms.add(platformminus4);
+        platforms.add(platformminus3);
+        platforms.add(platformminus2);
+        platforms.add(platformminus1);
         platforms.add(platform0);
         platforms.add(platform1);
-        platforms.add(platform2);
-        platforms.add(platform3);
-        platforms.add(platform5);
-        platforms.add(platform6);
+
 
         for (int i = 0; i < platforms.size(); i++) {
             platforms.get(i).setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
             infinityPane.getChildren().add(platforms.get(i));
         }
-        platforms.add(erde1);
-        platforms.add(erde2);
-        platforms.add(erde3);
-        platforms.add(platform4);
-        platforms.add(wand1);
-        platforms.add(wand2);
-        wand1.setFill(Color.TRANSPARENT);
-        wand1.setStroke(Color.TRANSPARENT);
-        wand2.setFill(Color.TRANSPARENT);
-        wand2.setStroke(Color.TRANSPARENT);
-        platform4.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
-        erde1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
-        erde2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
-        erde3.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
-        infinityPane.getChildren().add(erde1);
-        infinityPane.getChildren().add(erde2);
-        infinityPane.getChildren().add(erde3);
-        infinityPane.getChildren().add(platform4);
-        infinityPane.getChildren().add(wand1);
-        infinityPane.getChildren().add(wand2);
-
-        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
         quit.toFront();
     }
 
     private void generateNewPlatforms(){
-        int zahl1 = (int) (Math.random() * 3) + 1; // random number between 1 and 3
-        int zahl2 = (int) (Math.random() * 71); // random number between 0 and 70
-        int zahl3 = (int) (Math.random() * 151) - 100; // random number between -100 and 50
+        System.out.println("Generated new platform");
 
-        // Adjust the X-coordinate based on the Y-coordinate
-        int adjustedZahl1 = zahl1;
-        if (zahl2 > 35) { // if the jump is high
-            adjustedZahl1 = zahl1 / 2; // reduce the distance of the jump
+        Rectangle platformNeu;
+        Rectangle erdeNeu;
+        int zahl1 = (int) (Math.random() * 3)+1; // random number between 1 and 3
+        int zahl2 = (int) (Math.random() * 60); // random number between 0 and 70
+        int zahl3 = (int) (Math.random() * 120)+50; // random number between -100 and 50
+        int zahl4 = (int) (Math.random() * 2+1);
+
+
+        if (zahl4==2) {
+            zahl3=zahl3*-1;
         }
 
-        Rectangle platform0 = new Rectangle(1442, 135);
-        platform0.setTranslateX(adjustedZahl1);
-        platform0.setTranslateY(zahl2);
-        platforms.add(platform0);
+        // Adjust the X-coordinate based on the Y-coordinate
+
+        if (zahl1==1) {
+            platformNeu = new Rectangle(721, 67);
+            erdeNeu =new Rectangle(721, 600);
+            erdeNeu.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpearthtexture.png"))));
+            platformNeu.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
+        }
+        else if (zahl1==2) {
+            platformNeu = new Rectangle(180, 68);
+            //erdeNeu =new Rectangle(180, 600);
+            //erdeNeu.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+            platformNeu.setFill(new ImagePattern( new Image(getClass().getResourceAsStream("miniplatform.png"))));
+        }
+        else {
+            platformNeu = new Rectangle(360, 68);
+            erdeNeu =new Rectangle(360, 600);
+            erdeNeu.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpearthtexture.png"))));
+            platformNeu.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpplatform.png"))));
+        }
+
+        double maxX = 0;
+        double lastY = 0;
+        for (Rectangle platform : platforms) {
+            if (platform.getTranslateX() > maxX) {
+                maxX = platform.getTranslateX();
+            }
+            if (platform.getTranslateX()==maxX)
+            {
+                maxX=maxX+platform.getWidth(); // damit es nicht übereinander ist, sondern nebeneinander
+                lastY=platform.getTranslateY();
+            }
+        }
+
+        if (lastY<200)
+        {
+            lastY=200;
+        }
+        if (lastY>700)
+        {
+            lastY=700;
+        }
+
+        // Adjust the X-coordinate based on the Y-coordinate
+        int adjustedZahl2 = zahl2;
+        if (zahl3 > 50) { // if the jump is high
+            adjustedZahl2 = zahl2 / 2; // reduce the distance of the jump
+        }
+
+        platformNeu.setTranslateX(maxX + adjustedZahl2); // set the X coordinate to the maximum X value
+        platformNeu.setTranslateY(zahl3+lastY); // set the Y coordinate to the random number
+        //erdeNeu.setTranslateX(maxX + adjustedZahl2);
+        //erdeNeu.setTranslateY(zahl3+lastY+66);
+        platforms.add(platformNeu);
+        //platforms.add(erdeNeu);
+        infinityPane.getChildren().add(platformNeu);
+        //infinityPane.getChildren().add(erdeNeu);
+
+        Rectangle platformWithLowestX = null;
+        for (Rectangle platform : platforms) {
+            if (platformWithLowestX == null || platform.getTranslateX() < platformWithLowestX.getTranslateX()) {
+                platformWithLowestX = platform;
+            }
+        }
+        if (platformWithLowestX != null && platformWithLowestX.getTranslateX() < 0) {
+            platforms.remove(platformWithLowestX);
+            infinityPane.getChildren().remove(platformWithLowestX);
+        }
+        quit.toFront();
+
+
+
+
     }
 
     private void handleKeyReleased(KeyEvent event) {
@@ -262,22 +313,36 @@ public class InfinityController {
         if (right &&rechtslaufen) dx += playerSpeed;
 
         wall.setTranslateX(wall.getTranslateX() + wallSpeed -dx);
-
-        // increase wall speed
-        wallSpeed += 0.0001; // adjust as needed
+        Random rdm = new Random();
+        int number = rdm.nextBoolean() ? 1 : 0;
+        number=number/100;
+        wallSpeed =wallSpeed+number;
 
 
 
 
         //player.setTranslateX(player.getTranslateX() + dx);
 
-        triggerBox.setTranslateX(triggerBox.getTranslateX() - dx);
-
         moveBackground(dx);
 
         for (Rectangle platform : platforms) {
             platform.setTranslateX(platform.getTranslateX() - dx);
         }
+
+        Rectangle platformWithHighestX = null;
+        for (Rectangle platform : platforms) {
+            if (platformWithHighestX == null || platform.getTranslateX() > platformWithHighestX.getTranslateX()) {
+                platformWithHighestX = platform;
+            }
+        }
+
+
+
+        // If the platform with the highest X value is on the screen, generate new platforms
+        if (platformWithHighestX != null && platformWithHighestX.getTranslateX() <= 1920) {
+            generateNewPlatforms();
+        }
+
 
 
         double screenWidth = infinityPane.getWidth();
@@ -290,7 +355,6 @@ public class InfinityController {
         velocity += gravity;
 
         checkCollisions();
-        checkBoxTrigger();
         checkDeath();
     }
 
@@ -376,6 +440,7 @@ public class InfinityController {
             canJump = false;
         }
 
+        /*
         if (!touchesSide) {
             // wenn es nicht einen abstand von 1 hat
 
@@ -386,6 +451,8 @@ public class InfinityController {
         else {
             System.out.println("Collision");
         }
+v
+         */
 
 
     }
@@ -414,13 +481,8 @@ public class InfinityController {
         }
     }
 
-    private void checkBoxTrigger() {
-        if (player.getBoundsInParent().intersects(triggerBox.getBoundsInParent())) {
-            onPlayerEnterBox();
-        }
-    }
     private void checkDeath() {
-        if (player.getBoundsInParent().intersects(deathBox.getBoundsInParent())) {
+        if (player.getBoundsInParent().intersects(deathBox.getBoundsInParent()) || player.getBoundsInParent().intersects(wall.getBoundsInParent())) {
             infinityPane.setOnKeyPressed(null);
             infinityPane.setOnKeyReleased(null);
             Music.stop();
