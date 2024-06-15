@@ -38,6 +38,7 @@ public class Game1Controller {
     private Button quit;
     private Rectangle player;
     private List<Rectangle> platforms;
+    private List<Rectangle> objects;
     private List<Coin> coins;
     private Rectangle background1;
     private Rectangle background2;
@@ -216,9 +217,11 @@ public class Game1Controller {
         String coinImagePath = "Star.png";
 
         // Beispielpositionen für die drei Münzen
-        Coin coin1 = new Coin(coinImagePath, 3500, 700);
-        Coin coin2 = new Coin(coinImagePath, 2100, 350);
-        Coin coin3 = new Coin(coinImagePath, 1400, 650);
+        Coin coin1 = new Coin(coinImagePath, 3305, 170);
+        Coin coin2 = new Coin(coinImagePath, 2030, 770);
+        Coin coin3 = new Coin(coinImagePath, 7155, 270);
+
+
 
         coins.add(coin1);
         coins.add(coin2);
@@ -229,6 +232,7 @@ public class Game1Controller {
 
     private void generatePlatforms1(Image platformTexture) {
         platforms = new ArrayList<>();
+        objects = new ArrayList<>();
 
         Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-1000); platform0.setTranslateY(730);
         Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(150); platform1.setTranslateY(730);
@@ -287,6 +291,8 @@ public class Game1Controller {
     }
     private void generatePlatforms2(Image platformTexture) {
         platforms = new ArrayList<>();
+        objects = new ArrayList<>();
+
         Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(-2364); platform1.setTranslateY(730);
         Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-922); platform0.setTranslateY(730);
 
@@ -359,6 +365,7 @@ public class Game1Controller {
             platforms.get(i).setFill(new ImagePattern(platformTexture));
             game1_pane.getChildren().add(platforms.get(i));
         }
+
         platforms.add(wand1);
         platforms.add(wand2);
         wand1.setFill(Color.TRANSPARENT);
@@ -460,6 +467,8 @@ public class Game1Controller {
     }
     private void generatePlatforms3(Image platformTexture) {
         platforms = new ArrayList<>();
+        objects = new ArrayList<>();
+
         Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(-2364); platform1.setTranslateY(730);
         Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-922); platform0.setTranslateY(730);
         Rectangle platform2 = new Rectangle(360, 68); platform2.setTranslateX(520); platform2.setTranslateY(660);
@@ -490,8 +499,8 @@ public class Game1Controller {
         Rectangle earth81 =new Rectangle(180, 600); earth81.setTranslateX(1000); earth81.setTranslateY(651);
 
         // groß
-        Rectangle earth9 =new Rectangle(1442, 440); earth9.setTranslateX(-1300); earth9.setTranslateY(880);
-        Rectangle earth10 =new Rectangle(1442, 440); earth10.setTranslateX(-250); earth10.setTranslateY(880);
+        Rectangle earth9 =new Rectangle(1442, 440); earth9.setTranslateX(-1300); earth9.setTranslateY(860);
+        Rectangle earth10 =new Rectangle(1442, 440); earth10.setTranslateX(-260); earth10.setTranslateY(880);
             //Ende
         Rectangle earth11 =new Rectangle(1442, 440); earth11.setTranslateX(5200); earth11.setTranslateY(710+133);
         Rectangle earth12 =new Rectangle(1442, 440); earth12.setTranslateX(5842); earth12.setTranslateY(710+133);
@@ -613,72 +622,194 @@ public class Game1Controller {
     }
     private void generatePlatforms4(Image platformTexture) {
         platforms = new ArrayList<>();
+        objects = new ArrayList<>();
 
         Rectangle platform0 = new Rectangle(1442, 135); platform0.setTranslateX(-1000); platform0.setTranslateY(730);
         Rectangle platform1 = new Rectangle(1442, 135); platform1.setTranslateX(150); platform1.setTranslateY(730);
-        Rectangle platform2 = new Rectangle(1442, 135); platform2.setTranslateX(1590); platform2.setTranslateY(630);
-        Rectangle erde1     = new Rectangle(1442, 135); erde1.setTranslateX(1590); erde1.setTranslateY(760);
-        Rectangle platform3 = new Rectangle(1442, 135); platform3.setTranslateX(3000); platform3.setTranslateY(780);
-        Rectangle platform4 = new Rectangle(721, 67); platform4.setTranslateX(1700); platform4.setTranslateY(430);
-        Rectangle platform5 = new Rectangle(1442, 135); platform5.setTranslateX(4400); platform5.setTranslateY(710);
-        Rectangle platform6 = new Rectangle(1442, 135); platform6.setTranslateX(5842); platform6.setTranslateY(710);
+        Rectangle platform2 = new Rectangle(360, 68); platform2.setTranslateX(1592); platform2.setTranslateY(665);
+        Rectangle platform3 = new Rectangle(360, 68); platform3.setTranslateX(1952); platform3.setTranslateY(600);
+        Rectangle platform4 = new Rectangle(721, 68); platform4.setTranslateX(1692); platform4.setTranslateY(850);
+        Rectangle platform5 = new Rectangle(360, 68); platform5.setTranslateX(2152); platform5.setTranslateY(830);
+        Rectangle platform6 = new Rectangle(360, 68); platform6.setTranslateX(2800); platform6.setTranslateY(650);
+        Rectangle platform7 = new Rectangle(360, 68); platform7.setTranslateX(3500); platform7.setTranslateY(450);
+
+        Rectangle platform8 = new Rectangle(180, 68); platform8.setTranslateX(3250); platform8.setTranslateY(250);
+        Rectangle platform9 = new Rectangle(180, 68); platform9.setTranslateX(4000); platform9.setTranslateY(600);
+        Rectangle platform10 = new Rectangle(1442, 135); platform10.setTranslateX(4300); platform10.setTranslateY(650);
+        Rectangle platform11 = new Rectangle(720, 68); platform11.setTranslateX(6000); platform11.setTranslateY(650);
+        Rectangle platform12 = new Rectangle(1442, 135); platform12.setTranslateX(6900); platform12.setTranslateY(650);
+        Rectangle platform13 = new Rectangle(180, 68); platform13.setTranslateX(7100); platform13.setTranslateY(350);
+        Rectangle platform14 = new Rectangle(180, 68); platform14.setTranslateX(7650); platform14.setTranslateY(500);
+        Rectangle platform15 = new Rectangle(721, 68); platform15.setTranslateX(8100); platform15.setTranslateY(300);
+        Rectangle platform16 = new Rectangle(1442, 135); platform16.setTranslateX(9100); platform16.setTranslateY(730);
+        Rectangle platform161 = new Rectangle(1442, 135); platform161.setTranslateX(10542); platform161.setTranslateY(730);
+        Rectangle platform17 = new Rectangle(180, 68); platform17.setTranslateX(3400); platform17.setTranslateY(770);
+
+        Rectangle earth2 =new Rectangle(360, 600); earth2.setTranslateX(1592); earth2.setTranslateY(665+66);
+        Rectangle earth6 =new Rectangle(360, 600); earth6.setTranslateX(2800); earth6.setTranslateY(650+66);
+        Rectangle earth9 =new Rectangle(180, 600); earth9.setTranslateX(4000); earth9.setTranslateY(600+66);
+        Rectangle earth10 =new Rectangle(1442, 600); earth10.setTranslateX(4300); earth10.setTranslateY(650+66);
+        Rectangle earth11 =new Rectangle(720, 600); earth11.setTranslateX(6000); earth11.setTranslateY(650+66);
+        Rectangle earth12 =new Rectangle(1442, 600); earth12.setTranslateX(6900); earth12.setTranslateY(650+66);
+        Rectangle earth16 =new Rectangle(1442, 600); earth16.setTranslateX(9100); earth16.setTranslateY(730+66);
+        Rectangle earth161 =new Rectangle(1442, 600); earth161.setTranslateX(10542); earth161.setTranslateY(730+66);
+        Rectangle earth17 =new Rectangle(180, 600); earth17.setTranslateX(3400); earth17.setTranslateY(770+66);
+
+        Rectangle spikes1 = new Rectangle(144, 60); spikes1.setTranslateX(4500); spikes1.setTranslateY(650-60);
+        Rectangle spikes2 = new Rectangle(144, 60); spikes2.setTranslateX(4500+144); spikes2.setTranslateY(650-60);
+        Rectangle spikes3 = new Rectangle(144, 60); spikes3.setTranslateX(4800); spikes3.setTranslateY(650-60);
+        Rectangle spikes4 = new Rectangle(144, 60); spikes4.setTranslateX(4500+144); spikes4.setTranslateY(650-60);
+        Rectangle spikes5 = new Rectangle(144, 60); spikes5.setTranslateX(9250); spikes5.setTranslateY(730-60);
+        Rectangle spikes6 = new Rectangle(144, 60); spikes6.setTranslateX(9500); spikes6.setTranslateY(730-60);
+
         Rectangle wand1 = new Rectangle(1442, 1000); wand1.setTranslateX(-1442); wand1.setTranslateY(0);
-        Rectangle wand2 = new Rectangle(1442, 1000); wand2.setTranslateX(5842); wand2.setTranslateY(0);
+        Rectangle wand2 = new Rectangle(1442, 1000); wand2.setTranslateX(11142); wand2.setTranslateY(0);
+
+        platforms.add(wand1);
+        platforms.add(wand2);
+        wand1.setFill(Color.TRANSPARENT);
+        wand1.setStroke(Color.TRANSPARENT);
+        wand2.setFill(Color.TRANSPARENT);
+        wand2.setStroke(Color.TRANSPARENT);
+
         platforms.add(platform0);
         platforms.add(platform1);
         platforms.add(platform2);
         platforms.add(platform3);
+        platforms.add(platform4);
         platforms.add(platform5);
         platforms.add(platform6);
+        platforms.add(platform7);
+        platforms.add(platform8);
+        platforms.add(platform9);
+        platforms.add(platform10);
+        platforms.add(platform11);
+        platforms.add(platform12);
+        platforms.add(platform13);
+        platforms.add(platform14);
+        platforms.add(platform15);
+        platforms.add(platform16);
+        platforms.add(platform161);
+        platforms.add(platform17);
+        platforms.add(earth2);
+        platforms.add(earth6);
+        platforms.add(earth9);
+        platforms.add(earth10);
+        platforms.add(earth11);
+        platforms.add(earth12);
+        platforms.add(earth16);
+        platforms.add(earth161);
+        platforms.add(earth17);
+        objects.add(spikes1);
+        objects.add(spikes2);
+        objects.add(spikes3);
+        objects.add(spikes4);
+        objects.add(spikes5);
+        objects.add(spikes6);
+
+
+
+        platform0.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        platform1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        platform10.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        platform12.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        platform16.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        platform161.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+
+        platform2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpplatform.png"))));
+        platform3.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpplatform.png"))));
+        platform5.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpplatform.png"))));
+        platform6.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpplatform.png"))));
+        platform7.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpplatform.png"))));
+
+        platform8.setFill(new ImagePattern( new Image(getClass().getResourceAsStream("miniplatform.png"))));
+        platform9.setFill(new ImagePattern( new Image(getClass().getResourceAsStream("miniplatform.png"))));
+        platform13.setFill(new ImagePattern( new Image(getClass().getResourceAsStream("miniplatform.png"))));
+        platform14.setFill(new ImagePattern( new Image(getClass().getResourceAsStream("miniplatform.png"))));
+        platform17.setFill(new ImagePattern( new Image(getClass().getResourceAsStream("miniplatform.png"))));
+
+        platform4.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
+        platform15.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
+        platform11.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
+
+        earth2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpearthtexture.png"))));
+        earth6.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("jumpearthtexture.png"))));
+
+        earth9.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+        earth17.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("miniearthtexture.png"))));
+
+        earth10.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        earth12.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        earth16.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        earth161.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+
+        earth11.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinearthtexture.png"))));
+
+
+
+        spikes1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("spike.png"))));
+        spikes2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("spike.png"))));
+        spikes3.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("spike.png"))));
+        spikes4.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("spike.png"))));
+        spikes5.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("spike.png"))));
+        spikes6.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("spike.png"))));
 
         for (int i = 0; i < platforms.size(); i++) {
-            platforms.get(i).setFill(new ImagePattern(platformTexture));
             game1_pane.getChildren().add(platforms.get(i));
         }
-        platforms.add(erde1);
-        platforms.add(platform4);
-        platforms.add(wand1);
-        platforms.add(wand2);
-        wand1.setFill(Color.TRANSPARENT);
-        wand1.setStroke(Color.ALICEBLUE);
-        wand2.setFill(Color.TRANSPARENT);
-        wand2.setStroke(Color.ALICEBLUE);
-        platform4.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
-        erde1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
-        game1_pane.getChildren().add(erde1);
-        game1_pane.getChildren().add(platform4);
-        game1_pane.getChildren().add(wand1);
-        game1_pane.getChildren().add(wand2);
+
+
 
 
         Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
         flagImageView = new ImageView(flagImage);
         flagImageView.setFitWidth(738);
         flagImageView.setFitHeight(338);
-        flagImageView.setTranslateX(5000);
-        flagImageView.setTranslateY(380);
+        flagImageView.setTranslateX(10000);
+        flagImageView.setTranslateY(395);
         game1_pane.getChildren().add(flagImageView);
         quit.toFront();
 
-        // Create the rotating platform
-        Rectangle rotatingPlatform = new Rectangle(200, 20);
-        rotatingPlatform.setFill(new ImagePattern(platformTexture));
-        rotatingPlatform.setTranslateX(800);  // Set initial position
-        rotatingPlatform.setTranslateY(500);
+        Rectangle rotatingPlatform = new Rectangle(300, 30);
+        rotatingPlatform.setFill(Color.RED);
+        rotatingPlatform.setTranslateX(2150);
+        rotatingPlatform.setTranslateY(830);
+        objects.add(rotatingPlatform);
 
-// Add the platform to the platforms list and the game1_pane
-        platforms.add(rotatingPlatform);
-        game1_pane.getChildren().add(rotatingPlatform);
 
-// Create a RotateTransition for the rotating effect
-        RotateTransition rt = new RotateTransition(Duration.seconds(5), rotatingPlatform);
+
+        RotateTransition rt = new RotateTransition(Duration.seconds(3), rotatingPlatform);
         rt.setAxis(Rotate.Z_AXIS);
-        rt.setByAngle(90); // Set the angle by which the platform will rotate
-        rt.setCycleCount(Animation.INDEFINITE); // The animation will play indefinitely
-        rt.setAutoReverse(true); // The animation will automatically reverse direction when it reaches the end
-
-// Start the transition
+        rt.setByAngle(90);
+        rt.setCycleCount(Animation.INDEFINITE);
+        rt.setAutoReverse(true);
         rt.play();
+
+        Rectangle rotatingPlatform2 = new Rectangle(800, 30);
+        rotatingPlatform2.setFill(Color.RED);
+        rotatingPlatform2.setTranslateX(7300);
+        rotatingPlatform2.setTranslateY(500);
+        objects.add(rotatingPlatform2);
+
+
+
+        RotateTransition rt2 = new RotateTransition(Duration.seconds(5), rotatingPlatform2);
+        rt2.setAxis(Rotate.Z_AXIS);
+        rt2.setByAngle(360);
+        rt2.setCycleCount(Animation.INDEFINITE);
+        //rt2.setAutoReverse(true);
+        rt2.play();
+
+        for (int i = 0; i < objects.size(); i++) {
+            game1_pane.getChildren().add(objects.get(i));
+        }
+        triggerBox.setFill(Color.BLACK);
+
+
+
+        triggerBox.setTranslateX(10430);
+        triggerBox.setTranslateY(645);
+        quit.toFront();
     }
 
     private void handleKeyPressed(KeyEvent event) {
@@ -704,14 +835,12 @@ public class Game1Controller {
     private void handleKeyReleased(KeyEvent event) {
         if (event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) {
             left = false;
+            player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("idle.gif"))));
         } else if (event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) {
             right = false;
+            player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("idle.gif"))));
         } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
             jumping = false;
-        }
-        else
-        {
-            player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("idle.gif"))));
         }
 
     }
@@ -739,6 +868,10 @@ public class Game1Controller {
             platform.setTranslateX(platform.getTranslateX() - dx);
         }
 
+        for (Rectangle object : objects) {
+            object.setTranslateX(object.getTranslateX() - dx);
+        }
+
         for (Coin coin : coins) {
             coin.setTranslateX(coin.getTranslateX() - dx);
         }
@@ -751,6 +884,8 @@ public class Game1Controller {
 
         player.setTranslateY(player.getTranslateY() + velocity);
         velocity += gravity;
+
+        player.toFront();
 
         checkCollisions();
         checkCoinCollisions();
@@ -897,7 +1032,16 @@ public class Game1Controller {
         }
     }
     private void checkDeath() {
-        if (player.getBoundsInParent().intersects(deathBox.getBoundsInParent())) {
+        boolean death=false;
+        for (Rectangle object : objects) {
+            if (player.getBoundsInParent().intersects(object.getBoundsInParent())) {
+                death=true;
+            }
+        }
+
+
+
+        if (player.getBoundsInParent().intersects(deathBox.getBoundsInParent()) || death) {
             game1_pane.setOnKeyPressed(null);
             game1_pane.setOnKeyReleased(null);
             Music.stop();

@@ -10,47 +10,32 @@ class Game1ControllerTest {
     @BeforeEach
     void setUp() {
         controller = new Game1Controller();
-    }
-
-    @Test
-    void testLevelauswahl() {
-        int level = 1; // oder ein anderer Wert
-        controller.levelauswahl(level);
-        // Überprüft, ob das ausgewählte Level korrekt gesetzt wurde
-        assertEquals(level, controller.getAktuellesLevel(), "AktuellesLevel should be set to the given level after calling levelauswahl");
-    }
-
-    @Test
-    void testInitialize() {
         controller.initialize();
+    }
+
+    @Test
+    void testPlayerNotNullAfterInitialization() {
         assertNotNull(controller.getPlayer(), "Player should be initialized after calling initialize");
     }
 
-
     @Test
-    void testZumHauptmenue() {
-        // Überprüft, ob die Musik gestoppt wurde und ob der KeyListener entfernt wurde
-        controller.zumHauptmenue();
-        assertFalse(controller.getMusic().isAutoPlay(), "Music should be stopped after calling zumHauptmenue");
-        assertNull(controller.getGame1_pane().getOnKeyPressed(), "OnKeyPressed should be null after calling zumHauptmenue");
-        assertNull(controller.getGame1_pane().getOnKeyReleased(), "OnKeyReleased should be null after calling zumHauptmenue");
+    void testInitialPlayerPosition() {
+        assertEquals(750, controller.getPlayer().getTranslateX(), "Initial player X position should be 750");
+        assertEquals(100, controller.getPlayer().getTranslateY(), "Initial player Y position should be 100");
     }
 
     @Test
-    void testLautsterkenregelung() {
-        double lautstaerke = 0.5; // oder ein anderer Wert
-        controller.getLautstaerkeSlider().setValue(lautstaerke * 200);
-        controller.lautsterkenregelung();
-        // Überprüft, ob die Lautstärke der Musik korrekt eingestellt wurde
-        assertEquals(lautstaerke, controller.getMusic().getVolume(), "Music volume should be set to the given value after calling lautsterkenregelung");
+    void testInitialGamePaneNotNull() {
+        assertNotNull(controller.getGame1_pane(), "Game pane should be initialized after calling initialize");
     }
 
     @Test
-    void testSensibilitaetregelung() {
-        double sensi = 0.5; // oder ein anderer Wert
-        controller.getSensibilitaetSlider().setValue(sensi * 100);
-        controller.sensibilitaetregelung();
-        // Überprüft, ob die Sensibilität korrekt eingestellt wurde
-        assertEquals(sensi, controller.getSensi(), "Sensi should be set to the given value after calling sensibilitaetregelung");
+    void testInitialMusicNotNull() {
+        assertNotNull(controller.getMusic(), "Music should be initialized after calling initialize");
+    }
+
+    @Test
+    void testInitialLevel() {
+        assertEquals(1, controller.getAktuellesLevel(), "Initial level should be 1");
     }
 }

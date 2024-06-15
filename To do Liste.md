@@ -4,10 +4,11 @@
 
 
 - [ ] **Character Design**
+- [ ] **Texturen überarbeiten**
 - [ ] **JUnit Tests**
-- [ ] **für jede bildschirmgröße gleich**  max hight bei pane einstellen
 - [ ] **Level 4 Bauen**
-
+- [ ] **Collision mit Rotierenden Platformen**
+- [ ] **Level 3 runterfallen fixen**
 
 ## Done
 - [x] **Sterne**

@@ -19,7 +19,7 @@
                 <Font name="Cooper Black" size="27.0" />
             </font>
         </Button>
-        <Label fx:id="winText" layoutX="583.0" layoutY="410.0" prefHeight="33.0" prefWidth="445.0" text="Du bist herunter gefallen" textAlignment="RIGHT" textFill="#403f38">
+        <Label fx:id="winText" layoutX="634.0" layoutY="410.0" prefHeight="40.0" prefWidth="394.0" text="Du bist gestorben" textAlignment="CENTER" textFill="#403f38">
             <font>
                 <Font name="Cooper Black" size="34.0" />
             </font>

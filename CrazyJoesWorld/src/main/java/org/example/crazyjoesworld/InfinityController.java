@@ -203,9 +203,9 @@ public class InfinityController {
 
         Rectangle platformNeu;
         Rectangle erdeNeu;
-        int zahl1 = (int) (Math.random() * 3)+1; // random number between 1 and 3
-        int zahl2 = (int) (Math.random() * 60); // random number between 0 and 70
-        int zahl3 = (int) (Math.random() * 120)+50; // random number between -100 and 50
+        int zahl1 = (int) (Math.random() * 3)+1;
+        int zahl2 = (int) (Math.random() * 50);
+        int zahl3 = (int) (Math.random() * 120)+50;
         int zahl4 = (int) (Math.random() * 2+1);
 
 
@@ -213,7 +213,7 @@ public class InfinityController {
             zahl3=zahl3*-1;
         }
 
-        // Adjust the X-coordinate based on the Y-coordinate
+
 
         if (zahl1==1) {
             platformNeu = new Rectangle(721, 67);
@@ -247,23 +247,23 @@ public class InfinityController {
             }
         }
 
-        if (lastY<200)
+        if (lastY<230)
         {
-            lastY=200;
+            lastY=230;
         }
-        if (lastY>700)
+        if (lastY>680)
         {
-            lastY=700;
+            lastY=680;
         }
 
-        // Adjust the X-coordinate based on the Y-coordinate
+
         int adjustedZahl2 = zahl2;
-        if (zahl3 > 50) { // if the jump is high
-            adjustedZahl2 = zahl2 / 2; // reduce the distance of the jump
+        if (zahl3 > 50) {
+            adjustedZahl2 = zahl2 / 2;
         }
 
-        platformNeu.setTranslateX(maxX + adjustedZahl2); // set the X coordinate to the maximum X value
-        platformNeu.setTranslateY(zahl3+lastY); // set the Y coordinate to the random number
+        platformNeu.setTranslateX(maxX + adjustedZahl2);
+        platformNeu.setTranslateY(zahl3+lastY);
         //erdeNeu.setTranslateX(maxX + adjustedZahl2);
         //erdeNeu.setTranslateY(zahl3+lastY+66);
         platforms.add(platformNeu);
@@ -338,7 +338,6 @@ public class InfinityController {
 
 
 
-        // If the platform with the highest X value is on the screen, generate new platforms
         if (platformWithHighestX != null && platformWithHighestX.getTranslateX() <= 1920) {
             generateNewPlatforms();
         }
