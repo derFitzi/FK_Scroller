@@ -3,11 +3,9 @@
 - [ ] **Side Collision**
 
 
-- [ ] **Character Design**
 - [ ] **JUnit Tests**
 - [ ] **Texturen überarbeiten**
 - [ ] **Ziel Haus**
-- [ ] **Fixen, dass es nicht öfters den Controller wechselt**
 
 - [ ] **Collision mit Rotierenden Platformen+ Spikes plazieren**
 
@@ -25,4 +23,6 @@
 - [X] **Infinity Level**
 - [X] **Level 4 Bauen**
 - [X] **Level 3 runterfallen fixen**
+- [X] **Fixen, dass es nicht öfters den Controller wechselt**
+- [X] **Character Design**
 
