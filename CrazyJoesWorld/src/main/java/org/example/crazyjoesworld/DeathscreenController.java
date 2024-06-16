@@ -40,28 +40,33 @@ public class DeathscreenController {
         Music.pause();
         try {
             FXMLLoader loader;
-            loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
-            Parent gameRoot = loader.load();
+            Parent gameRoot;
             Scene currentScene = nocheinmal.getScene();
-            currentScene.setRoot(gameRoot);
-            Game1Controller cont = loader.getController();
-            if (aktuellesLevel==1) {
-                cont.levelauswahl(1);
+            MainController mainController;
+            if (aktuellesLevel == 5) {
+                loader = new FXMLLoader(getClass().getResource("Infinity.fxml"));
+                gameRoot = loader.load();
+                currentScene.setRoot(gameRoot);
+                InfinityController contI = loader.getController();
+                mainController = loader.getController();
+                mainController.play();
+            } else {
+                loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
+                gameRoot = loader.load();
+                currentScene.setRoot(gameRoot);
+                Game1Controller cont = loader.getController();
+                if (aktuellesLevel == 1) {
+                    cont.levelauswahl(1);
+                } else if (aktuellesLevel == 2) {
+                    cont.levelauswahl(2);
+                } else if (aktuellesLevel == 3) {
+                    cont.levelauswahl(3);
+                } else if (aktuellesLevel == 4) {
+                    cont.levelauswahl(4);
+                }
+                mainController = loader.getController();
+                mainController.play();
             }
-            if (aktuellesLevel==2) {
-                cont.levelauswahl(2);
-            }
-            if (aktuellesLevel==3) {
-                cont.levelauswahl(3);
-            }
-            if (aktuellesLevel==4) {
-                cont.levelauswahl(4);
-            }
-
-
-            MainController mainController = loader.getController();
-            mainController.play();
-
             System.out.println("Switched to the game screen successfully.");
         } catch (IOException e) {
             e.printStackTrace();

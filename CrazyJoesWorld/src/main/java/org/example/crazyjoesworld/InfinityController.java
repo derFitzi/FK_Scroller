@@ -70,6 +70,8 @@ public class InfinityController {
     @FXML
     private Button weiter;
 
+    private boolean gewechselt =false;
+
     Media sound = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/GamePlay.mp3").toURI().toString());
     MediaPlayer Music = new MediaPlayer(sound);
     int aktuellesLevel=1;
@@ -481,7 +483,8 @@ v
     }
 
     private void checkDeath() {
-        if (player.getBoundsInParent().intersects(deathBox.getBoundsInParent()) || player.getBoundsInParent().intersects(wall.getBoundsInParent())) {
+        if ((player.getBoundsInParent().intersects(deathBox.getBoundsInParent()) || player.getBoundsInParent().intersects(wall.getBoundsInParent()))&&!gewechselt) {
+            gewechselt=true;
             infinityPane.setOnKeyPressed(null);
             infinityPane.setOnKeyReleased(null);
             Music.stop();
@@ -493,6 +496,7 @@ v
                 DeathscreenController deathScreenController = loader.getController();
                 deathScreenController.setPlayedGame(aktuellesLevel);
                 deathScreenController.CauseOfDeath(1);
+                deathScreenController.setPlayedGame(5);
 
                 Scene currentScene = quit.getScene();
                 currentScene.setRoot(DeathScreenRoot);

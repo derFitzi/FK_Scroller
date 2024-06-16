@@ -48,6 +48,8 @@ public class Game1Controller {
     private double jumpStrength = -16;
     private double playerSpeed = 12; // normal 5
 
+    private boolean spieltJumpGif= false;
+
     @FXML
     private Slider lautstaerke;
     @FXML
@@ -76,6 +78,8 @@ public class Game1Controller {
     int i=0; // testvariable
     private boolean rechtslaufen=true;
     private boolean linkslaufen=true;
+
+    private boolean gewechselt =false;
 
 
 
@@ -257,6 +261,10 @@ public class Game1Controller {
             platforms.get(i).setFill(new ImagePattern(platformTexture));
             game1_pane.getChildren().add(platforms.get(i));
         }
+        platform0.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2OhneRand.png"))));
+        platform1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2OhneRand.png"))));
+        platform5.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2OhneRand.png"))));
+        platform6.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2OhneRand.png"))));
         platforms.add(erde1);
         platforms.add(erde2);
         platforms.add(erde3);
@@ -832,6 +840,8 @@ public class Game1Controller {
         }
     }
 
+
+
     private void handleKeyReleased(KeyEvent event) {
         if (event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) {
             left = false;
@@ -1027,7 +1037,8 @@ public class Game1Controller {
     }
 
     private void checkBoxTrigger() {
-        if (player.getBoundsInParent().intersects(triggerBox.getBoundsInParent())) {
+        if (player.getBoundsInParent().intersects(triggerBox.getBoundsInParent()) && !gewechselt) {
+            gewechselt=true;
             onPlayerEnterBox();
         }
     }
@@ -1041,7 +1052,8 @@ public class Game1Controller {
 
 
 
-        if (player.getBoundsInParent().intersects(deathBox.getBoundsInParent()) || death) {
+        if ((player.getBoundsInParent().intersects(deathBox.getBoundsInParent()) || death) && !gewechselt) {
+            gewechselt=true;
             game1_pane.setOnKeyPressed(null);
             game1_pane.setOnKeyReleased(null);
             Music.stop();

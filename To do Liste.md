@@ -4,11 +4,12 @@
 
 
 - [ ] **Character Design**
-- [ ] **Texturen überarbeiten**
 - [ ] **JUnit Tests**
-- [ ] **Level 4 Bauen**
-- [ ] **Collision mit Rotierenden Platformen**
-- [ ] **Level 3 runterfallen fixen**
+- [ ] **Texturen überarbeiten**
+- [ ] **Ziel Haus**
+- [ ] **Fixen, dass es nicht öfters den Controller wechselt**
+
+- [ ] **Collision mit Rotierenden Platformen+ Spikes plazieren**
 
 ## Done
 - [x] **Sterne**
@@ -22,4 +23,6 @@
 - [x] **Leertaste springen**
 - [x] **Sterne als Bilder machen**
 - [X] **Infinity Level**
+- [X] **Level 4 Bauen**
+- [X] **Level 3 runterfallen fixen**
 
