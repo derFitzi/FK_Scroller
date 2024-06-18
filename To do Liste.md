@@ -1,6 +1,6 @@
 # To-Do List
 
-- [ ] **Texturen überarbeiten + Levelbilder ändern**
+- [X] **Texturen überarbeiten + Levelbilder ändern**
 
 
 ## Done
@@ -23,4 +23,5 @@
 - [X] **JUnit Tests**
 - [X] **Side Collision (fast unmöglich bei hohen geschwindigkeiten)**
 - [X] **Spikes plazieren**
+- - [X] **Texturen überarbeiten + Levelbilder ändern**
 

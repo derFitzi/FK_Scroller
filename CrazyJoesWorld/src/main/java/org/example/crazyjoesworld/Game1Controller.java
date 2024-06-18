@@ -889,7 +889,7 @@ public class Game1Controller {
         if (left &&linkslaufen) dx -= playerSpeed;
         if (right &&rechtslaufen) dx += playerSpeed;
 
-        if (left)
+        if (dx<0)
         {
             if (!gifLefrrunning)
             {
@@ -900,7 +900,7 @@ public class Game1Controller {
             player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("runLeft.gif"))));
             }
         }
-        else if (right)
+        else if (dx>0)
         {
             if (!gifRightrunning) {
                 gifIdle = false;
