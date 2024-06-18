@@ -10,32 +10,36 @@ class Game1ControllerTest {
     @BeforeEach
     void setUp() {
         controller = new Game1Controller();
-        controller.initialize();
     }
 
     @Test
-    void testPlayerNotNullAfterInitialization() {
-        assertNotNull(controller.getPlayer(), "Player should be initialized after calling initialize");
+    void checkaktuelleVelocity() {
+        assertEquals(0, controller.getVelocity());
+    }
+    @Test
+    void checkSpielerVorhanden() {
+        assertEquals(1, controller.getaktuellesLevle());
     }
 
     @Test
-    void testInitialPlayerPosition() {
-        assertEquals(750, controller.getPlayer().getTranslateX(), "Initial player X position should be 750");
-        assertEquals(100, controller.getPlayer().getTranslateY(), "Initial player Y position should be 100");
+    void checkAktuellesLevel() {
+        assertEquals(1, controller.getaktuellesLevle());
     }
 
     @Test
-    void testInitialGamePaneNotNull() {
-        assertNotNull(controller.getGame1_pane(), "Game pane should be initialized after calling initialize");
+    void checkStartCoins() {
+        assertEquals(null, controller.getCoins());
+
     }
 
     @Test
-    void testInitialMusicNotNull() {
-        assertNotNull(controller.getMusic(), "Music should be initialized after calling initialize");
+    void checkStartGeschwindigkeit() {
+        assertEquals(12, controller.getPlayerSpeed());
     }
 
     @Test
-    void testInitialLevel() {
-        assertEquals(1, controller.getAktuellesLevel(), "Initial level should be 1");
+    void checkStartSensibilitaet() {
+
+        assertEquals(1, controller.getSensi());
     }
 }

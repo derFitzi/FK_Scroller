@@ -46,7 +46,7 @@ public class Game1Controller {
     private double gravity = 0.6;
     private double velocity = 0;
     private double jumpStrength = -16;
-    private double playerSpeed = 12; // normal 5
+    private double playerSpeed = 12;
 
 
     @FXML
@@ -71,8 +71,8 @@ public class Game1Controller {
     @FXML
     private Button weiter;
 
-    Media sound = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/GamePlay.mp3").toURI().toString());
-    MediaPlayer Music = new MediaPlayer(sound);
+    Media sound;
+    MediaPlayer Music;
     int aktuellesLevel=1;
     int i=0; // testvariable
     private boolean rechtslaufen=true;
@@ -83,12 +83,15 @@ public class Game1Controller {
     private boolean gifRightrunning =false;
     private boolean gifLefrrunning =false;
     private boolean gifIdle =false;
-
     private boolean gifJumping= false;
 
 
 
     public void initialize() {
+        sound = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/GamePlay.mp3").toURI().toString());
+        Music= new MediaPlayer(sound);
+
+
         Image hintergrundGame1 = new Image(getClass().getResourceAsStream("GameHintergrund2.png"));
         Image platformTexture = new Image(getClass().getResourceAsStream("platformtexture2.png"));
 
@@ -262,6 +265,11 @@ public class Game1Controller {
         platforms.add(platform5);
         platforms.add(platform6);
 
+        Rectangle spikes1 = new Rectangle(144, 60); spikes1.setTranslateX(3300); spikes1.setTranslateY(780-60);
+        objects.add(spikes1);
+        spikes1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("spike.png"))));
+        game1_pane.getChildren().add(spikes1);
+
         for (int i = 0; i < platforms.size(); i++) {
             platforms.get(i).setFill(new ImagePattern(platformTexture));
             game1_pane.getChildren().add(platforms.get(i));
@@ -291,12 +299,14 @@ public class Game1Controller {
         game1_pane.getChildren().add(wand1);
         game1_pane.getChildren().add(wand2);
 
-        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
+
+
+        Image flagImage = new Image(getClass().getResourceAsStream("hausOhneBG.png"));
         flagImageView = new ImageView(flagImage);
-        flagImageView.setFitWidth(738);
-        flagImageView.setFitHeight(338);
-        flagImageView.setTranslateX(5000);
-        flagImageView.setTranslateY(380);
+        flagImageView.setFitWidth(505);
+        flagImageView.setFitHeight(411);
+        flagImageView.setTranslateX(5160);
+        flagImageView.setTranslateY(310);
         game1_pane.getChildren().add(flagImageView);
         quit.toFront();
 
@@ -347,8 +357,6 @@ public class Game1Controller {
 
         // groß
         Rectangle earth9 =new Rectangle(1442, 440); earth9.setTranslateX(-1300); earth9.setTranslateY(880);
-        Rectangle earth10 =new Rectangle(1442, 440); earth10.setTranslateX(-250); earth10.setTranslateY(880);
-        //Ende
         Rectangle earth11 =new Rectangle(1442, 440); earth11.setTranslateX(5200); earth11.setTranslateY(710+133);
         Rectangle earth12 =new Rectangle(1442, 440); earth12.setTranslateX(5842); earth12.setTranslateY(710+133);
 
@@ -453,9 +461,6 @@ public class Game1Controller {
         earth9.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
         platforms.add(earth9);
         game1_pane.getChildren().add(earth9);
-        earth10.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
-        platforms.add(earth10);
-        game1_pane.getChildren().add(earth10);
         earth11.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
         platforms.add(earth11);
         game1_pane.getChildren().add(earth11);
@@ -466,13 +471,14 @@ public class Game1Controller {
         platforms.add(earth13);
         game1_pane.getChildren().add(earth13);
 
-        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
+        Image flagImage = new Image(getClass().getResourceAsStream("hausOhneBG.png"));
         flagImageView = new ImageView(flagImage);
-        flagImageView.setFitWidth(738);
-        flagImageView.setFitHeight(338);
-        flagImageView.setTranslateX(5000);
-        flagImageView.setTranslateY(380);
+        flagImageView.setFitWidth(505);
+        flagImageView.setFitHeight(411);
+        flagImageView.setTranslateX(5350);
+        flagImageView.setTranslateY(310);
         game1_pane.getChildren().add(flagImageView);
+        triggerBox.setTranslateX(triggerBox.getTranslateX()+200);
         quit.toFront();
 
 
@@ -524,6 +530,10 @@ public class Game1Controller {
         Rectangle wand1 = new Rectangle(1442, 1000); wand1.setTranslateX(-1442); wand1.setTranslateY(0);
         Rectangle wand2 = new Rectangle(1442, 1000); wand2.setTranslateX(5842); wand2.setTranslateY(0);
 
+        Rectangle spikes1 = new Rectangle(144, 60); spikes1.setTranslateX(4300); spikes1.setTranslateY(750-60);
+        objects.add(spikes1);
+        spikes1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("spike.png"))));
+        game1_pane.getChildren().add(spikes1);
 
         platforms.add(platform3);
         platforms.add(platform4);
@@ -623,13 +633,15 @@ public class Game1Controller {
         platforms.add(earth13);
         game1_pane.getChildren().add(earth13);
 
-        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
+        Image flagImage = new Image(getClass().getResourceAsStream("hausOhneBG.png"));
+        triggerBox.setTranslateX(triggerBox.getTranslateX()+190);
         flagImageView = new ImageView(flagImage);
-        flagImageView.setFitWidth(738);
-        flagImageView.setFitHeight(338);
-        flagImageView.setTranslateX(5000);
-        flagImageView.setTranslateY(380);
+        flagImageView.setFitWidth(505);
+        flagImageView.setFitHeight(411);
+        flagImageView.setTranslateX(5350);
+        flagImageView.setTranslateY(310);
         game1_pane.getChildren().add(flagImageView);
+
         quit.toFront();
 
     }
@@ -722,8 +734,8 @@ public class Game1Controller {
 
 
 
-        platform0.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
-        platform1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
+        platform0.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2OhneRand.png"))));
+        platform1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2OhneRand.png"))));
         platform10.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
         platform12.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
         platform16.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2.png"))));
@@ -753,12 +765,10 @@ public class Game1Controller {
 
         earth10.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
         earth12.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
-        earth16.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
-        earth161.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("earthtexture.png"))));
+        earth16.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2OhneRand.png"))));
+        earth161.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("platformtexture2OhneRand.png"))));
 
         earth11.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinearthtexture.png"))));
-
-
 
         spikes1.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("spike.png"))));
         spikes2.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("spike.png"))));
@@ -774,35 +784,40 @@ public class Game1Controller {
 
 
 
-        Image flagImage = new Image(getClass().getResourceAsStream("Flagge.png"));
+        Image flagImage = new Image(getClass().getResourceAsStream("hausOhneBG.png"));
         flagImageView = new ImageView(flagImage);
-        flagImageView.setFitWidth(738);
-        flagImageView.setFitHeight(338);
-        flagImageView.setTranslateX(10000);
-        flagImageView.setTranslateY(395);
+        flagImageView.setFitWidth(505);
+        flagImageView.setFitHeight(411);
+        flagImageView.setTranslateX(10150);
+        flagImageView.setTranslateY(325);
         game1_pane.getChildren().add(flagImageView);
         quit.toFront();
 
-        Rectangle rotatingPlatform = new Rectangle(300, 30);
+
+        Rectangle rotatingPlatform = new Rectangle(10, 300);
         rotatingPlatform.setFill(Color.RED);
         rotatingPlatform.setTranslateX(2150);
-        rotatingPlatform.setTranslateY(830);
+        rotatingPlatform.setTranslateY(700);
         objects.add(rotatingPlatform);
 
 
 
-        RotateTransition rt = new RotateTransition(Duration.seconds(3), rotatingPlatform);
-        rt.setAxis(Rotate.Z_AXIS);
-        rt.setByAngle(90);
-        rt.setCycleCount(Animation.INDEFINITE);
-        rt.setAutoReverse(true);
-        rt.play();
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(3), rotatingPlatform);
+        tt.setByY(300); // change this value to move the platform more or less
+        tt.setCycleCount(Animation.INDEFINITE);
+        tt.setAutoReverse(true);
+        tt.play();
+
+        /*
 
         Rectangle rotatingPlatform2 = new Rectangle(800, 30);
         rotatingPlatform2.setFill(Color.RED);
         rotatingPlatform2.setTranslateX(7300);
         rotatingPlatform2.setTranslateY(500);
+        rotatingPlatform2.setPickOnBounds(false);
         objects.add(rotatingPlatform2);
+
+        *
 
 
 
@@ -810,8 +825,10 @@ public class Game1Controller {
         rt2.setAxis(Rotate.Z_AXIS);
         rt2.setByAngle(360);
         rt2.setCycleCount(Animation.INDEFINITE);
-        //rt2.setAutoReverse(true);
         rt2.play();
+
+        */
+
 
         for (int i = 0; i < objects.size(); i++) {
             game1_pane.getChildren().add(objects.get(i));
@@ -1181,9 +1198,6 @@ public class Game1Controller {
         sensi = Singleton.getInstance().getSensi();
     }
 
-    public Media getSound() {
-        return sound;
-    }
 
     public Pane getGame1_pane() {
         return game1_pane;
@@ -1215,5 +1229,21 @@ public class Game1Controller {
 
     public Rectangle getPlayer() {
         return player;
+    }
+
+    public double getPlayerSpeed() {
+        return playerSpeed;
+    }
+    public int getaktuellesLevle() {
+        return aktuellesLevel;
+    }
+
+    public List<Coin> getCoins() {
+        return coins;
+    }
+
+
+    public double getVelocity() {
+        return velocity;
     }
 }

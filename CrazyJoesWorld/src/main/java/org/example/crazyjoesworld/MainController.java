@@ -114,10 +114,12 @@ public class MainController extends AnimationTimer implements Initializable {
         Image g1Image = new Image(getClass().getResourceAsStream("Game1vorschau.png"));
         Image g2Image = new Image(getClass().getResourceAsStream("Game2vorschau.png"));
         Image g3Image = new Image(getClass().getResourceAsStream("Game3vorschau.png"));
+        Image g4Image = new Image(getClass().getResourceAsStream("Game4vorschau.png"));
         Image g5Image = new Image(getClass().getResourceAsStream("Infinityvorschau.png"));
         g1.setFill(new ImagePattern(g1Image));
         g2.setFill(new ImagePattern(g2Image));
         g3.setFill(new ImagePattern(g3Image));
+        g4.setFill(new ImagePattern(g4Image));
         g5.setFill(new ImagePattern(g5Image));
     }
 

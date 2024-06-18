@@ -78,6 +78,10 @@ public class InfinityController {
     int i=0; // testvariable
     private boolean rechtslaufen=true;
     private boolean linkslaufen=true;
+    private boolean gifRightrunning =false;
+    private boolean gifLefrrunning =false;
+    private boolean gifIdle =false;
+    private boolean gifJumping= false;
 
 
 
@@ -107,7 +111,7 @@ public class InfinityController {
         deathBox.setTranslateY(950);
         infinityPane.getChildren().add(deathBox);
 
-        wall = new Rectangle(100, 1080, Color.RED); // adjust size and color as needed
+        wall = new Rectangle(100, 1080, Color.RED);
         wall.setTranslateX(0);
         infinityPane.getChildren().add(wall);
 
@@ -153,12 +157,10 @@ public class InfinityController {
 
     private void handleKeyPressed(KeyEvent event) {
         if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT)) {
-            player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("runLeft.gif"))));
             left = true;
             rechtslaufen = true;
             playerSpeed = 12 * sensi;
         } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT)) {
-            player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("runRight.gif"))));
             right = true;
             linkslaufen = true;
             playerSpeed = 12 * sensi;
@@ -298,10 +300,6 @@ public class InfinityController {
         } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
             jumping = false;
         }
-        else
-        {
-            player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("idle.gif"))));
-        }
 
     }
 
@@ -319,6 +317,45 @@ public class InfinityController {
         int number = rdm.nextBoolean() ? 1 : 0;
         number=number/100;
         wallSpeed =wallSpeed+number;
+
+
+        if (left)
+        {
+            if (!gifLefrrunning)
+            {
+                gifIdle=false;
+                gifLefrrunning=true;
+                gifJumping=false;
+                gifRightrunning=false;
+                player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("runLeft.gif"))));
+            }
+        }
+        else if (right)
+        {
+            if (!gifRightrunning) {
+                gifIdle = false;
+                gifJumping=false;
+                gifLefrrunning = false;
+                gifRightrunning = true;
+                player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("runRight.gif"))));
+            }
+        }
+        else if (jumping) {
+            if (!gifJumping) {
+                gifJumping=true;
+                gifIdle = false;
+                gifLefrrunning = false;
+                gifRightrunning = false;
+                player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("mid air.gif"))));
+            }
+        }
+        else if (!gifIdle){
+            gifIdle=true;
+            gifLefrrunning=false;
+            gifRightrunning=false;
+            gifJumping=false;
+            player.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("idle.gif"))));
+        }
 
 
 

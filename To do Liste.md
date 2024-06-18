@@ -1,13 +1,10 @@
 # To-Do List
 
-- [ ] **Side Collision**
 
 
-- [ ] **JUnit Tests**
-- [ ] **Texturen überarbeiten**
-- [ ] **Ziel Haus**
+- [ ] **Collision mit Rotierenden Platformen**
+- [ ] **Texturen überarbeiten + Levelbilder ändern**
 
-- [ ] **Collision mit Rotierenden Platformen+ Spikes plazieren**
 
 ## Done
 - [x] **Sterne**
@@ -25,4 +22,8 @@
 - [X] **Level 3 runterfallen fixen**
 - [X] **Fixen, dass es nicht öfters den Controller wechselt**
 - [X] **Character Design**
+- [X] **Ziel Haus**
+- [X] **JUnit Tests**
+- [X] **Side Collision (fast unmöglich bei hohen geschwindigkeiten)**
+- [X] **Spikes plazieren**
 
