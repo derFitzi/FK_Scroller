@@ -1,8 +1,5 @@
 # To-Do List
 
-
-
-- [ ] **Collision mit Rotierenden Platformen**
 - [ ] **Texturen überarbeiten + Levelbilder ändern**
 
 

@@ -196,7 +196,7 @@ public class InfinityController {
 
 
         for (int i = 0; i < platforms.size(); i++) {
-            platforms.get(i).setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtexture.png"))));
+            platforms.get(i).setFill(new ImagePattern(new Image(getClass().getResourceAsStream("thinplatformtextureO.png"))));
             infinityPane.getChildren().add(platforms.get(i));
         }
         quit.toFront();

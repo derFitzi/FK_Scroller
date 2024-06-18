@@ -8,7 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.io.IOException;
 
 public class WinScreenController {
@@ -19,9 +22,15 @@ public class WinScreenController {
     private String oldGameCont;
     private String oldGameScreen;
 
+    MediaPlayer Music;
+    Media sound1 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/Win.mp3").toURI().toString());
+
     private int aktuellesLevel;
 
     public void setCollectedCoinCount(int count) {
+        Music = new MediaPlayer(sound1);
+        Music.play();
+        Music.setVolume(Singleton.getInstance().getLautstaerke());
         System.out.println("Number of collected coins: " + count);
         Image starImage = new Image(getClass().getResourceAsStream("Star.png")); // Path to the star image
                for (int i = 0; i < count; i++) {
@@ -47,6 +56,8 @@ public class WinScreenController {
     }
 
     public void nocheinmal() {
+        Music.stop();
+        Music.pause();
         try {
             FXMLLoader loader;
             loader = new FXMLLoader(getClass().getResource("Game1.fxml"));
@@ -79,6 +90,8 @@ public class WinScreenController {
     }
 
     public void zurueck() {
+        Music.stop();
+        Music.pause();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Menue.fxml"));
             Parent gameRoot = loader.load();
