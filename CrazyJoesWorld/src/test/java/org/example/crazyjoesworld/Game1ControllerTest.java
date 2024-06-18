@@ -17,11 +17,6 @@ class Game1ControllerTest {
         assertEquals(0, controller.getVelocity());
     }
     @Test
-    void checkSpielerVorhanden() {
-        assertEquals(1, controller.getaktuellesLevle());
-    }
-
-    @Test
     void checkAktuellesLevel() {
         assertEquals(1, controller.getaktuellesLevle());
     }
