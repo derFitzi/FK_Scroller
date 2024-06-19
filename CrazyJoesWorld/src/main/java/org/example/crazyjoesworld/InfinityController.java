@@ -51,7 +51,7 @@ public class InfinityController {
     private Rectangle atk = new Rectangle(200, 200);;
     private boolean atkA;
     private Rectangle wall;
-    private double wallSpeed = 2;
+    private double wallSpeed = 7;
 
     @FXML
     private Slider lautstaerke;

@@ -1,9 +1,98 @@
 @startuml
+class org.example.crazyjoesworld.InfinityController {
+- Pane infinityPane
+- Button quit
+- Rectangle player
+- List<Rectangle> platforms
+- List<Coin> coins
+- Rectangle background1
+- Rectangle background2
+- boolean left
+- double gravity
+- double velocity
+- double jumpStrength
+- Rectangle wall
+- double wallSpeed
+- double playerSpeed
+- Slider lautstaerke
+- Slider sensibilitaet
+- double sensi
+- Rectangle triggerBox
+- Rectangle deathBox
+- ImageView flagImageView
+- int collectedCoinCount
+- Label lautstaerke_text
+- Label sensibilitaet_text
+~ Rectangle settingsBG
+- Button zumHauptmenue
+~ AnimationTimer gameLoop
+- Button weiter
+- boolean gewechselt
+~ Media sound
+~ MediaPlayer Music
+~ int aktuellesLevel
+~ int i
+- boolean rechtslaufen
+- boolean linkslaufen
+- boolean gifRightrunning
+- boolean gifLefrrunning
+- boolean gifIdle
+- boolean gifJumping
++ void initialize()
+- void addEventListeners()
+- void startGame()
+- void handleKeyPressed(KeyEvent)
+- void generateStartPlatforms()
+- void generateNewPlatforms()
+- void handleKeyReleased(KeyEvent)
+- void update()
+- void moveBackground(double)
+- void checkCollisions()
++ void zumHauptmenue()
+- void checkDeath()
+- void onPlayerEnterBox()
++ void settings()
++ void weiter()
++ void lautsterkenregelung()
++ void sensibilitaetregelung()
++ Media getSound()
++ Pane getinfinityPane()
++ MediaPlayer getMusic()
++ int getAktuellesLevel()
++ double getSensi()
++ Slider getLautstaerkeSlider()
++ Slider getSensibilitaetSlider()
++ boolean isMusicPlaying()
++ Rectangle getPlayer()
+}
+
+
+class org.example.crazyjoesworld.AnimatedImageView {
+- AnimatedImage imgs
+- long startTime
++ void update()
+}
+
+
+class org.example.crazyjoesworld.Platform {
+}
+class org.example.crazyjoesworld.AnimatedImage {
++ Image[] frames
++ double duration
+}
+
+class org.example.crazyjoesworld.Application {
++ void start(Stage)
++ {static} void main(String[])
+}
+
 class org.example.crazyjoesworld.WinScreenController {
 - Pane winScreenPane
 - Label winText
 - String oldGameCont
 - String oldGameScreen
+~ MediaPlayer Music
+~ Media sound1
 - int aktuellesLevel
 + void setCollectedCoinCount(int)
 + void setPlayedGame(int)
@@ -27,15 +116,6 @@ class org.example.crazyjoesworld.DeathscreenController {
 }
 
 
-class org.example.crazyjoesworld.AnimatedImageView {
-- AnimatedImage imgs
-- long startTime
-+ void update()
-}
-
-
-class org.example.crazyjoesworld.Platform {
-}
 class org.example.crazyjoesworld.Singleton {
 - {static} Singleton instance
 - double lautstaerke
@@ -48,11 +128,6 @@ class org.example.crazyjoesworld.Singleton {
 }
 
 
-class org.example.crazyjoesworld.AnimatedImage {
-+ Image[] frames
-+ double duration
-}
-
 class org.example.crazyjoesworld.Player {
 - double velocityY
 - boolean onGround
@@ -64,16 +139,12 @@ class org.example.crazyjoesworld.Player {
 }
 
 
-class org.example.crazyjoesworld.Application {
-+ void start(Stage)
-+ {static} void main(String[])
-}
-
 class org.example.crazyjoesworld.Game1Controller {
 - Pane game1_pane
 - Button quit
 - Rectangle player
 - List<Rectangle> platforms
+- List<Rectangle> objects
 - List<Coin> coins
 - Rectangle background1
 - Rectangle background2
@@ -101,6 +172,11 @@ class org.example.crazyjoesworld.Game1Controller {
 ~ int i
 - boolean rechtslaufen
 - boolean linkslaufen
+- boolean gewechselt
+- boolean gifRightrunning
+- boolean gifLefrrunning
+- boolean gifIdle
+- boolean gifJumping
 + void initialize()
 - void addEventListeners()
 - void startGame()
@@ -127,7 +203,6 @@ class org.example.crazyjoesworld.Game1Controller {
 + void weiter()
 + void lautsterkenregelung()
 + void sensibilitaetregelung()
-+ Media getSound()
 + Pane getGame1_pane()
 + MediaPlayer getMusic()
 + int getAktuellesLevel()
@@ -136,6 +211,10 @@ class org.example.crazyjoesworld.Game1Controller {
 + Slider getSensibilitaetSlider()
 + boolean isMusicPlaying()
 + Rectangle getPlayer()
++ double getPlayerSpeed()
++ int getaktuellesLevle()
++ List<Coin> getCoins()
++ double getVelocity()
 }
 
 
@@ -180,6 +259,7 @@ class org.example.crazyjoesworld.MainController {
 + void game2()
 + void game3()
 + void game4()
++ void infinity()
 + void initialize(URL,ResourceBundle)
 + void handle(long)
 + Button getPlay()
@@ -201,11 +281,11 @@ class org.example.crazyjoesworld.MainController {
 
 
 
-javafx.scene.image.ImageView <|-- org.example.crazyjoesworld.Coin
 javafx.scene.image.ImageView <|-- org.example.crazyjoesworld.AnimatedImageView
 javafx.scene.shape.Rectangle <|-- org.example.crazyjoesworld.Platform
-javafx.scene.shape.Rectangle <|-- org.example.crazyjoesworld.Player
 org.example.crazyjoesworld.Application <|-- org.example.crazyjoesworld.Application
+javafx.scene.image.ImageView <|-- org.example.crazyjoesworld.Coin
+javafx.scene.shape.Rectangle <|-- org.example.crazyjoesworld.Player
 javafx.fxml.Initializable <|.. org.example.crazyjoesworld.MainController
 javafx.animation.AnimationTimer <|-- org.example.crazyjoesworld.MainController
 @enduml
