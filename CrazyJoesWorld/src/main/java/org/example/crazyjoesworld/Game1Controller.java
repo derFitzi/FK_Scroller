@@ -37,6 +37,7 @@ public class Game1Controller {
     @FXML
     private Button quit;
     private Rectangle player;
+    private final ArrayList<Enemy> enemy = new ArrayList<>();
     private List<Rectangle> platforms;
     private List<Rectangle> objects;
     private List<Coin> coins;
@@ -47,6 +48,12 @@ public class Game1Controller {
     private double velocity = 0;
     private double jumpStrength = -16;
     private double playerSpeed = 12;
+    private double dxA = 750;
+    private int pjc;
+    private double speedValue = 12;
+    private long t = 0;
+    private Rectangle atk = new Rectangle(200, 200);;
+    private boolean atkA;
 
 
     @FXML
@@ -164,18 +171,22 @@ public class Game1Controller {
         if (aktuellesLevel==1){
             generatePlatforms1(new Image(getClass().getResourceAsStream("platformtexture2.png")));
             generateCoins1();
+            initEnemies1();
         }
         if (aktuellesLevel==2){
             generatePlatforms2(new Image(getClass().getResourceAsStream("miniplatform.png")));
             generateCoins2();
+            initEnemies2();
         }
         if (aktuellesLevel==3){
             generatePlatforms3(new Image(getClass().getResourceAsStream("miniplatform.png")));
             generateCoins3();
+            initEnemies3();
         }
         if (aktuellesLevel==4){
             generatePlatforms4(new Image(getClass().getResourceAsStream("platformtexture2.png")));
             generateCoins4();
+            initEnemies4();
         }
     }
 
@@ -498,7 +509,7 @@ public class Game1Controller {
         Rectangle platform7 = new Rectangle(180, 68); platform7.setTranslateX(2000); platform7.setTranslateY(500);
         Rectangle platform8 = new Rectangle(180, 68); platform8.setTranslateX(2400); platform8.setTranslateY(350);
         Rectangle platform9 = new Rectangle(360, 68); platform9.setTranslateX(3300); platform9.setTranslateY(630);
-        Rectangle platform10 = new Rectangle(180, 68); platform10.setTranslateX(4000); platform10.setTranslateY(550);
+        Rectangle platform10 = new Rectangle(180, 68); platform10.setTranslateX(4000); platform10.setTranslateY(420);
         Rectangle platform11 = new Rectangle(180, 68); platform11.setTranslateX(3500); platform11.setTranslateY(820);
         Rectangle platform12 = new Rectangle(721, 68); platform12.setTranslateX(4000); platform12.setTranslateY(750);
         Rectangle platform13 = new Rectangle(180, 68); platform13.setTranslateX(4600); platform13.setTranslateY(520);
@@ -852,17 +863,28 @@ public class Game1Controller {
         if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT)) {
             left = true;
             rechtslaufen = true;
-            playerSpeed = 12 * sensi;
-        } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT)) {
+            playerSpeed = speedValue * sensi;
+        }
+        if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT)) {
             right = true;
             linkslaufen = true;
-            playerSpeed = 12 * sensi;
-        } else if ((event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) && canJump) {
+            playerSpeed = speedValue * sensi;
+        }
+        if ((event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) && canJump) {
             jumping = true;
             velocity = jumpStrength;
             canJump = false;
             linkslaufen = true;
             rechtslaufen = true;
+        }
+        if (event.getCode() == KeyCode.E){
+            playerAttack('r');
+        }
+        if (event.getCode() == KeyCode.Q){
+            playerAttack('l');
+        }
+        if (event.getCode() == KeyCode.SHIFT){
+            speedValue = 5;
         }
     }
 
@@ -877,6 +899,9 @@ public class Game1Controller {
         } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
             jumping = false;
         }
+        if (event.getCode() == KeyCode.SHIFT){
+            speedValue = 12;
+        }
 
     }
 
@@ -888,6 +913,11 @@ public class Game1Controller {
 
         if (left &&linkslaufen) dx -= playerSpeed;
         if (right &&rechtslaufen) dx += playerSpeed;
+        dxA += dx;
+        System.out.println(dxA + " :::: " + player.getTranslateY());
+        for (i=0; i<enemy.size(); i++){
+            enemyMovement(i, 6, dx);
+        }
 
         if (dx<0)
         {
@@ -931,7 +961,7 @@ public class Game1Controller {
 
 
 
-
+        playerAttack('n');
         //player.setTranslateX(player.getTranslateX() + dx);
 
         triggerBox.setTranslateX(triggerBox.getTranslateX() - dx);
@@ -966,6 +996,7 @@ public class Game1Controller {
         checkCoinCollisions();
         checkBoxTrigger();
         checkDeath();
+        checkEnemyCollision();
     }
 
     private void moveBackground(double dx) {
@@ -1053,7 +1084,7 @@ public class Game1Controller {
         if (!touchesSide) {
             // wenn es nicht einen abstand von 1 hat
 
-          System.out.println(" Keine Collision");
+          //System.out.println(" Keine Collision");
           // linkslaufen=true;
           //  rechtslaufen=true;
         }
@@ -1107,6 +1138,18 @@ public class Game1Controller {
             onPlayerEnterBox();
         }
     }
+    private void checkEnemyCollision() {
+        for (int i = 0; i < enemy.size(); i++) {
+            if ((player.getBoundsInParent().intersects(enemy.get(i).getBoundsInParent()) && !gewechselt)) {
+                game1_pane.setOnKeyReleased(null);
+                Music.stop();
+                killPlayer();
+            }
+            if ((enemy.get(i).getBoundsInParent().intersects(atk.getBoundsInParent()))&&atkA){
+                enemy.get(i).setTranslateY(2000);
+            }
+        }
+    }
     private void checkDeath() {
         boolean death=false;
         for (Rectangle object : objects) {
@@ -1114,29 +1157,29 @@ public class Game1Controller {
                 death=true;
             }
         }
-
-
-
         if ((player.getBoundsInParent().intersects(deathBox.getBoundsInParent()) || death) && !gewechselt) {
-            gewechselt=true;
-            game1_pane.setOnKeyPressed(null);
-            game1_pane.setOnKeyReleased(null);
-            Music.stop();
+            killPlayer();
+        }
+    }
+    private void killPlayer() {
+        gewechselt=true;
+        game1_pane.setOnKeyPressed(null);
+        game1_pane.setOnKeyReleased(null);
+        Music.stop();
 
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Deathscreen.fxml"));
-                Parent DeathScreenRoot = loader.load();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Deathscreen.fxml"));
+            Parent DeathScreenRoot = loader.load();
 
-                DeathscreenController deathScreenController = loader.getController();
-                deathScreenController.setPlayedGame(aktuellesLevel);
-                deathScreenController.CauseOfDeath(1);
+            DeathscreenController deathScreenController = loader.getController();
+            deathScreenController.setPlayedGame(aktuellesLevel);
+            deathScreenController.CauseOfDeath(1);
 
-                Scene currentScene = quit.getScene();
-                currentScene.setRoot(DeathScreenRoot);
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.err.println("Error loading DeathScreen.fxml: " + e.getMessage());
-            }
+            Scene currentScene = quit.getScene();
+            currentScene.setRoot(DeathScreenRoot);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error loading DeathScreen.fxml: " + e.getMessage());
         }
     }
 
@@ -1204,6 +1247,105 @@ public class Game1Controller {
         sensi = Singleton.getInstance().getSensi();
     }
 
+    public void enemyMovement (int id, double eVelocity, double dx){
+        if (enemy.get(id).getR()) {
+            enemy.get(id).setTranslateX(enemy.get(id).getTranslateX() - eVelocity - dx);
+            enemy.get(id).setdxA(enemy.get(id).getdxA() + dx);
+            if (enemy.get(id).getTranslateX() <= enemy.get(id).getStartingPosition() - enemy.get(id).getdxA()) {
+                enemy.get(id).setR(false);
+            }
+        }
+
+        if (!enemy.get(id).getR()) {
+            enemy.get(id).setTranslateX(enemy.get(id).getTranslateX() + eVelocity - dx);
+            enemy.get(id).setdxA(enemy.get(id).getdxA() + dx);
+            if (enemy.get(id).getTranslateX() >= enemy.get(id).getStartingPosition() + enemy.get(id).getRange() - enemy.get(id).getdxA()) {
+                enemy.get(id).setR(true);
+            }
+        }
+    }
+
+    private void initEnemies1(){
+        for (int i = 0; i <= enemy.size()-1; i++) {
+            game1_pane.getChildren().remove(enemy.get(i));
+            enemy.remove(i);
+        }
+        enemy.add(new Enemy(70, 70, 900, 660, 600));
+        enemy.add(new Enemy(70, 70, 1600, 540, 1420));
+        enemy.add(new Enemy(70, 70, 3100, 715, 1100));
+
+        for (int i = 0; i <= enemy.size()-1; i++) {
+            game1_pane.getChildren().add(enemy.get(i));
+        }
+    }
+    private void initEnemies2(){
+        for (int i = 0; i <= enemy.size()-1; i++) {
+            game1_pane.getChildren().remove(enemy.get(i));
+            enemy.remove(i);
+        }
+        enemy.add(new Enemy(70, 70, 1170, 530, 300));
+        enemy.add(new Enemy(70, 70, 2780, 730, 300));
+
+        for (int i = 0; i <= enemy.size()-1; i++) {
+            game1_pane.getChildren().add(enemy.get(i));
+        }
+    }
+    private void initEnemies3(){
+        for (int i = 0; i <= enemy.size()-1; i++) {
+            game1_pane.getChildren().remove(enemy.get(i));
+            enemy.remove(i);
+        }
+        enemy.add(new Enemy(70, 70, 1350, 630, 160));
+        enemy.add(new Enemy(70, 70, 3320, 565, 300));
+        enemy.add(new Enemy(70, 70, 3985, 675, 600));
+
+        for (int i = 0; i <= enemy.size()-1; i++) {
+            game1_pane.getChildren().add(enemy.get(i));
+        }
+    }
+    private void initEnemies4(){
+        for (int i = 0; i <= enemy.size()-1; i++) {
+            game1_pane.getChildren().remove(enemy.get(i));
+            enemy.remove(i);
+        }
+        enemy.add(new Enemy(70, 70, 900, 660, 600));
+        enemy.add(new Enemy(70, 70, 2152, 760, 300));
+        enemy.add(new Enemy(70, 70, 6000, 580, 670));
+
+        for (int i = 0; i <= enemy.size()-1; i++) {
+            game1_pane.getChildren().add(enemy.get(i));
+        }
+    }
+
+    public void playerAttack(char c){
+
+        if (c=='r') {
+            game1_pane.getChildren().add(atk);
+            t = System.currentTimeMillis();
+            atk.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("Attack.gif"))));
+            atk.setVisible(true);
+            atk.setTranslateX(player.getTranslateX() + 35);
+            atk.setTranslateY(player.getTranslateY() - 70);
+            atkA = true;
+        }
+        else if (c=='l'){
+            game1_pane.getChildren().add(atk);
+            t = System.currentTimeMillis();
+            atk.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("AttackLeft.gif"))));
+            atk.setVisible(true);
+            atk.setTranslateX(player.getTranslateX() - 175);
+            atk.setTranslateY(player.getTranslateY() - 30);
+            atkA = true;
+        }
+        if ((System.currentTimeMillis()>=t+210)&& atkA && c=='n'){
+            System.out.println("HALLOO");
+            t = System.currentTimeMillis();
+            atkA=false;
+            game1_pane.getChildren().remove(atk);
+        }
+
+    }
+
 
     public Pane getGame1_pane() {
         return game1_pane;
@@ -1252,4 +1394,6 @@ public class Game1Controller {
     public double getVelocity() {
         return velocity;
     }
+
+
 }

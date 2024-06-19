@@ -43,10 +43,15 @@ public class InfinityController {
     private double gravity = 0.6;
     private double velocity = 0;
     private double jumpStrength = -16;
-
+    private double playerSpeed = 12;
+    private double dxA;
+    private int pjc;
+    private double speedValue = 12;
+    private long t = 0;
+    private Rectangle atk = new Rectangle(200, 200);;
+    private boolean atkA;
     private Rectangle wall;
     private double wallSpeed = 2;
-    private double playerSpeed = 12; // normal 5
 
     @FXML
     private Slider lautstaerke;
@@ -159,17 +164,25 @@ public class InfinityController {
         if ((event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT)) {
             left = true;
             rechtslaufen = true;
-            playerSpeed = 12 * sensi;
-        } else if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT)) {
+            playerSpeed = speedValue * sensi;
+        }
+        if ((event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT)) {
             right = true;
             linkslaufen = true;
-            playerSpeed = 12 * sensi;
-        } else if ((event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) && canJump) {
+            playerSpeed = speedValue * sensi;
+        }
+        if ((event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) && canJump) {
             jumping = true;
             velocity = jumpStrength;
             canJump = false;
             linkslaufen = true;
             rechtslaufen = true;
+        }
+        if (event.getCode() == KeyCode.E){
+            playerAttack(true);
+        }
+        if (event.getCode() == KeyCode.SHIFT){
+            speedValue = 5;
         }
     }
 
@@ -295,10 +308,15 @@ public class InfinityController {
     private void handleKeyReleased(KeyEvent event) {
         if (event.getCode() == KeyCode.A || event.getCode() == KeyCode.LEFT) {
             left = false;
-        } else if (event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) {
+        }
+        if (event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) {
             right = false;
-        } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
+        }
+        if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
             jumping = false;
+        }
+        if (event.getCode() == KeyCode.SHIFT){
+            speedValue = 12;
         }
 
     }
@@ -358,7 +376,7 @@ public class InfinityController {
         }
 
 
-
+        playerAttack(false);
 
         //player.setTranslateX(player.getTranslateX() + dx);
 
@@ -606,6 +624,26 @@ v
     public void sensibilitaetregelung() {
         Singleton.getInstance().setSensi((sensibilitaet.getValue()/100));
         sensi = Singleton.getInstance().getSensi();
+    }
+
+    public void playerAttack(boolean doA){
+
+        if (doA) {
+            infinityPane.getChildren().add(atk);
+            t = System.currentTimeMillis();
+            atk.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("Attack.gif"))));
+            atk.setVisible(true);
+            atk.setTranslateX(player.getTranslateX() + 35);
+            atk.setTranslateY(player.getTranslateY() - 70);
+            atkA = true;
+        }
+        else if ((System.currentTimeMillis()>=t+210)&& atkA){
+            System.out.println("HALLOO");
+            t = System.currentTimeMillis();
+            atkA=false;
+            infinityPane.getChildren().remove(atk);
+        }
+
     }
 
     public Media getSound() {
