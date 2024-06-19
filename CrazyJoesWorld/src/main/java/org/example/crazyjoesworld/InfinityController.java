@@ -76,6 +76,12 @@ public class InfinityController {
     AnimationTimer gameLoop;
     @FXML
     private Button weiter;
+    @FXML
+    private Label T1;
+    @FXML
+    private Label T2;
+    @FXML
+    private Label T3;
 
     private boolean gewechselt =false;
 
@@ -232,7 +238,7 @@ public class InfinityController {
         Rectangle erdeNeu;
         int zahl1 = (int) (Math.random() * 3)+1;
         int zahl2 = (int) (Math.random() * 100)+50;
-        int zahl3 = (int) (Math.random() * 100)+50;
+        int zahl3 = (int) (Math.random() * 90)+50;
         int zahl4 = (int) (Math.random() * 2+1);
 
 
@@ -604,6 +610,10 @@ v
         zumHauptmenue.setVisible(true);
         settingsBG.setVisible(true);
         weiter.setVisible(true);
+        T1.setVisible(true);
+        T2.setVisible(true);
+        T3.setVisible(true);
+
 
         settingsBG.toFront();
         lautstaerke_text.toFront();
@@ -612,6 +622,10 @@ v
         sensibilitaet.toFront();
         zumHauptmenue.toFront();
         weiter.toFront();
+        T1.toFront();
+        T2.toFront();
+        T3.toFront();
+
         gameLoop.stop();
     }
 
@@ -626,6 +640,9 @@ v
         weiter.setVisible(false);
         infinityPane.requestFocus();
         gameLoop.start();
+        T1.setVisible(false);
+        T2.setVisible(false);
+        T3.setVisible(false);
     }
 
     public void lautsterkenregelung(){

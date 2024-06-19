@@ -78,6 +78,13 @@ public class Game1Controller {
     @FXML
     private Button weiter;
 
+    @FXML
+    private Label T1;
+    @FXML
+    private Label T2;
+    @FXML
+    private Label T3;
+
     Media sound;
     MediaPlayer Music;
     int aktuellesLevel=1;
@@ -1213,8 +1220,16 @@ public class Game1Controller {
         zumHauptmenue.setVisible(true);
         settingsBG.setVisible(true);
         weiter.setVisible(true);
+        T1.setVisible(true);
+        T2.setVisible(true);
+        T3.setVisible(true);
 
         settingsBG.toFront();
+        T1.toFront();
+        T2.toFront();
+        T3.toFront();
+
+
         lautstaerke_text.toFront();
         lautstaerke.toFront();
         sensibilitaet_text.toFront();
@@ -1235,6 +1250,10 @@ public class Game1Controller {
         weiter.setVisible(false);
         game1_pane.requestFocus();
         gameLoop.start();
+        T1.setVisible(false);
+        T2.setVisible(false);
+        T3.setVisible(false);
+
     }
 
     public void lautsterkenregelung(){

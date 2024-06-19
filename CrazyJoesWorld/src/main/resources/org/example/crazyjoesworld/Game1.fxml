@@ -23,12 +23,12 @@
          </font>
       </Label>
       <Slider fx:id="lautstaerke" layoutX="694.0" layoutY="354.0" max="200.0" onDragDetected="#lautsterkenregelung" onDragDone="#lautsterkenregelung" onDragDropped="#lautsterkenregelung" onDragEntered="#lautsterkenregelung" onDragExited="#lautsterkenregelung" onDragOver="#lautsterkenregelung" onMouseClicked="#lautsterkenregelung" onMouseDragEntered="#lautsterkenregelung" onMouseDragExited="#lautsterkenregelung" onMouseDragOver="#lautsterkenregelung" onMouseDragReleased="#lautsterkenregelung" onMouseDragged="#lautsterkenregelung" onMouseEntered="#lautsterkenregelung" onMouseMoved="#lautsterkenregelung" prefHeight="25.0" prefWidth="331.0" value="100.0" visible="false" />
-      <Slider fx:id="sensibilitaet" layoutX="694.0" layoutY="446.0" max="200.0" onDragDetected="#sensibilitaetregelung" onDragDone="#sensibilitaetregelung" onDragDropped="#sensibilitaetregelung" onDragEntered="#sensibilitaetregelung" onDragExited="#sensibilitaetregelung" onDragOver="#sensibilitaetregelung" onMouseClicked="#sensibilitaetregelung" onMouseDragEntered="#sensibilitaetregelung" onMouseDragExited="#sensibilitaetregelung" onMouseDragOver="#sensibilitaetregelung" onMouseDragReleased="#sensibilitaetregelung" onMouseDragged="#sensibilitaetregelung" onMouseEntered="#sensibilitaetregelung" onMouseExited="#sensibilitaetregelung" onMouseMoved="#sensibilitaetregelung" onMouseReleased="#sensibilitaetregelung" prefHeight="14.0" prefWidth="331.0" value="100.0" visible="false">
+      <Slider fx:id="sensibilitaet" layoutX="694.0" layoutY="426.0" max="200.0" onDragDetected="#sensibilitaetregelung" onDragDone="#sensibilitaetregelung" onDragDropped="#sensibilitaetregelung" onDragEntered="#sensibilitaetregelung" onDragExited="#sensibilitaetregelung" onDragOver="#sensibilitaetregelung" onMouseClicked="#sensibilitaetregelung" onMouseDragEntered="#sensibilitaetregelung" onMouseDragExited="#sensibilitaetregelung" onMouseDragOver="#sensibilitaetregelung" onMouseDragReleased="#sensibilitaetregelung" onMouseDragged="#sensibilitaetregelung" onMouseEntered="#sensibilitaetregelung" onMouseExited="#sensibilitaetregelung" onMouseMoved="#sensibilitaetregelung" onMouseReleased="#sensibilitaetregelung" prefHeight="14.0" prefWidth="331.0" value="100.0" visible="false">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Slider>
-      <Label fx:id="sensibilitaet_text" layoutX="525.0" layoutY="438.0" prefHeight="29.0" prefWidth="169.0" text="Sensibilität" textFill="#403f38" visible="false">
+      <Label fx:id="sensibilitaet_text" layoutX="525.0" layoutY="418.0" prefHeight="29.0" prefWidth="169.0" text="Sensibilität" textFill="#403f38" visible="false">
          <font>
             <Font name="Cooper Black" size="24.0" />
          </font>
@@ -43,6 +43,21 @@
             <Font name="Cooper Black" size="23.0" />
          </font>
       </Button>
+      <Label fx:id="T3" layoutX="894.0" layoutY="478.0" text="E  Angriff rechts">
+         <font>
+            <Font name="Cooper Black" size="17.0" />
+         </font></Label>
+      <Label fx:id="T2" layoutX="721.0" layoutY="478.0" text="Shift Sneaken">
+         <font>
+            <Font name="Cooper Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="T1" layoutX="512.0" layoutY="478.0" text="Q  Angriff links">
+         <font>
+            <Font name="Cooper Black" size="17.0" />
+         </font>
+      </Label>
+
 
 
    </children>

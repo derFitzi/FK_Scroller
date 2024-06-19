@@ -55,6 +55,12 @@ public class MainController extends AnimationTimer implements Initializable {
     @FXML
     private Label t5;
     @FXML
+    private Label T1;
+    @FXML
+    private Label T2;
+    @FXML
+    private Label T3;
+    @FXML
     private Slider lautstaerke;
     @FXML
     private Slider sensibilitaet;
@@ -138,6 +144,9 @@ public class MainController extends AnimationTimer implements Initializable {
         sensibilitaet_text.setVisible(true);
         zumHauptmenue.setVisible(true);
         settingsBG.setVisible(true);
+        T1.setVisible(true);
+        T2.setVisible(true);
+        T3.setVisible(true);
     }
 
     public void zumHauptmenue() {
@@ -162,6 +171,9 @@ public class MainController extends AnimationTimer implements Initializable {
         play.setVisible(true);
         quit.setVisible(true);
         settings.setVisible(true);
+        T1.setVisible(false);
+        T2.setVisible(false);
+        T3.setVisible(false);
 
         Image hintergrundMainMenue = new Image(getClass().getResourceAsStream("Bild1.png"));
         double width = 1920;

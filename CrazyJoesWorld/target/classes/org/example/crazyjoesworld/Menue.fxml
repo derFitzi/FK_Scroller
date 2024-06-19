@@ -26,20 +26,20 @@
             <Font name="Cooper Black" size="24.0" />
          </font></Label>
       <Slider fx:id="lautstaerke" layoutX="694.0" layoutY="354.0" max="200.0" onDragDetected="#lautsterkenregelung" onDragDone="#lautsterkenregelung" onDragDropped="#lautsterkenregelung" onDragEntered="#lautsterkenregelung" onDragExited="#lautsterkenregelung" onDragOver="#lautsterkenregelung" onMouseClicked="#lautsterkenregelung" onMouseDragEntered="#lautsterkenregelung" onMouseDragExited="#lautsterkenregelung" onMouseDragOver="#lautsterkenregelung" onMouseDragReleased="#lautsterkenregelung" onMouseDragged="#lautsterkenregelung" onMouseEntered="#lautsterkenregelung" onMouseMoved="#lautsterkenregelung" prefHeight="25.0" prefWidth="331.0" value="100.0" />
-      <Slider fx:id="sensibilitaet" layoutX="694.0" layoutY="446.0" max="200.0" onDragDetected="#sensibilitaetregelung" onDragDone="#sensibilitaetregelung" onDragDropped="#sensibilitaetregelung" onDragEntered="#sensibilitaetregelung" onDragExited="#sensibilitaetregelung" onDragOver="#sensibilitaetregelung" onMouseDragEntered="#sensibilitaetregelung" onMouseDragExited="#sensibilitaetregelung" prefHeight="14.0" prefWidth="331.0" value="100.0">
+      <Slider fx:id="sensibilitaet" layoutX="694.0" layoutY="435.0" max="200.0" onDragDetected="#sensibilitaetregelung" onDragDone="#sensibilitaetregelung" onDragDropped="#sensibilitaetregelung" onDragEntered="#sensibilitaetregelung" onDragExited="#sensibilitaetregelung" onDragOver="#sensibilitaetregelung" onMouseDragEntered="#sensibilitaetregelung" onMouseDragExited="#sensibilitaetregelung" prefHeight="14.0" prefWidth="331.0" value="100.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Slider>
-      <Label fx:id="sensibilitaet_text" layoutX="525.0" layoutY="438.0" prefHeight="29.0" prefWidth="169.0" text="Sensibilität" textFill="#403f38">
+      <Label fx:id="sensibilitaet_text" layoutX="526.0" layoutY="428.0" prefHeight="29.0" prefWidth="169.0" text="Sensibilität" textFill="#403f38">
          <font>
             <Font name="Cooper Black" size="24.0" />
          </font></Label>
-      <Button fx:id="zumHauptmenue" layoutX="640.0" layoutY="527.0" mnemonicParsing="false" onAction="#zumHauptmenue" prefHeight="48.0" prefWidth="331.0" style="-fx-background-color: #8B8878;" text="Zurück zum Hauptmenü" textFill="#fffdf3">
+      <Button fx:id="zumHauptmenue" layoutX="625.0" layoutY="541.0" mnemonicParsing="false" onAction="#zumHauptmenue" prefHeight="48.0" prefWidth="331.0" style="-fx-background-color: #8B8878;" text="Zurück zum Hauptmenü" textFill="#fffdf3">
          <font>
             <Font name="Cooper Black" size="23.0" />
          </font></Button>
-      <Rectangle fx:id="g2" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="942.0" layoutY="59.0"  onMouseClicked="#game2" onMousePressed="#game2" stroke="BLACK" strokeType="INSIDE" width="371.0" />
-      <Rectangle fx:id="g1" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="197.0" layoutY="57.0"  onMouseClicked="#game1" onMousePressed="#game1" stroke="BLACK" strokeType="INSIDE" width="371.0" />
+      <Rectangle fx:id="g2" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="942.0" layoutY="59.0" onMouseClicked="#game2" onMousePressed="#game2" stroke="BLACK" strokeType="INSIDE" width="371.0" />
+      <Rectangle fx:id="g1" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="197.0" layoutY="57.0" onMouseClicked="#game1" onMousePressed="#game1" stroke="BLACK" strokeType="INSIDE" width="371.0" />
       <Rectangle fx:id="g3" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="197.0" layoutY="365.0" onMouseClicked="#game3" stroke="BLACK" strokeType="INSIDE" width="371.0" />
       <Rectangle fx:id="g4" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="942.0" layoutY="367.0" onMouseClicked="#game4" stroke="BLACK" strokeType="INSIDE" width="371.0" />
       <Rectangle fx:id="g5" arcHeight="5.0" arcWidth="5.0" fill="#cdc8b1" height="200.0" layoutX="571.0" layoutY="585.0" onMouseClicked="#infinity" stroke="BLACK" strokeType="INSIDE" width="371.0" />
@@ -76,6 +76,21 @@
       <Label fx:id="mainMenueName" layoutX="318.0" layoutY="147.0" text="Crazy Joe's World" textFill="#403f38">
          <font>
             <Font name="Cooper Black" size="96.0" />
+         </font>
+      </Label>
+      <Label fx:id="T1" layoutX="555.0" layoutY="490.0" text="Q Angriff links" textFill="#403f38">
+         <font>
+            <Font name="Cooper Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="T2" layoutX="718.0" layoutY="490.0" text="Shift Sneaken" textFill="#403f38">
+         <font>
+            <Font name="Cooper Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="T3" layoutX="870.0" layoutY="490.0" text="E Angriff rechts" textFill="#403f38">
+         <font>
+            <Font name="Cooper Black" size="17.0" />
          </font>
       </Label>
    </children>
