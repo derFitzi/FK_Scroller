@@ -231,8 +231,8 @@ public class InfinityController {
         Rectangle platformNeu;
         Rectangle erdeNeu;
         int zahl1 = (int) (Math.random() * 3)+1;
-        int zahl2 = (int) (Math.random() * 50);
-        int zahl3 = (int) (Math.random() * 120)+50;
+        int zahl2 = (int) (Math.random() * 100)+50;
+        int zahl3 = (int) (Math.random() * 100)+50;
         int zahl4 = (int) (Math.random() * 2+1);
 
 
