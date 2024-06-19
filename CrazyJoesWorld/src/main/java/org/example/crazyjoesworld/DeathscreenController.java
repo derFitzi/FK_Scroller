@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -22,6 +23,9 @@ public class DeathscreenController {
     Button nocheinmal;
     @FXML
     Pane deathscreenPane;
+    @FXML
+    Label score;
+
     MediaPlayer Music;
     Media sound1 = new Media(new File("CrazyJoesWorld/src/main/resources/org/example/crazyjoesworld/fall.mp3").toURI().toString());
 
@@ -93,13 +97,22 @@ public class DeathscreenController {
         }
     }
 
-    public void CauseOfDeath(int zahl)
+    public void CauseOfDeath(int zahl, int playerScore)
     {
         if (zahl==1)
         {
             Music = new MediaPlayer(sound1);
             Music.play();
             Music.setVolume(Singleton.getInstance().getLautstaerke());
+            score.setVisible(false);
+        }
+        if (zahl==2)
+        {
+            Music = new MediaPlayer(sound1);
+            Music.play();
+            Music.setVolume(Singleton.getInstance().getLautstaerke());
+            score.setVisible(true);
+            score.setText("Score: " + playerScore);
         }
     }
 }

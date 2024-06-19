@@ -1173,7 +1173,7 @@ public class Game1Controller {
 
             DeathscreenController deathScreenController = loader.getController();
             deathScreenController.setPlayedGame(aktuellesLevel);
-            deathScreenController.CauseOfDeath(1);
+            deathScreenController.CauseOfDeath(1, 0);
 
             Scene currentScene = quit.getScene();
             currentScene.setRoot(DeathScreenRoot);

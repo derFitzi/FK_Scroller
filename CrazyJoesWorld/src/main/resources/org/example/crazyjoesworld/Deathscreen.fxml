@@ -24,5 +24,10 @@
                 <Font name="Cooper Black" size="34.0" />
             </font>
         </Label>
+      <Label fx:id="score" layoutX="690.0" layoutY="346.0" prefHeight="44.0" prefWidth="202.0" text="Score: 000" textAlignment="CENTER">
+         <font>
+            <Font name="Cooper Black" size="37.0" />
+         </font>
+      </Label>
     </children>
 </Pane>

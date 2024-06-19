@@ -20,6 +20,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 
 
 import java.io.File;
@@ -52,6 +53,7 @@ public class InfinityController {
     private boolean atkA;
     private Rectangle wall;
     private double wallSpeed = 2;
+    private Label score;
 
     @FXML
     private Slider lautstaerke;
@@ -109,6 +111,13 @@ public class InfinityController {
         player.setTranslateY(100);
         infinityPane.getChildren().add(player);
 
+        score = new Label("Score: 0");
+        score.setFont(new Font("Bold", 25));
+        score.setVisible(true);
+        score.setTranslateX(0);
+        score.setTranslateY(0);
+        score.setTextFill(Color.BLACK);
+        infinityPane.getChildren().add(score);
 
         deathBox = new Rectangle(1920, 30, Color.RED);
         deathBox.setStroke(Color.TRANSPARENT);
@@ -126,6 +135,7 @@ public class InfinityController {
         startGame();
 
         player.toFront();
+        score.toFront();
 
         quit.toFront();
         Music.play();
@@ -329,6 +339,8 @@ public class InfinityController {
 
         if (left &&linkslaufen) dx -= playerSpeed;
         if (right &&rechtslaufen) dx += playerSpeed;
+        dxA += dx;
+        score.setText("Score: " + (int) dxA/300);
 
         wall.setTranslateX(wall.getTranslateX() + wallSpeed -dx);
         Random rdm = new Random();
@@ -550,7 +562,7 @@ v
 
                 DeathscreenController deathScreenController = loader.getController();
                 deathScreenController.setPlayedGame(aktuellesLevel);
-                deathScreenController.CauseOfDeath(1);
+                deathScreenController.CauseOfDeath(2,  (int) dxA/300);
                 deathScreenController.setPlayedGame(5);
 
                 Scene currentScene = quit.getScene();
