@@ -112,11 +112,11 @@ public class InfinityController {
         infinityPane.getChildren().add(player);
 
         score = new Label("Score: 0");
-        score.setFont(new Font("Bold", 25));
+        score.setFont(new Font("Cooper Black", 30));
         score.setVisible(true);
-        score.setTranslateX(0);
-        score.setTranslateY(0);
-        score.setTextFill(Color.BLACK);
+        score.setTranslateX(1370);
+        score.setTranslateY(10);
+        score.setTextFill(Color.rgb(64, 63, 56));
         infinityPane.getChildren().add(score);
 
         deathBox = new Rectangle(1920, 30, Color.RED);
