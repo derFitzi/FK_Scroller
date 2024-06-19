@@ -1271,7 +1271,7 @@ public class Game1Controller {
             enemy.remove(i);
         }
         enemy.add(new Enemy(70, 70, 900, 660, 600));
-        enemy.add(new Enemy(70, 70, 1600, 540, 1420));
+        enemy.add(new Enemy(70, 70, 1600, 560, 1420));
         enemy.add(new Enemy(70, 70, 3100, 715, 1100));
 
         for (int i = 0; i <= enemy.size()-1; i++) {
